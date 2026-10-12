@@ -411,7 +411,7 @@ export default function CheckoutPanel({
                 }}
                 className={`py-1.5 px-1 rounded text-center text-[10px] font-bold border transition-all flex flex-col items-center gap-0.5 ${
                   paymentMethod === "CASH"
-                    ? "border-accent bg-accent/15 text-accent shadow-xs"
+                    ? "border-primary bg-primary-tint text-primary shadow-xs"
                     : "border-border bg-surface-2 text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -427,7 +427,7 @@ export default function CheckoutPanel({
                 }}
                 className={`py-1.5 px-1 rounded text-center text-[10px] font-bold border transition-all flex flex-col items-center gap-0.5 ${
                   paymentMethod === "CARD"
-                    ? "border-blue-500 bg-blue-500/15 text-blue-500 shadow-xs"
+                    ? "border-info/50 bg-info-subtle text-info-text shadow-xs"
                     : "border-border bg-surface-2 text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -446,7 +446,7 @@ export default function CheckoutPanel({
                 }}
                 className={`py-1.5 px-1 rounded text-center text-[10px] font-bold border transition-all flex flex-col items-center gap-0.5 ${
                   paymentMethod === "SPLIT"
-                    ? "border-purple-500 bg-purple-500/15 text-purple-500 shadow-xs"
+                    ? "border-primary/50 bg-primary-tint/70 text-primary shadow-xs"
                     : "border-border bg-surface-2 text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -463,7 +463,7 @@ export default function CheckoutPanel({
                 }}
                 className={`py-1.5 px-1 rounded text-center text-[10px] font-bold border transition-all flex flex-col items-center gap-0.5 ${
                   paymentMethod === "CREDIT"
-                    ? "border-amber-500 bg-amber-500/15 text-amber-500 shadow-xs"
+                    ? "border-champagne/60 bg-champagne-subtle text-champagne-text shadow-xs"
                     : "border-border bg-surface-2 text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -520,7 +520,7 @@ export default function CheckoutPanel({
 
             {/* Split Tender Inputs */}
             {paymentMethod === "SPLIT" && (
-              <div className="space-y-1.5 p-2 rounded-lg border border-purple-500/30 bg-purple-500/5">
+              <div className="space-y-1.5 p-2 rounded-lg border border-primary/25 bg-primary-tint/30">
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <Label className="text-[10px] text-text-secondary">Cash Portion</Label>
@@ -562,8 +562,8 @@ export default function CheckoutPanel({
 
             {/* Credit Tender Input */}
             {paymentMethod === "CREDIT" && (
-              <div className="space-y-1.5 p-2 rounded-lg border border-amber-500/30 bg-amber-500/5">
-                <Label className="text-[10px] text-amber-500 font-semibold">Initial Payment (Optional)</Label>
+              <div className="space-y-1.5 p-2 rounded-lg border border-champagne/30 bg-champagne-subtle/40">
+                <Label className="text-[10px] text-champagne-text font-semibold">Initial Payment (Optional)</Label>
                 <Input
                   type="number"
                   placeholder="0.00"

@@ -9,44 +9,88 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Light Mode Colors */
-  --color-background: #F8FAFC;
-  --color-foreground: #0F172A;
+  --color-background: #F7F9F9;
+  --color-foreground: #1A2624;
   --color-surface: #FFFFFF;
-  --color-surface-2: #F1F5F9;
+  --color-surface-2: #F0F4F3;
+  --color-surface-tint: #E6F4F0;
   --color-elevated: #FFFFFF;
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #64748B;
-  --color-accent: #1E3A8A;
-  --color-accent-hover: #1E40AF;
-  --color-accent-foreground: #FFFFFF;
-  --color-accent-subtle: #DBEAFE;
-  --color-danger: #DC2626;
-  --color-success: #16A34A;
-  --color-warning: #D97706;
-  --color-info: #2563EB;
-  --color-border: #E2E8F0;
-  --color-border-strong: #CBD5E1;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #0F172A;
-  --color-muted: #F8FAFC;
-  --color-muted-foreground: #94A3B8;
-  --color-popover: #FFFFFF;
-  --color-popover-foreground: #0F172A;
-  --color-primary: #1E3A8A;
+  --color-text-primary: #1A2624;
+  --color-text-secondary: #5B6B68;
+  --color-text-muted: #82928F;
+
+  /* Primary (Emerald Teal) - Buttons, active states, links */
+  --color-primary: #0E7C66;
+  --color-primary-hover: #095443;
   --color-primary-foreground: #FFFFFF;
-  --color-secondary: #F1F5F9;
-  --color-secondary-foreground: #0F172A;
-  --color-input: #E2E8F0;
-  --color-input-foreground: #0F172A;
-  --color-ring: #1E3A8A;
-  --color-sidebar-background: #FFFFFF;
-  --color-sidebar-foreground: #0F172A;
-  --color-sidebar-primary: #1E3A8A;
+  --color-primary-tint: #E6F4F0;
+  --color-primary-subtle: #E6F4F0;
+  --color-primary-dark: #095443;
+
+  /* Accent in codebase - Mapped to Primary Teal for interactive parity */
+  --color-accent: #0E7C66;
+  --color-accent-hover: #095443;
+  --color-accent-foreground: #FFFFFF;
+  --color-accent-subtle: #E6F4F0;
+  --color-ring: #0E7C66;
+
+  /* Accent (Champagne) - Premium badges, highlights only */
+  --color-champagne: #C8A45D;
+  --color-champagne-hover: #B59148;
+  --color-champagne-subtle: #FAF6ED;
+  --color-champagne-text: #8C6A24;
+  --color-champagne-border: #E8D8B0;
+  --color-gold: #C8A45D;
+
+  /* Ink (Dark Surface) */
+  --color-ink: #0B1F1D;
+
+  /* Clinical Semantics */
+  --color-danger: #D64550;
+  --color-danger-hover: #BA333E;
+  --color-danger-foreground: #FFFFFF;
+  --color-danger-subtle: #FDF0F1;
+  --color-danger-text: #9B1C26;
+
+  --color-success: #1F9D55;
+  --color-success-hover: #168045;
+  --color-success-foreground: #FFFFFF;
+  --color-success-subtle: #E8F7EE;
+  --color-success-text: #136C3A;
+
+  --color-warning: #F5A524;
+  --color-warning-hover: #D98816;
+  --color-warning-foreground: #FFFFFF;
+  --color-warning-subtle: #FEF6E7;
+  --color-warning-text: #9A6208;
+
+  --color-info: #3B82F6;
+  --color-info-hover: #2563EB;
+  --color-info-foreground: #FFFFFF;
+  --color-info-subtle: #EFF6FF;
+  --color-info-text: #1D4ED8;
+
+  --color-border: #E4E9E8;
+  --color-border-strong: #CBD5D2;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1A2624;
+  --color-muted: #F0F4F3;
+  --color-muted-foreground: #5B6B68;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #1A2624;
+  --color-secondary: #F0F4F3;
+  --color-secondary-foreground: #1A2624;
+  --color-input: #E4E9E8;
+  --color-input-foreground: #1A2624;
+
+  --color-sidebar-background: #0B1F1D;
+  --color-sidebar-foreground: #E6F4F0;
+  --color-sidebar-primary: #0E7C66;
   --color-sidebar-primary-foreground: #FFFFFF;
-  --color-sidebar-accent: #F1F5F9;
-  --color-sidebar-accent-foreground: #0F172A;
-  --color-sidebar-border: #E2E8F0;
-  --color-sidebar-ring: #1E3A8A;
+  --color-sidebar-accent: #132E2B;
+  --color-sidebar-accent-foreground: #E6F4F0;
+  --color-sidebar-border: #183834;
+  --color-sidebar-ring: #0E7C66;
 
   /* Animation Durations */
   --duration-hover: 120ms;
@@ -66,45 +110,82 @@
 }
 
 .dark {
-  /* Dark Mode Colors */
-  --color-background: #0F172A;
-  --color-foreground: #F8FAFC;
-  --color-surface: #111827;
-  --color-surface-2: #1E293B;
-  --color-elevated: #1E293B;
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #94A3B8;
-  --color-accent: #3B82F6;
-  --color-accent-hover: #60A5FA;
-  --color-accent-foreground: #0F172A;
-  --color-accent-subtle: #1E3A8A;
-  --color-danger: #EF4444;
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
+  /* Dark Mode Colors (Ink based) */
+  --color-background: #0B1F1D;
+  --color-foreground: #F7F9F9;
+  --color-surface: #102624;
+  --color-surface-2: #163330;
+  --color-surface-tint: #1B3D3A;
+  --color-elevated: #163330;
+  --color-text-primary: #F7F9F9;
+  --color-text-secondary: #A1B5B1;
+  --color-text-muted: #6E827E;
+
+  --color-primary: #0E7C66;
+  --color-primary-hover: #129A7F;
+  --color-primary-foreground: #FFFFFF;
+  --color-primary-tint: #163330;
+  --color-primary-subtle: #163330;
+  --color-primary-dark: #095443;
+
+  --color-accent: #0E7C66;
+  --color-accent-hover: #129A7F;
+  --color-accent-foreground: #FFFFFF;
+  --color-accent-subtle: #163330;
+  --color-ring: #0E7C66;
+
+  --color-champagne: #C8A45D;
+  --color-champagne-hover: #D8B772;
+  --color-champagne-subtle: #2A2416;
+  --color-champagne-text: #E5CA8F;
+  --color-champagne-border: #4A3C20;
+  --color-gold: #C8A45D;
+
+  --color-danger: #D64550;
+  --color-danger-hover: #E05863;
+  --color-danger-foreground: #FFFFFF;
+  --color-danger-subtle: #381216;
+  --color-danger-text: #F87171;
+
+  --color-success: #1F9D55;
+  --color-success-hover: #26B864;
+  --color-success-foreground: #FFFFFF;
+  --color-success-subtle: #0E2E1D;
+  --color-success-text: #4ADE80;
+
+  --color-warning: #F5A524;
+  --color-warning-hover: #F8B446;
+  --color-warning-foreground: #FFFFFF;
+  --color-warning-subtle: #382408;
+  --color-warning-text: #FBBF24;
+
   --color-info: #3B82F6;
-  --color-border: #334155;
-  --color-border-strong: #475569;
-  --color-card: #111827;
-  --color-card-foreground: #F8FAFC;
-  --color-muted: #1E293B;
-  --color-muted-foreground: #94A3B8;
-  --color-popover: #1E293B;
-  --color-popover-foreground: #F8FAFC;
-  --color-primary: #3B82F6;
-  --color-primary-foreground: #0F172A;
-  --color-secondary: #1E293B;
-  --color-secondary-foreground: #F8FAFC;
-  --color-input: #334155;
-  --color-input-foreground: #F8FAFC;
-  --color-ring: #3B82F6;
-  --color-sidebar-background: #111827;
-  --color-sidebar-foreground: #F8FAFC;
-  --color-sidebar-primary: #3B82F6;
-  --color-sidebar-primary-foreground: #0F172A;
-  --color-sidebar-accent: #1E293B;
-  --color-sidebar-accent-foreground: #F8FAFC;
-  --color-sidebar-border: #1E293B;
-  --color-sidebar-ring: #3B82F6;
+  --color-info-hover: #60A5FA;
+  --color-info-foreground: #FFFFFF;
+  --color-info-subtle: #0F2547;
+  --color-info-text: #60A5FA;
+
+  --color-border: #1E3F3B;
+  --color-border-strong: #2A544F;
+  --color-card: #102624;
+  --color-card-foreground: #F7F9F9;
+  --color-muted: #163330;
+  --color-muted-foreground: #6E827E;
+  --color-popover: #102624;
+  --color-popover-foreground: #F7F9F9;
+  --color-secondary: #163330;
+  --color-secondary-foreground: #F7F9F9;
+  --color-input: #1E3F3B;
+  --color-input-foreground: #F7F9F9;
+
+  --color-sidebar-background: #081716;
+  --color-sidebar-foreground: #F7F9F9;
+  --color-sidebar-primary: #0E7C66;
+  --color-sidebar-primary-foreground: #FFFFFF;
+  --color-sidebar-accent: #102624;
+  --color-sidebar-accent-foreground: #F7F9F9;
+  --color-sidebar-border: #163330;
+  --color-sidebar-ring: #0E7C66;
 }
 
 * {

@@ -14,7 +14,7 @@ interface StatCardProps {
   delay?: number;
   href?: string;
   onClick?: () => void;
-  color?: "default" | "accent" | "success" | "warning" | "danger" | "purple";
+  color?: "default" | "accent" | "success" | "warning" | "danger" | "purple" | "champagne";
   className?: string;
 }
 
@@ -60,12 +60,13 @@ export default function StatCard({
   const isClickable = !!(href || onClick);
 
   const colorStyles = {
-    default: { iconBg: "bg-accent/10 text-accent group-hover:bg-accent/15", border: "group-hover:border-accent/30", bar: "bg-accent/30 group-hover:bg-accent" },
-    accent: { iconBg: "bg-accent/10 text-accent group-hover:bg-accent/15", border: "group-hover:border-accent/30", bar: "bg-accent/30 group-hover:bg-accent" },
-    success: { iconBg: "bg-success/10 text-success group-hover:bg-success/15", border: "group-hover:border-success/30", bar: "bg-success/30 group-hover:bg-success" },
-    warning: { iconBg: "bg-warning/10 text-warning group-hover:bg-warning/15", border: "group-hover:border-warning/30", bar: "bg-warning/30 group-hover:bg-warning" },
-    danger: { iconBg: "bg-danger/10 text-danger group-hover:bg-danger/15", border: "group-hover:border-danger/30", bar: "bg-danger/30 group-hover:bg-danger" },
+    default: { iconBg: "bg-primary-tint text-primary group-hover:bg-primary-tint/80", border: "group-hover:border-primary/30", bar: "bg-primary/30 group-hover:bg-primary" },
+    accent: { iconBg: "bg-primary-tint text-primary group-hover:bg-primary-tint/80", border: "group-hover:border-primary/30", bar: "bg-primary/30 group-hover:bg-primary" },
+    success: { iconBg: "bg-success-subtle text-success-text group-hover:bg-success-subtle/80", border: "group-hover:border-success/30", bar: "bg-success/30 group-hover:bg-success" },
+    warning: { iconBg: "bg-warning-subtle text-warning-text group-hover:bg-warning-subtle/80", border: "group-hover:border-warning/30", bar: "bg-warning/30 group-hover:bg-warning" },
+    danger: { iconBg: "bg-danger-subtle text-danger-text group-hover:bg-danger-subtle/80", border: "group-hover:border-danger/30", bar: "bg-danger/30 group-hover:bg-danger" },
     purple: { iconBg: "bg-purple-500/10 text-purple-600 group-hover:bg-purple-500/15", border: "group-hover:border-purple-500/30", bar: "bg-purple-500/30 group-hover:bg-purple-500" },
+    champagne: { iconBg: "bg-champagne-subtle text-champagne-text group-hover:bg-champagne-subtle/80", border: "group-hover:border-champagne/30", bar: "bg-champagne/30 group-hover:bg-champagne" },
   }[color];
 
   if (loading) {

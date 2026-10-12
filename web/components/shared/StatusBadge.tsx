@@ -1,7 +1,7 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 
-const statusMap: Record<string, { label: string; variant: "default" | "success" | "warning" | "danger" | "outline" }> = {
+const statusMap: Record<string, { label: string; variant: "default" | "success" | "warning" | "danger" | "outline" | "champagne" }> = {
   paid: { label: "Paid", variant: "success" },
   pending: { label: "Pending", variant: "warning" },
   settled: { label: "Settled", variant: "success" },
@@ -10,6 +10,9 @@ const statusMap: Record<string, { label: string; variant: "default" | "success" 
   inactive: { label: "Inactive", variant: "outline" },
   low: { label: "Low Stock", variant: "danger" },
   expiring: { label: "Expiring Soon", variant: "warning" },
+  premium: { label: "Premium", variant: "champagne" },
+  vip: { label: "VIP", variant: "champagne" },
+  controlled: { label: "Controlled", variant: "warning" },
 };
 
 interface StatusBadgeProps {
