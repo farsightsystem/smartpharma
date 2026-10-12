@@ -720,7 +720,7 @@ export const transfersService = {
         status: batch.status,
       }));
 
-      const lastUpdated = lastMovementByBranch.get(b.id)?.toISOString() ?? prod?.updatedAt?.toISOString() ?? null;
+      const lastUpdated = lastMovementByBranch.get(b.id)?.toISOString() ?? prod?.createdAt?.toISOString() ?? null;
 
       return {
         branchId: b.id,

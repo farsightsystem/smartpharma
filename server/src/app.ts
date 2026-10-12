@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import swaggerUi from "swagger-ui-express";
+import { openapiSpecification } from "./docs/openapi";
 import { errorHandler } from "./middleware/errors";
 import { authenticate, requireActiveSubscription } from "./middleware/auth";
 import { authRoutes } from "./modules/auth/auth.routes";
@@ -33,24 +35,70 @@ import { supplierReturnsRoutes } from "./modules/purchases/supplier-returns.rout
 const app = express();
 
 app.use(cors());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(express.json());
+
+// Documentation endpoints (OpenAPI 3.0 specification & Swagger UI)
+const swaggerUiOptions = {
+  explorer: true,
+  swaggerOptions: {
+    persistAuthorization: true,
+    displayRequestDuration: true,
+    docExpansion: "none",
+    filter: true,
+  },
+  customSiteTitle: "SmartPharma ERP API - Swagger UI",
+};
+
+app.get("/api/docs.json", (_req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.json(openapiSpecification);
+});
+app.get("/docs.json", (_req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.json(openapiSpecification);
+});
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification, swaggerUiOptions));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification, swaggerUiOptions));
 
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// Global tenant guards. Everything except /api/auth and /api/pharmacy requires
+// Global tenant guards. Everything except /api/auth, /api/pharmacy, and /api/docs requires
 // an authenticated user AND an active pharmacy subscription (HTTP 402 when the
 // monthly billing has lapsed).
 app.use("/api", (req, _res, next) => {
   const p = req.path;
-  if (p === "/health" || p === "/auth" || p.startsWith("/auth/")) return next();
+  if (
+    p === "/health" ||
+    p === "/auth" ||
+    p.startsWith("/auth/") ||
+    p === "/docs" ||
+    p.startsWith("/docs") ||
+    p === "/docs.json"
+  ) {
+    return next();
+  }
   void authenticate(req, _res, next);
 });
 app.use("/api", (req, _res, next) => {
   const p = req.path;
-  if (p === "/health" || p === "/auth" || p.startsWith("/auth/") || p.startsWith("/pharmacy")) {
+  if (
+    p === "/health" ||
+    p === "/auth" ||
+    p.startsWith("/auth/") ||
+    p.startsWith("/pharmacy") ||
+    p === "/docs" ||
+    p.startsWith("/docs") ||
+    p === "/docs.json"
+  ) {
     return next();
   }
   void requireActiveSubscription(req, _res, next);

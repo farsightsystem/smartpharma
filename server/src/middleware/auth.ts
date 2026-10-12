@@ -123,6 +123,7 @@ export async function authenticate(req: Request, _res: Response, next: NextFunct
       mustChangePassword: user.mustChangePassword,
       isActive: user.isActive,
     };
+    (req as any).branchScope = branchScope(req);
     next();
   } catch (err) {
     next(err);
@@ -223,3 +224,5 @@ export function scopeWhere(
 ): { pharmacyId: string; branchId?: string } {
   return branchScope(req, opts);
 }
+
+export type AuthenticatedRequest = Request;

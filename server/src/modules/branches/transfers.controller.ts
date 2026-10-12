@@ -7,7 +7,7 @@ export const transfersController = {
     try {
       const scope = req.branchScope!;
       const user = {
-        id: req.user!.id,
+        id: req.user!.userId,
         name: req.user!.name || req.user!.username,
       };
       const result = await transfersService.createTransfer(scope, req.body, user);
@@ -21,7 +21,7 @@ export const transfersController = {
     try {
       const scope = req.branchScope!;
       const user = {
-        id: req.user!.id,
+        id: req.user!.userId,
         name: req.user!.name || req.user!.username,
       };
       const result = await transfersService.sendTransfer(scope, req.params.id, user);
@@ -35,7 +35,7 @@ export const transfersController = {
     try {
       const scope = req.branchScope!;
       const user = {
-        id: req.user!.id,
+        id: req.user!.userId,
         name: req.user!.name || req.user!.username,
       };
       const result = await transfersService.receiveTransfer(scope, req.params.id, user);
@@ -49,7 +49,7 @@ export const transfersController = {
     try {
       const scope = req.branchScope!;
       const user = {
-        id: req.user!.id,
+        id: req.user!.userId,
         name: req.user!.name || req.user!.username,
       };
       const reason = req.body?.rejectionReason || req.body?.reason || "Rejected by user";
@@ -64,7 +64,7 @@ export const transfersController = {
     try {
       const scope = req.branchScope!;
       const user = {
-        id: req.user!.id,
+        id: req.user!.userId,
         name: req.user!.name || req.user!.username,
       };
       const result = await transfersService.cancelTransfer(scope, req.params.id, user);

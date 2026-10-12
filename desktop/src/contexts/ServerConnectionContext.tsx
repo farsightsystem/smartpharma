@@ -19,7 +19,7 @@ const ServerConnectionContext = createContext<ServerConnectionContextType | null
 
 function getApiUrl(): string {
   if (window.appConfig?.serverUrl) return window.appConfig.serverUrl;
-  return import.meta.env.VITE_API_URL || "http://localhost:3001";
+  return import.meta.env.VITE_API_URL || "http://localhost:3003";
 }
 
 const POLL_INTERVAL = 30_000;

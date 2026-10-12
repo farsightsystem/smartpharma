@@ -24,7 +24,7 @@ function getApiUrl(): string {
     const override = localStorage.getItem("smartpharma_api_url")?.trim();
     if (override) return override;
   }
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3003";
 }
 
 const POLL_INTERVAL = 30_000;

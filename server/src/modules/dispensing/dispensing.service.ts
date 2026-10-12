@@ -67,10 +67,10 @@ export const dispensingService = {
     if (productIds.length > 0) {
       const linkedProducts = await prisma.product.findMany({
         where: { id: { in: productIds }, pharmacyId: scope.pharmacyId },
-        select: { id: true, isControlled: true, schedule: true },
+        select: { id: true, isControlled: true },
       });
       for (const p of linkedProducts) {
-        if (p.isControlled || (p.schedule && p.schedule.trim() !== "")) {
+        if (p.isControlled) {
           hasControlledItem = true;
           // Mark the corresponding item as controlled
           const item = data.items.find((i) => i.productId === p.id);
@@ -138,7 +138,6 @@ export const dispensingService = {
                 salePrice: true,
                 stockQty: true,
                 isControlled: true,
-                schedule: true,
               },
             },
           },
@@ -200,7 +199,6 @@ export const dispensingService = {
                 salePrice: true,
                 stockQty: true,
                 isControlled: true,
-                schedule: true,
               },
             },
           },
@@ -484,8 +482,7 @@ export const dispensingService = {
 
         const isControlled =
           Boolean(item.isControlled) ||
-          Boolean(dispensedProduct.isControlled) ||
-          Boolean(dispensedProduct.schedule && dispensedProduct.schedule.trim() !== "");
+          Boolean(dispensedProduct.isControlled);
 
         if (isControlled) {
           if (!rx.patientIdentifier || rx.patientIdentifier.trim() === "") {
@@ -776,7 +773,7 @@ export const dispensingService = {
             genericName: true,
             dosageForm: true,
             strength: true,
-            schedule: true,
+            isControlled: true,
           },
         },
         batch: {

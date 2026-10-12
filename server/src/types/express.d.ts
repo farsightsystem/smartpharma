@@ -1,5 +1,9 @@
 declare namespace Express {
   interface Request {
+    branchScope?: {
+      pharmacyId: string;
+      branchId?: string;
+    };
     user?: {
       userId: string;
       username: string;

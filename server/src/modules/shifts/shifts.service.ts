@@ -312,11 +312,12 @@ async function calculateShiftMetrics(shiftId: string, pharmacyId: string): Promi
   let nonCashRefundsAmount = 0;
 
   for (const ret of returns) {
-    totalReturnsAmount += ret.totalRefund;
-    if ((ret.refundMethod || "CASH").toUpperCase() === "CASH") {
-      cashRefundsAmount += ret.totalRefund;
+    const refund = Number((ret as any).totalRefund ?? (ret as any).refundAmount ?? 0);
+    totalReturnsAmount += refund;
+    if (((ret as any).refundMethod || "CASH").toUpperCase() === "CASH") {
+      cashRefundsAmount += refund;
     } else {
-      nonCashRefundsAmount += ret.totalRefund;
+      nonCashRefundsAmount += refund;
     }
   }
 

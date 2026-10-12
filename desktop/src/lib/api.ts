@@ -38,7 +38,7 @@ export class ApiError extends Error {
 function getApiUrl(): string {
   const cfg = window.appConfig?.serverUrl?.trim();
   if (cfg) return cfg;
-  return process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3001";
+  return process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3003";
 }
 
 function getToken(): string | null {

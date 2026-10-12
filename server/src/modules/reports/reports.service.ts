@@ -69,7 +69,7 @@ export const reportsService = {
       where: {
         pharmacyId: scope.pharmacyId,
         ...(scope.branchId ? { branchId: scope.branchId } : {}),
-        currentQty: { gt: 0 },
+        quantityInBaseUnits: { gt: 0 },
         expiryDate: {
           gte: today,
           lte: thirtyDaysFromNow,

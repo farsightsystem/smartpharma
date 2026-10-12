@@ -116,7 +116,7 @@ export const supplierReturnsService = {
         items: {
           include: {
             product: { select: { id: true, name: true, barcode: true, category: true } },
-            batch: { select: { id: true, batchNumber: true, expiryDate: true, quantity: true } },
+            batch: { select: { id: true, batchNumber: true, expiryDate: true, quantityInBaseUnits: true } },
           },
         },
       },
@@ -139,7 +139,7 @@ export const supplierReturnsService = {
     const batches = await prisma.batch.findMany({
       where: {
         branchId,
-        quantity: { gt: 0 },
+        quantityInBaseUnits: { gt: 0 },
         OR: [
           { expiryDate: { lte: targetDate } },
           { isRecalled: true },
@@ -161,7 +161,7 @@ export const supplierReturnsService = {
             barcode: true,
             category: true,
             distributorId: true,
-            pack_size: true,
+            packSize: true,
             distributor: { select: { id: true, name: true } },
           },
         },
@@ -183,13 +183,13 @@ export const supplierReturnsService = {
         batchNumber: b.batchNumber,
         expiryDate: b.expiryDate.toISOString(),
         daysToExpiry: diffDays,
-        quantityAvailable: b.quantity,
-        unitCost: Number(b.costPrice || 0),
+        quantityAvailable: (b as any).quantityInBaseUnits ?? (b as any).quantity ?? 0,
+        unitCost: Number((b as any).costPricePerUnit ?? (b as any).costPrice ?? 0),
         suggestedReason,
         productId: b.productId,
         productName: b.product.name,
         barcode: b.product.barcode,
-        packSize: b.product.pack_size || 1,
+        packSize: (b.product as any).packSize ?? (b.product as any).pack_size ?? 1,
         distributorId: b.product.distributorId,
         distributorName: b.product.distributor?.name || "Unknown Distributor",
       };
@@ -243,7 +243,7 @@ export const supplierReturnsService = {
 
     // Verify stock availability for each item in the branch
     let calculatedTotal = 0;
-    const preparedItems = [];
+    const preparedItems: any[] = [];
 
     for (const it of input.items) {
       const product = await prisma.product.findFirst({
@@ -251,7 +251,7 @@ export const supplierReturnsService = {
       });
       if (!product) throw new NotFoundError(`Product ${it.productId}`);
 
-      const unitsPerPack = it.unitsPerPack || product.pack_size || 1;
+      const unitsPerPack = it.unitsPerPack || product.packSize || 1;
       const quantityBaseUnits = it.quantityPacks * unitsPerPack;
       const unitCost = Number(it.unitCost || 0);
       const totalCost = unitCost * it.quantityPacks;
@@ -332,20 +332,30 @@ export const supplierReturnsService = {
           if (item.batchId) {
             const batch = await tx.batch.findUnique({ where: { id: item.batchId } });
             if (batch) {
-              const newBatchQty = Math.max(0, batch.quantity - item.quantityBaseUnits);
+              const currentQty = Number((batch as any).quantityInBaseUnits ?? (batch as any).quantity ?? 0);
+              const newBatchQty = Math.max(0, currentQty - item.quantityBaseUnits);
+              const updateBatchData: any = { quantityInBaseUnits: newBatchQty };
+              if ((batch as any).quantity !== undefined) {
+                updateBatchData.quantity = newBatchQty;
+              }
               await tx.batch.update({
                 where: { id: item.batchId },
-                data: { quantity: newBatchQty },
+                data: updateBatchData,
               });
             }
           }
 
           // Decrement product stock
           const prod = await tx.product.findUnique({ where: { id: item.productId } });
-          const newProdStock = Math.max(0, (prod?.stock_qty || 0) - item.quantityBaseUnits);
+          const currentProdStock = Number((prod as any).stockQty ?? (prod as any).stock_qty ?? 0);
+          const newProdStock = Math.max(0, currentProdStock - item.quantityBaseUnits);
+          const updateProdData: any = { stockQty: newProdStock };
+          if ((prod as any).stock_qty !== undefined) {
+            updateProdData.stock_qty = newProdStock;
+          }
           await tx.product.update({
             where: { id: item.productId },
-            data: { stock_qty: newProdStock },
+            data: updateProdData,
           });
 
           // Log stock movement
@@ -437,19 +447,29 @@ export const supplierReturnsService = {
         if (item.batchId) {
           const batch = await tx.batch.findUnique({ where: { id: item.batchId } });
           if (batch) {
-            const newBatchQty = Math.max(0, batch.quantity - item.quantityBaseUnits);
+            const currentQty = Number((batch as any).quantityInBaseUnits ?? (batch as any).quantity ?? 0);
+            const newBatchQty = Math.max(0, currentQty - item.quantityBaseUnits);
+            const updateBatchData: any =
+              (batch as any).quantity !== undefined
+                ? { quantity: newBatchQty }
+                : { quantityInBaseUnits: newBatchQty };
             await tx.batch.update({
               where: { id: item.batchId },
-              data: { quantity: newBatchQty },
+              data: updateBatchData,
             });
           }
         }
 
         const prod = await tx.product.findUnique({ where: { id: item.productId } });
-        const newProdStock = Math.max(0, (prod?.stock_qty || 0) - item.quantityBaseUnits);
+        const currentProdStock = Number((prod as any).stockQty ?? (prod as any).stock_qty ?? 0);
+        const newProdStock = Math.max(0, currentProdStock - item.quantityBaseUnits);
+        const updateProdData: any =
+          (prod as any).stock_qty !== undefined
+            ? { stock_qty: newProdStock }
+            : { stockQty: newProdStock };
         await tx.product.update({
           where: { id: item.productId },
-          data: { stock_qty: newProdStock },
+          data: updateProdData,
         });
 
         await tx.stockMovement.create({
