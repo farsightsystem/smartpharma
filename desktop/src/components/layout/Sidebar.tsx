@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logoUrl from "@/asset/logo.png";
+import logoUrl from "@/asset/logo.svg";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, ShoppingCart, FileText, Package, Boxes, Users, CreditCard,

@@ -525,7 +525,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
           {/* Logo + Step bar */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-6 w-6 object-contain" />
+              <Image src="/logo.svg" alt="Pharma 360" width={32} height={32} className="h-6 w-6 object-contain" />
               <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
             </div>
             <StepBar current={step} />

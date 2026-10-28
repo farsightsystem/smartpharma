@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoUrl from "@/asset/logo.png";
+import logoUrl from "@/asset/logo.svg";
 import { ArrowRight, ArrowLeft, Check, Building2, MapPin, FlaskConical, Coins } from "lucide-react";
 import { api } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";

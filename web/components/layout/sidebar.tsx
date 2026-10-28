@@ -219,7 +219,7 @@ export default function Sidebar() {
         <div className="flex items-center gap-1 min-w-0">
           <div className="flex items-center justify-center h-16 w-16 shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="Pharma 360"
               width={32}
               height={32}

@@ -25,7 +25,7 @@ function createWindow({ posOnly = false } = {}) {
     minWidth: 1024,
     minHeight: 700,
     title: "Pharma 360",
-    icon: path.join(__dirname, "..", "src", "asset", "image", "logo.png"),
+    icon: path.join(__dirname, "..", "src", "asset", "logo.svg"),
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
       nodeIntegration: false,

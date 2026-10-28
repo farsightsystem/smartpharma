@@ -5,11 +5,11 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const logoPath = `file://${path.join(__dirname, "image", "logo.png").replace(/\\/g, "/")}`;
+const logoPath = `file://${path.join(__dirname, "..", "src", "asset", "logo.svg").replace(/\\/g, "/")}`;
 const logoBase64 = (() => {
   try {
-    const buf = fs.readFileSync(path.join(__dirname, "image", "logo.png"));
-    return `data:image/png;base64,${buf.toString("base64")}`;
+    const buf = fs.readFileSync(path.join(__dirname, "..", "src", "asset", "logo.svg"));
+    return `data:image/svg+xml;base64,${buf.toString("base64")}`;
   } catch {
     return "";
   }

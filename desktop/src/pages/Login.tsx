@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoUrl from "@/asset/logo.png";
+import logoUrl from "@/asset/logo.svg";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   Eye,

@@ -23,18 +23,18 @@ export const metadata: Metadata = {
       rel: "icon",
       type: "image/png",
       sizes: "32x32",
-      url: "/logo.png",
+      url: "/logo.svg",
     },
     {
       rel: "icon",
-      type: "image/png",
+      type: "image/svg+xml",
       sizes: "16x16",
-      url: "/logo.png",
+      url: "/logo.svg",
     },
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      url: "/logo.png",
+      url: "/logo.svg",
     },
   ],
 };

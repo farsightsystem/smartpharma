@@ -29,9 +29,9 @@ export function BrandSplash() {
       style={[styles.overlay, { backgroundColor: theme.background, opacity }]}>
       <View style={[styles.logoWrap, { backgroundColor: theme.surface, borderColor: theme.border }]}>
         <Image
-          source={require('@/assets/images/faraz-logo.png')}
+          source={require('@/asset/logo.svg')}
           style={styles.logo}
-          contentFit="cover"
+          contentFit="contain"
         />
       </View>
       <Text style={[styles.name, { color: theme.text }]}>Faraz Pharmacy</Text>

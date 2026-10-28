@@ -105,7 +105,7 @@ export default function LoginScreen() {
           <View style={styles.brand}>
             <View style={styles.logoWrap}>
               <Image
-                source={require('@/assets/images/faraz-logo.png')}
+                source={require('@/asset/logo.svg')}
                 style={styles.logo}
                 contentFit="contain"
               />

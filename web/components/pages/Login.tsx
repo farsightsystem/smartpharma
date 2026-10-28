@@ -125,7 +125,7 @@ function BrandPanel() {
 
       <div className="relative z-10">
         <div className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-6 w-6 object-contain" />
+          <Image src="/logo.svg" alt="Pharma 360" width={32} height={32} className="h-6 w-6 object-contain" />
           <span className="text-background font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
       </div>
@@ -295,7 +295,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
       {/* Header */}
       <div className="space-y-1">
         <div className="lg:hidden flex items-center gap-2 mb-6">
-          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
+          <Image src="/logo.svg" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
           <span className="text-text-primary font-semibold text-sm">Pharma 360</span>
         </div>
         <AnimatePresence mode="wait">
@@ -609,7 +609,7 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
       {/* Header */}
       <div className="space-y-1">
         <div className="lg:hidden flex items-center gap-2 mb-6">
-          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
+          <Image src="/logo.svg" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
           <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
         <h1 className="text-2xl font-bold text-text-primary tracking-tight">Create your pharmacy</h1>
