@@ -1,3 +1,4 @@
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
@@ -810,18 +811,15 @@ const styles = StyleSheet.create({
   },
   scanBackdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.three,
   },
-  scanSheet: {
+  scanSheetBase: {
     width: '100%',
     maxWidth: 340,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
-    backgroundColor: '#FFFFFF',
     padding: Spacing.four,
     gap: Spacing.three,
   },
@@ -838,10 +836,9 @@ const styles = StyleSheet.create({
   },
   scanHint: {
     fontSize: 13,
-    color: '#64748B',
     marginBottom: 8,
   },
-  scanInput: {
+  scanInputBase: {
     height: 52,
     borderRadius: 12,
     borderWidth: 1,
@@ -854,6 +851,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Spacing.three,
     marginTop: 8,
+  },
+  scanOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: 24,
+  },
+  scanOverlayContent: {
+    alignItems: 'center',
+    marginBottom: 80,
+  },
+  scanOverlayTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 12,
+  },
+  scanOverlayClose: {
+    position: 'absolute',
+    top: 24,
+    right: 24,
+    zIndex: 10,
   },
 });
 
@@ -868,44 +886,75 @@ function ScanModal({
   onScan: (code: string) => void;
   theme: ReturnType<typeof useThemeColor>;
 }) {
-  const [code, setCode] = useState('');
+  const [scanned, setScanned] = useState(false);
+  const [cameraPermission, setCameraPermission] = useState<any>(null);
+
+  useEffect(() => {
+    (async () => {
+      const camStatus = await BarCodeScanner.requestPermissionsAsync();
+      setCameraPermission(camStatus);
+    })();
+  }, []);
+
+  if (!visible) return null;
+
+  if (cameraPermission?.status !== 'granted') {
+    return (
+      <Modal visible={true} transparent animationType="slide" onRequestClose={onClose}>
+        <View style={[styles.scanBackdrop, { backgroundColor: theme.backdrop }]}>
+          <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+          <View style={[
+            styles.scanSheetBase,
+            { borderColor: theme.border, backgroundColor: theme.surface },
+          ]}>
+            <View style={styles.scanHeader}>
+              <Text style={[styles.scanTitle, { color: theme.text, fontFamily: Fonts.sans }]}>Camera Access</Text>
+              <Pressable onPress={onClose}>
+                <Ionicons name="close" size={24} color={theme.textSecondary} />
+              </Pressable>
+            </View>
+            <Text style={[styles.scanHint, { color: theme.textSecondary }]}>Camera permission is required to scan barcodes.</Text>
+            {cameraPermission?.status === 'undetermined' ? (
+              <Button onPress={() => {
+                (async () => {
+                  const status = await BarCodeScanner.requestPermissionsAsync();
+                  setCameraPermission(status);
+                })();
+              }}>
+                Enable Camera
+              </Button>
+            ) : (
+              <Button variant="outline" onPress={onClose}>
+                Cancel
+              </Button>
+            )}
+          </View>
+        </View>
+      </Modal>
+    );
+  }
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View style={styles.scanBackdrop}>
+      <View style={[styles.scanBackdrop, { backgroundColor: theme.backdrop }]}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
-        <View style={[styles.scanSheet, { backgroundColor: theme.surface }]}>
-          <View style={styles.scanHeader}>
-            <Text style={[styles.scanTitle, { color: theme.text, fontFamily: Fonts.sans }]}>Scan Barcode</Text>
-            <Pressable onPress={onClose}>
-              <Ionicons name="close" size={24} color={theme.textSecondary} />
-            </Pressable>
+        <BarCodeScanner
+          style={StyleSheet.absoluteFill}
+          onBarCodeScanned={(e) => {
+            if (!scanned && e.data) {
+              setScanned(true);
+              onScan(e.data);
+            }
+          }}
+        />
+        <View style={styles.scanOverlay}>
+          <View style={styles.scanOverlayContent}>
+            <Ionicons name="qr-code-outline" size={32} color="#FFFFFF" />
+            <Text style={[styles.scanOverlayTitle, { color: theme.text }]}>Point camera at barcode</Text>
           </View>
-          <Text style={[styles.scanHint, { color: theme.textSecondary }]}>Enter or scan the product barcode</Text>
-          <TextInput
-            value={code}
-            onChangeText={setCode}
-            placeholder="0123456789"
-            keyboardType="numeric"
-            autoFocus
-            style={[styles.scanInput, { borderColor: theme.border, color: theme.text }]}
-          />
-          <View style={styles.scanActions}>
-            <Button variant="outline" onPress={onClose}>
-              Cancel
-            </Button>
-            <Button
-              onPress={() => {
-                if (code.trim()) {
-                  onScan(code.trim());
-                  onClose();
-                }
-              }}
-              disabled={!code.trim()}
-            >
-              Scan
-            </Button>
-          </View>
+          <Pressable onPress={onClose} style={styles.scanOverlayClose}>
+            <Ionicons name="close-outline" size={24} color="#FFFFFF" />
+          </Pressable>
         </View>
       </View>
     </Modal>

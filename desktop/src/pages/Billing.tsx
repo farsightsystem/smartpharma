@@ -83,7 +83,7 @@ export default function Billing() {
       className="max-w-3xl mx-auto"
     >
       {blocked && (
-        <div className="mb-5 rounded-xl border border-danger/20 bg-danger/5 px-4 py-3 flex items-start gap-3">
+        <div className="mb-5 rounded-md border border-danger/20 bg-danger/5 px-4 py-3 flex items-start gap-3">
           <AlertTriangle className="h-5 w-5 text-danger shrink-0 mt-0.5" />
           <div className="text-sm text-danger">
             <p className="font-medium">Subscription inactive</p>

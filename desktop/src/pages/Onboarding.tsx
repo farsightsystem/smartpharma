@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoUrl from "@/asset/logo.png";
 import { ArrowRight, ArrowLeft, Check, Building2, MapPin, FlaskConical, Coins } from "lucide-react";
 import { api } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
@@ -47,10 +48,10 @@ function Field({
   return (
     <div className="space-y-1.5">
       <div className="flex items-baseline justify-between">
-        <label htmlFor={id} className="block text-[11px] font-medium tracking-wide uppercase text-text-secondary select-none">
+        <label htmlFor={id} className="block text-xs font-medium tracking-wide uppercase text-text-secondary select-none">
           {label}
         </label>
-        {optional && <span className="text-[10px] text-text-secondary/60">Optional</span>}
+        {optional && <span className="text-xs text-text-secondary/60">Optional</span>}
       </div>
       <input
         id={id}
@@ -61,12 +62,12 @@ function Field({
         autoFocus={autoFocus}
         autoComplete="off"
         className={cn(
-          "w-full h-10 rounded-xl border border-border bg-surface px-3.5 text-sm text-text-primary placeholder:text-text-secondary/40",
+          "w-full h-10 rounded-md border border-border bg-surface px-3.5 text-sm text-text-primary placeholder:text-text-secondary/40",
           "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60",
           "transition-all duration-150",
         )}
       />
-      {hint && <p className="text-[11px] text-text-secondary/70 leading-relaxed">{hint}</p>}
+      {hint && <p className="text-xs text-text-secondary/70 leading-relaxed">{hint}</p>}
     </div>
   );
 }
@@ -86,7 +87,7 @@ function Select({
 }) {
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-[11px] font-medium tracking-wide uppercase text-text-secondary select-none">
+      <label htmlFor={id} className="block text-xs font-medium tracking-wide uppercase text-text-secondary select-none">
         {label}
       </label>
       <select
@@ -94,7 +95,7 @@ function Select({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={cn(
-          "w-full h-10 rounded-xl border border-border bg-surface px-3.5 text-sm text-text-primary",
+          "w-full h-10 rounded-md border border-border bg-surface px-3.5 text-sm text-text-primary",
           "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60",
           "transition-all duration-150 cursor-pointer appearance-none",
           !value && "text-text-secondary/50",
@@ -127,7 +128,7 @@ function StepBar({ current }: { current: number }) {
         return (
           <div key={i} className="flex items-center">
             <div className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium transition-all duration-300",
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
               done && "text-success",
               active && "bg-foreground text-background",
               !done && !active && "text-text-secondary/50",
@@ -217,7 +218,7 @@ function StepPharmacy({
             placeholder="e.g. Riyadh"
           />
           <div className="space-y-1.5">
-            <label htmlFor="currency" className="block text-[11px] font-medium tracking-wide uppercase text-text-secondary select-none">
+            <label htmlFor="currency" className="block text-xs font-medium tracking-wide uppercase text-text-secondary select-none">
               Base Currency *
             </label>
             <div className="relative">
@@ -226,7 +227,7 @@ function StepPharmacy({
                 id="currency"
                 value={data.currency}
                 onChange={(e) => onChange({ currency: e.target.value })}
-                className="w-full h-10 pl-8 pr-3 text-xs rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
+                className="w-full h-10 pl-8 pr-3 text-xs rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c.code} value={c.code}>
@@ -259,7 +260,7 @@ function StepPharmacy({
         type="submit"
         disabled={loading || !data.pharmacyName.trim() || !data.country}
         className={cn(
-          "w-full h-11 rounded-xl text-sm font-semibold flex items-center justify-center gap-2",
+          "w-full h-11 rounded-md text-sm font-semibold flex items-center justify-center gap-2",
           "bg-foreground text-background",
           "hover:opacity-90 active:scale-[0.98]",
           "transition-all duration-150",
@@ -360,7 +361,7 @@ function StepBranch({
           type="button"
           onClick={onBack}
           className={cn(
-            "h-11 px-5 rounded-xl text-sm font-medium flex items-center justify-center gap-2",
+            "h-11 px-5 rounded-md text-sm font-medium flex items-center justify-center gap-2",
             "border border-border text-text-primary",
             "hover:bg-surface-2 active:scale-[0.98]",
             "transition-all duration-150",
@@ -372,7 +373,7 @@ function StepBranch({
           type="submit"
           disabled={loading || !data.branchName.trim()}
           className={cn(
-            "flex-1 h-11 rounded-xl text-sm font-semibold flex items-center justify-center gap-2",
+            "flex-1 h-11 rounded-md text-sm font-semibold flex items-center justify-center gap-2",
             "bg-foreground text-background",
             "hover:opacity-90 active:scale-[0.98]",
             "transition-all duration-150",
@@ -419,7 +420,7 @@ function StepDone({ pharmacyName }: { pharmacyName: string }) {
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
-        className="h-16 w-16 rounded-2xl bg-success/10 border border-success/20 flex items-center justify-center mx-auto"
+        className="h-16 w-16 rounded-lg bg-success/10 border border-success/20 flex items-center justify-center mx-auto"
       >
         <Check className="h-8 w-8 text-success" strokeWidth={2.5} />
       </motion.div>
@@ -523,9 +524,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
           {/* Logo + Step bar */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-lg bg-foreground flex items-center justify-center">
-                <span className="text-background text-xs font-bold">Rx</span>
-              </div>
+              <img src={logoUrl} alt="Pharma 360" className="h-6 w-6 object-contain" />
               <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
             </div>
             <StepBar current={step} />
@@ -608,7 +607,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
         </div>
 
         <div className="relative z-10">
-          <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} Pharma 360</p>
+          <p className="text-background/30 text-xs">© {new Date().getFullYear()} Pharma 360</p>
         </div>
       </div>
     </div>

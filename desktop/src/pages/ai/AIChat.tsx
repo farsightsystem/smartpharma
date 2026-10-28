@@ -77,7 +77,7 @@ export default function AIChat() {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <div className="lg:col-span-1 rounded-xl border border-border bg-surface overflow-hidden">
+        <div className="lg:col-span-1 rounded-md border border-border bg-surface overflow-hidden">
           <div className="px-4 py-3 border-b border-border/60 flex items-center gap-2">
             <Bot className="h-4 w-4 text-accent" />
             <span className="text-xs font-semibold text-text-primary uppercase tracking-wide">Conversations</span>
@@ -96,13 +96,13 @@ export default function AIChat() {
                   <MessageSquare className="h-3.5 w-3.5 text-text-secondary shrink-0" />
                   <span className="text-xs text-text-primary truncate">{c.title}</span>
                 </div>
-                <span className="text-[10px] text-text-secondary ml-5">{c._count?.messages ?? 0} messages</span>
+                <span className="text-xs text-text-secondary ml-5">{c._count?.messages ?? 0} messages</span>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="lg:col-span-3 rounded-xl border border-border bg-surface flex flex-col overflow-hidden" style={{ height: "calc(100vh - 220px)" }}>
+        <div className="lg:col-span-3 rounded-md border border-border bg-surface flex flex-col overflow-hidden" style={{ height: "calc(100vh - 220px)" }}>
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
               <div className="text-center text-text-secondary py-16 text-sm">

@@ -46,7 +46,7 @@ export default function PageHeader({
           {children}
           {actions}
           {action && (
-            <Button onClick={action.onClick} className="gap-1.5 h-9 rounded-xl font-medium shadow-xs" size="sm">
+            <Button onClick={action.onClick} className="gap-1.5 h-9 rounded-md font-medium shadow-xs" size="sm">
               {action.icon || <Plus className="h-3.5 w-3.5" />}
               {action.label}
             </Button>

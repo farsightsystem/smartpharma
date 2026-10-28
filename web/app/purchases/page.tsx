@@ -329,7 +329,7 @@ export default function PurchasesPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className={cn(
-              "fixed top-20 right-8 z-50 px-4 py-3 rounded-xl shadow-lg border text-sm font-medium flex items-center gap-2",
+              "fixed top-20 right-8 z-50 px-4 py-3 rounded-md shadow-lg border text-sm font-medium flex items-center gap-2",
               toastMessage.type === "success"
                 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
                 : "bg-rose-500/10 text-rose-400 border-rose-500/30"
@@ -346,7 +346,7 @@ export default function PurchasesPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-border">
           <div>
             <div className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+              <div className="h-9 w-9 rounded-md bg-accent/10 flex items-center justify-center text-accent">
                 <Receipt className="h-5 w-5" />
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-text-primary">Purchasing & Direct Invoices</h1>
@@ -360,14 +360,14 @@ export default function PurchasesPage() {
             <button
               onClick={() => loadData(true)}
               disabled={refreshing}
-              className="p-2 rounded-xl border border-border bg-surface hover:bg-surface-2 text-text-secondary transition-colors"
+              className="p-2 rounded-md border border-border bg-surface hover:bg-surface-2 text-text-secondary transition-colors"
               title="Refresh Data"
             >
               <RefreshCw className={cn("h-4 w-4", refreshing && "animate-spin text-accent")} />
             </button>
             <button
               onClick={() => setCreateModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent hover:bg-accent/90 text-white font-medium text-xs shadow-md transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-accent hover:bg-accent/90 text-white font-medium text-xs shadow-md transition-all"
             >
               <Plus className="h-4 w-4" />
               Receive Supplier Invoice
@@ -377,16 +377,16 @@ export default function PurchasesPage() {
 
         {/* Top Financial KPI Metrics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="p-5 rounded-2xl bg-surface/70 border border-border backdrop-blur-sm">
+          <div className="p-5 rounded-lg bg-surface/70 border border-border backdrop-blur-sm">
             <div className="flex items-center justify-between text-text-secondary mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider">Total Purchases</span>
               <Receipt className="h-4 w-4 text-accent" />
             </div>
             <div className="text-2xl font-bold font-mono text-text-primary">{formatCurrency(totalInvoiced)}</div>
-            <div className="text-[11px] text-text-secondary mt-1">{invoices.length} invoices delivered</div>
+            <div className="text-xs text-text-secondary mt-1">{invoices.length} invoices delivered</div>
           </div>
 
-          <div className={cn("p-5 rounded-2xl border backdrop-blur-sm", totalOutstanding > 0 ? "bg-amber-500/10 border-amber-500/30" : "bg-surface/70 border-border")}>
+          <div className={cn("p-5 rounded-lg border backdrop-blur-sm", totalOutstanding > 0 ? "bg-amber-500/10 border-amber-500/30" : "bg-surface/70 border-border")}>
             <div className="flex items-center justify-between text-text-secondary mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider">Outstanding (AP)</span>
               <AlertTriangle className={cn("h-4 w-4", totalOutstanding > 0 ? "text-amber-500" : "text-emerald-500")} />
@@ -394,30 +394,30 @@ export default function PurchasesPage() {
             <div className={cn("text-2xl font-bold font-mono", totalOutstanding > 0 ? "text-amber-500" : "text-emerald-500")}>
               {formatCurrency(totalOutstanding)}
             </div>
-            <div className="text-[11px] text-text-secondary mt-1">{unpaidCount} invoices pending payment</div>
+            <div className="text-xs text-text-secondary mt-1">{unpaidCount} invoices pending payment</div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-surface/70 border border-border backdrop-blur-sm">
+          <div className="p-5 rounded-lg bg-surface/70 border border-border backdrop-blur-sm">
             <div className="flex items-center justify-between text-text-secondary mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider">Settled Invoices</span>
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
             </div>
             <div className="text-2xl font-bold font-mono text-emerald-500">{paidCount}</div>
-            <div className="text-[11px] text-text-secondary mt-1">Paid in full</div>
+            <div className="text-xs text-text-secondary mt-1">Paid in full</div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-surface/70 border border-border backdrop-blur-sm">
+          <div className="p-5 rounded-lg bg-surface/70 border border-border backdrop-blur-sm">
             <div className="flex items-center justify-between text-text-secondary mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider">Active Distributors</span>
               <Building2 className="h-4 w-4 text-accent" />
             </div>
             <div className="text-2xl font-bold font-mono text-text-primary">{distributors.length}</div>
-            <div className="text-[11px] text-text-secondary mt-1">Authorized suppliers</div>
+            <div className="text-xs text-text-secondary mt-1">Authorized suppliers</div>
           </div>
         </div>
 
         {/* Search & Status Filters */}
-        <div className="flex flex-wrap items-center justify-between gap-3 bg-surface/70 p-3 rounded-2xl border border-border">
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-surface/70 p-3 rounded-lg border border-border">
           <div className="relative flex-1 min-w-[240px] max-w-md">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
             <input
@@ -425,11 +425,11 @@ export default function PurchasesPage() {
               placeholder="Search by invoice number or distributor..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full h-10 pl-10 pr-4 rounded-xl border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+              className="w-full h-10 pl-10 pr-4 rounded-md border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
             />
           </div>
 
-          <div className="flex items-center gap-1 bg-surface-2 p-1 rounded-xl border border-border text-xs">
+          <div className="flex items-center gap-1 bg-surface-2 p-1 rounded-md border border-border text-xs">
             {["ALL", "UNPAID", "PARTIAL", "PAID"].map((st) => (
               <button
                 key={st}
@@ -446,7 +446,7 @@ export default function PurchasesPage() {
         </div>
 
         {/* Invoices List Table */}
-        <div className="rounded-2xl border border-border overflow-hidden bg-surface/70 backdrop-blur-sm shadow-sm">
+        <div className="rounded-lg border border-border overflow-hidden bg-surface/70 backdrop-blur-sm shadow-sm">
           {loading ? (
             <div className="p-12 text-center text-text-secondary text-xs">Loading purchase invoices...</div>
           ) : filtered.length === 0 ? (
@@ -456,7 +456,7 @@ export default function PurchasesPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
-                <thead className="bg-surface-2/60 text-text-secondary uppercase text-[10px] tracking-wider border-b border-border font-medium">
+                <thead className="bg-surface-2/60 text-text-secondary uppercase text-xs tracking-wider border-b border-border font-medium">
                   <tr>
                     <th className="py-3 px-4">Invoice #</th>
                     <th className="py-3 px-3">Date</th>
@@ -481,11 +481,11 @@ export default function PurchasesPage() {
                       <td className="py-3 px-4">
                         <div className="font-semibold text-text-primary">{inv.distributorName || "—"}</div>
                         {inv.distributorPhone && (
-                          <div className="text-[11px] font-mono text-text-secondary">{inv.distributorPhone}</div>
+                          <div className="text-xs font-mono text-text-secondary">{inv.distributorPhone}</div>
                         )}
                       </td>
                       <td className="py-3 px-3 text-center">
-                        <span className="px-2 py-0.5 rounded-full bg-surface-2 border border-border font-mono text-[11px]">
+                        <span className="px-2 py-0.5 rounded-full bg-surface-2 border border-border font-mono text-xs">
                           {inv.items?.length ?? 0} lines
                         </span>
                       </td>
@@ -503,7 +503,7 @@ export default function PurchasesPage() {
                       <td className="py-3 px-3">
                         <span
                           className={cn(
-                            "px-2 py-0.5 rounded text-[10px] font-semibold border",
+                            "px-2 py-0.5 rounded text-xs font-semibold border",
                             inv.status === "PAID"
                               ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                               : inv.status === "PARTIAL"
@@ -518,7 +518,7 @@ export default function PurchasesPage() {
                         <div className="flex items-center gap-1.5 justify-end">
                           <button
                             onClick={() => setSelectedInvoice(inv)}
-                            className="px-2.5 py-1 rounded-lg border border-border bg-surface hover:bg-surface-2 text-text-secondary hover:text-text-primary text-[11px] transition-colors"
+                            className="px-2.5 py-1 rounded-lg border border-border bg-surface hover:bg-surface-2 text-text-secondary hover:text-text-primary text-xs transition-colors"
                           >
                             Details
                           </button>
@@ -533,7 +533,7 @@ export default function PurchasesPage() {
                                   notes: `Payment for Invoice #${inv.invoiceNumber}`,
                                 });
                               }}
-                              className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-[11px] transition-colors flex items-center gap-1"
+                              className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs transition-colors flex items-center gap-1"
                             >
                               <CreditCard className="h-3 w-3" />
                               Pay
@@ -544,7 +544,7 @@ export default function PurchasesPage() {
                               const dist = distributors.find((d) => d.id === inv.distributorId);
                               if (dist) openDistributorLedger(dist);
                             }}
-                            className="px-2.5 py-1 rounded-lg border border-accent/20 bg-accent/5 hover:bg-accent/10 text-accent text-[11px] transition-colors"
+                            className="px-2.5 py-1 rounded-lg border border-accent/20 bg-accent/5 hover:bg-accent/10 text-accent text-xs transition-colors"
                             title="View Supplier Statement"
                           >
                             Ledger
@@ -580,7 +580,7 @@ export default function PurchasesPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-base text-text-primary">Receive Direct Supplier Invoice</h3>
-                    <p className="text-[11px] text-text-secondary">Capture invoice header, multi-line batches, and auto-provision inventory</p>
+                    <p className="text-xs text-text-secondary">Capture invoice header, multi-line batches, and auto-provision inventory</p>
                   </div>
                 </div>
                 <button
@@ -594,11 +594,11 @@ export default function PurchasesPage() {
               {/* Modal Body */}
               <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {/* Header Inputs */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl bg-surface-2/50 border border-border">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-lg bg-surface-2/50 border border-border">
                   <div>
                     <label className="block text-xs font-semibold text-text-secondary mb-1">Distributor *</label>
                     <select
-                      className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
                       value={invoiceHeader.distributorId}
                       onChange={(e) => setInvoiceHeader({ ...invoiceHeader, distributorId: e.target.value })}
                     >
@@ -618,7 +618,7 @@ export default function PurchasesPage() {
                       placeholder="e.g. INV-2026-9021"
                       value={invoiceHeader.invoiceNumber}
                       onChange={(e) => setInvoiceHeader({ ...invoiceHeader, invoiceNumber: e.target.value })}
-                      className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs font-mono text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs font-mono text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
                     />
                   </div>
 
@@ -628,14 +628,14 @@ export default function PurchasesPage() {
                       type="date"
                       value={invoiceHeader.invoiceDate}
                       onChange={(e) => setInvoiceHeader({ ...invoiceHeader, invoiceDate: e.target.value })}
-                      className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs font-mono text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs font-mono text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-text-secondary mb-1">Payment Method</label>
                     <select
-                      className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
                       value={invoiceHeader.paymentMethod}
                       onChange={(e) => setInvoiceHeader({ ...invoiceHeader, paymentMethod: e.target.value as "CASH" | "BANK_TRANSFER" | "CHEQUE" | "CREDIT" })}
                     >
@@ -663,9 +663,9 @@ export default function PurchasesPage() {
                     </button>
                   </div>
 
-                  <div className="rounded-2xl border border-border overflow-hidden">
+                  <div className="rounded-lg border border-border overflow-hidden">
                     <table className="w-full text-xs text-left">
-                      <thead className="bg-surface-2/70 text-text-secondary uppercase text-[10px] tracking-wider border-b border-border">
+                      <thead className="bg-surface-2/70 text-text-secondary uppercase text-xs tracking-wider border-b border-border">
                         <tr>
                           <th className="py-2.5 px-3 min-w-[200px]">Product *</th>
                           <th className="py-2.5 px-2 w-[130px]">Batch # *</th>
@@ -778,10 +778,10 @@ export default function PurchasesPage() {
                         placeholder="e.g. Delivered by distributor agent; cold-chain verified"
                         value={invoiceHeader.notes}
                         onChange={(e) => setInvoiceHeader({ ...invoiceHeader, notes: e.target.value })}
-                        className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                        className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
                       />
                     </div>
-                    <div className="p-3 bg-surface-2/60 rounded-xl border border-border text-xs text-text-secondary space-y-1">
+                    <div className="p-3 bg-surface-2/60 rounded-md border border-border text-xs text-text-secondary space-y-1">
                       <div className="font-semibold text-text-primary flex items-center gap-1.5">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                         FEFO Inventory Assurance
@@ -791,7 +791,7 @@ export default function PurchasesPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-surface-2/60 border border-border space-y-2 text-xs">
+                  <div className="p-4 rounded-lg bg-surface-2/60 border border-border space-y-2 text-xs">
                     <div className="flex justify-between text-text-secondary">
                       <span>Subtotal:</span>
                       <span className="font-mono font-medium">{formatCurrency(subtotal)}</span>
@@ -851,14 +851,14 @@ export default function PurchasesPage() {
               <div className="px-6 py-4 border-t border-border bg-surface-2/40 flex items-center justify-between">
                 <button
                   onClick={() => setCreateModalOpen(false)}
-                  className="px-4 py-2 rounded-xl border border-border bg-surface hover:bg-surface-2 text-xs font-medium text-text-secondary"
+                  className="px-4 py-2 rounded-md border border-border bg-surface hover:bg-surface-2 text-xs font-medium text-text-secondary"
                 >
                   Cancel
                 </button>
                 <button
                   disabled={submittingInvoice}
                   onClick={handleCreateInvoice}
-                  className="px-6 py-2.5 rounded-xl bg-accent hover:bg-accent/90 text-white font-semibold text-xs shadow-md transition-all flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-md bg-accent hover:bg-accent/90 text-white font-semibold text-xs shadow-md transition-all flex items-center gap-2"
                 >
                   {submittingInvoice ? (
                     <>
@@ -903,7 +903,7 @@ export default function PurchasesPage() {
               </div>
 
               <div className="flex-1 overflow-y-auto p-6 space-y-4">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-surface-2/60 rounded-xl text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-surface-2/60 rounded-md text-xs">
                   <div>
                     <span className="text-text-secondary">Distributor:</span>
                     <p className="font-semibold text-text-primary text-sm mt-0.5">{selectedInvoice.distributorName}</p>
@@ -924,7 +924,7 @@ export default function PurchasesPage() {
 
                 <div>
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-2">Itemized Batches</h4>
-                  <div className="rounded-xl border border-border overflow-hidden">
+                  <div className="rounded-md border border-border overflow-hidden">
                     <table className="w-full text-xs text-left">
                       <thead className="bg-surface-2 text-text-secondary border-b border-border">
                         <tr>
@@ -954,7 +954,7 @@ export default function PurchasesPage() {
                   </div>
                 </div>
 
-                <div className="p-3 bg-surface-2/60 rounded-xl flex justify-between items-center text-xs">
+                <div className="p-3 bg-surface-2/60 rounded-md flex justify-between items-center text-xs">
                   <div>
                     <span className="text-text-secondary">Total Billed: </span>
                     <span className="font-mono font-bold text-text-primary">{formatCurrency(selectedInvoice.totalAmount)}</span>
@@ -995,7 +995,7 @@ export default function PurchasesPage() {
                     <h3 className="font-bold text-base text-text-primary">
                       {ledgerDistributor.name} — Accounts Payable Statement
                     </h3>
-                    <p className="text-[11px] text-text-secondary">
+                    <p className="text-xs text-text-secondary">
                       Contact: {ledgerDistributor.phone} {ledgerData?.distributor?.companyName ? `• ${ledgerData.distributor.companyName}` : ""}
                     </p>
                   </div>
@@ -1014,20 +1014,20 @@ export default function PurchasesPage() {
                 ) : ledgerData ? (
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="p-4 rounded-xl bg-surface-2/50 border border-border">
-                        <span className="text-[11px] font-semibold uppercase text-text-secondary">Total Invoiced</span>
+                      <div className="p-4 rounded-md bg-surface-2/50 border border-border">
+                        <span className="text-xs font-semibold uppercase text-text-secondary">Total Invoiced</span>
                         <div className="text-xl font-bold font-mono text-text-primary mt-1">
                           {formatCurrency(ledgerData.summary.totalInvoiced)}
                         </div>
                       </div>
-                      <div className="p-4 rounded-xl bg-surface-2/50 border border-border">
-                        <span className="text-[11px] font-semibold uppercase text-text-secondary">Total Paid</span>
+                      <div className="p-4 rounded-md bg-surface-2/50 border border-border">
+                        <span className="text-xs font-semibold uppercase text-text-secondary">Total Paid</span>
                         <div className="text-xl font-bold font-mono text-emerald-500 mt-1">
                           {formatCurrency(ledgerData.summary.totalPaid)}
                         </div>
                       </div>
-                      <div className={cn("p-4 rounded-xl border", ledgerData.summary.outstandingBalance > 0 ? "bg-amber-500/10 border-amber-500/30" : "bg-emerald-500/10 border-emerald-500/30")}>
-                        <span className="text-[11px] font-semibold uppercase text-text-secondary">Balance Owed (AP)</span>
+                      <div className={cn("p-4 rounded-md border", ledgerData.summary.outstandingBalance > 0 ? "bg-amber-500/10 border-amber-500/30" : "bg-emerald-500/10 border-emerald-500/30")}>
+                        <span className="text-xs font-semibold uppercase text-text-secondary">Balance Owed (AP)</span>
                         <div className={cn("text-xl font-bold font-mono mt-1", ledgerData.summary.outstandingBalance > 0 ? "text-amber-500" : "text-emerald-500")}>
                           {formatCurrency(ledgerData.summary.outstandingBalance)}
                         </div>
@@ -1037,13 +1037,13 @@ export default function PurchasesPage() {
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-2">Chronological Statement Timeline</h4>
                       {ledgerData.statement.length === 0 ? (
-                        <div className="text-center py-10 border border-dashed border-border rounded-xl text-text-secondary text-xs">
+                        <div className="text-center py-10 border border-dashed border-border rounded-md text-text-secondary text-xs">
                           No transactions recorded for this distributor yet.
                         </div>
                       ) : (
-                        <div className="rounded-xl border border-border overflow-hidden">
+                        <div className="rounded-md border border-border overflow-hidden">
                           <table className="w-full text-xs text-left">
-                            <thead className="bg-surface-2 text-text-secondary uppercase text-[10px] tracking-wider border-b border-border">
+                            <thead className="bg-surface-2 text-text-secondary uppercase text-xs tracking-wider border-b border-border">
                               <tr>
                                 <th className="py-2.5 px-3">Date</th>
                                 <th className="py-2.5 px-3">Type</th>
@@ -1059,11 +1059,11 @@ export default function PurchasesPage() {
                                   <td className="py-2.5 px-3 font-mono text-text-secondary">{formatDate(entry.date)}</td>
                                   <td className="py-2.5 px-3">
                                     {entry.type === "INVOICE" ? (
-                                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-400">
+                                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-semibold bg-blue-500/10 text-blue-400">
                                         <ArrowDownRight className="h-3 w-3" /> INVOICE
                                       </span>
                                     ) : (
-                                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400">
+                                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/10 text-emerald-400">
                                         <ArrowUpRight className="h-3 w-3" /> PAYMENT
                                       </span>
                                     )}
@@ -1115,7 +1115,7 @@ export default function PurchasesPage() {
                 </button>
               </div>
 
-              <div className="p-3 rounded-xl bg-surface-2/60 border border-border text-xs space-y-1">
+              <div className="p-3 rounded-md bg-surface-2/60 border border-border text-xs space-y-1">
                 <div className="flex justify-between">
                   <span className="text-text-secondary">Invoice #:</span>
                   <span className="font-mono font-bold text-accent">#{payInvoice.invoiceNumber}</span>
@@ -1139,7 +1139,7 @@ export default function PurchasesPage() {
                   step="any"
                   value={paymentForm.amount || ""}
                   onChange={(e) => setPaymentForm({ ...paymentForm, amount: parseFloat(e.target.value) || 0 })}
-                  className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 font-mono text-xs text-text-primary"
+                  className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 font-mono text-xs text-text-primary"
                   placeholder="0.00"
                 />
               </div>
@@ -1147,7 +1147,7 @@ export default function PurchasesPage() {
               <div>
                 <label className="block text-xs font-semibold text-text-secondary mb-1">Payment Method</label>
                 <select
-                  className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs text-text-primary"
+                  className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs text-text-primary"
                   value={paymentForm.paymentMethod}
                   onChange={(e) => setPaymentForm({ ...paymentForm, paymentMethod: e.target.value as "CASH" | "BANK_TRANSFER" | "CHEQUE" })}
                 >
@@ -1163,7 +1163,7 @@ export default function PurchasesPage() {
                   type="text"
                   value={paymentForm.referenceNumber || ""}
                   onChange={(e) => setPaymentForm({ ...paymentForm, referenceNumber: e.target.value })}
-                  className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs font-mono text-text-primary"
+                  className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs font-mono text-text-primary"
                   placeholder="e.g. TXN-81920"
                 />
               </div>
@@ -1174,7 +1174,7 @@ export default function PurchasesPage() {
                   type="text"
                   value={paymentForm.notes || ""}
                   onChange={(e) => setPaymentForm({ ...paymentForm, notes: e.target.value })}
-                  className="w-full h-9 px-3 rounded-xl border border-border bg-surface-1 text-xs text-text-primary"
+                  className="w-full h-9 px-3 rounded-md border border-border bg-surface-1 text-xs text-text-primary"
                   placeholder="Payment notes..."
                 />
               </div>
@@ -1182,7 +1182,7 @@ export default function PurchasesPage() {
               <button
                 disabled={submittingPayment || paymentForm.amount <= 0}
                 onClick={handleRecordPayment}
-                className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md transition-all flex items-center justify-center gap-2"
               >
                 {submittingPayment ? (
                   <>

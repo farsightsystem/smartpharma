@@ -298,7 +298,7 @@ export default function PlatformAdmin() {
                   }`}
                 >
                   {tab.label}
-                  <span className={`ml-1.5 text-[10px] tabular-nums ${active ? "opacity-80" : "text-text-secondary/60"}`}>
+                  <span className={`ml-1.5 text-xs tabular-nums ${active ? "opacity-80" : "text-text-secondary/60"}`}>
                     {count}
                   </span>
                 </button>
@@ -352,7 +352,7 @@ export default function PlatformAdmin() {
                           </div>
                           <div className="min-w-0">
                             <p className="text-xs font-semibold text-text-primary truncate">{p.name}</p>
-                            <p className="text-[10px] text-text-secondary truncate">
+                            <p className="text-xs text-text-secondary truncate">
                               {p.email || p.phone || `@${p.slug}`}
                             </p>
                           </div>
@@ -408,14 +408,14 @@ export default function PlatformAdmin() {
             <div className="px-5 py-4 space-y-4">
               <div>
                 <p className="text-xs font-semibold text-text-primary">{manage.pharmacy.name}</p>
-                <p className="text-[10px] text-text-secondary">
+                <p className="text-xs text-text-secondary">
                   Registered {formatDate(manage.pharmacy.createdAt)} · {manage.pharmacy.counts?.branches ?? 0} branches ·{" "}
                   {manage.pharmacy.counts?.users ?? 0} users
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[11px] text-text-secondary">Subscription Status</Label>
+                <Label className="text-xs text-text-secondary">Subscription Status</Label>
                 <Select
                   value={manage.status}
                   onValueChange={(v) => setManage((prev) => prev ? { ...prev, status: v as SubStatus } : prev)}
@@ -437,7 +437,7 @@ export default function PlatformAdmin() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-[11px] text-text-secondary">Monthly Price (PKR)</Label>
+                  <Label className="text-xs text-text-secondary">Monthly Price (PKR)</Label>
                   <Input
                     value={manage.price}
                     onChange={(e) => setManage((prev) => prev ? { ...prev, price: e.target.value } : prev)}
@@ -446,7 +446,7 @@ export default function PlatformAdmin() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-[11px] text-text-secondary">Extend By (months)</Label>
+                  <Label className="text-xs text-text-secondary">Extend By (months)</Label>
                   <Input
                     value={manage.extendMonths}
                     onChange={(e) => setManage((prev) => prev ? { ...prev, extendMonths: e.target.value } : prev)}
@@ -457,7 +457,7 @@ export default function PlatformAdmin() {
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[11px] text-text-secondary">Renews On</Label>
+                <Label className="text-xs text-text-secondary">Renews On</Label>
                 <Input
                   type="date"
                   value={manage.renewsAt}
@@ -465,7 +465,7 @@ export default function PlatformAdmin() {
                 />
               </div>
 
-              <p className="text-[10px] text-text-secondary leading-relaxed rounded-lg bg-surface-2 px-2.5 py-2">
+              <p className="text-xs text-text-secondary leading-relaxed rounded-lg bg-surface-2 px-2.5 py-2">
                 Setting a status to <span className="font-medium">expired</span> immediately blocks the pharmacy's data
                 access (HTTP 402). Use <span className="font-medium">Extend By</span> to add months to the current
                 renewal date.

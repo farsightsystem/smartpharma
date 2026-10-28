@@ -205,7 +205,7 @@ export default function Returns() {
               New Customer Return
             </Button>
           </div>
-      <div className="rounded-xl border border-border">
+      <div className="rounded-md border border-border">
         <DataTable
           columns={columns}
           data={filtered}

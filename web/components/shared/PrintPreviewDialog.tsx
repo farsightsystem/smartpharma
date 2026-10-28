@@ -171,7 +171,7 @@ export default function PrintPreviewDialog({
         <div className="px-5 pt-3 pb-2 space-y-2.5">
           <div className="flex items-end gap-2.5 flex-wrap">
             <div className="space-y-1">
-              <Label className="text-[10px] text-text-secondary font-medium">
+              <Label className="text-xs text-text-secondary font-medium">
                 Paper Size
               </Label>
               <div className="flex gap-1">
@@ -179,7 +179,7 @@ export default function PrintPreviewDialog({
                   <button
                     key={value}
                     onClick={() => setPaperSize(value)}
-                    className={`px-2.5 py-1.5 rounded-md border text-[11px] font-medium transition-colors ${
+                    className={`px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors ${
                       paperSize === value
                         ? "border-accent bg-accent/5 text-accent"
                         : "border-border text-text-secondary hover:border-accent/50"
@@ -192,14 +192,14 @@ export default function PrintPreviewDialog({
             </div>
 
             <div className="space-y-1 flex-1 min-w-[160px] max-w-[220px]">
-              <Label className="text-[10px] text-text-secondary font-medium">
+              <Label className="text-xs text-text-secondary font-medium">
                 Printer
               </Label>
               <Select
                 value={selectedPrinter}
                 onValueChange={setSelectedPrinter}
               >
-                <SelectTrigger className="h-7 text-[11px]">
+                <SelectTrigger className="h-7 text-xs">
                   <SelectValue placeholder="Default printer" />
                 </SelectTrigger>
                 <SelectContent>
@@ -221,7 +221,7 @@ export default function PrintPreviewDialog({
             <Button
               variant="outline"
               size="sm"
-              className="h-7 gap-1 text-[11px]"
+              className="h-7 gap-1 text-xs"
               onClick={() => setShowMargins(!showMargins)}
               disabled={paperSize === "thermal"}
             >
@@ -232,7 +232,7 @@ export default function PrintPreviewDialog({
 
           {showMargins && paperSize !== "thermal" && (
             <div className="flex items-end gap-2 p-2.5 rounded-lg border border-border bg-surface-2/50">
-              <span className="text-[10px] text-text-secondary font-medium pb-1.5 pr-1">
+              <span className="text-xs text-text-secondary font-medium pb-1.5 pr-1">
                 Margins (mm)
               </span>
               {(["top", "left", "right", "bottom"] as const).map((side) => (
@@ -247,14 +247,14 @@ export default function PrintPreviewDialog({
                     step={1}
                     value={margins[side]}
                     onChange={(e) => updateMargin(side, e.target.value)}
-                    className="h-7 w-14 text-[11px] font-mono text-center px-1"
+                    className="h-7 w-14 text-xs font-mono text-center px-1"
                   />
                 </div>
               ))}
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 text-[10px]"
+                className="h-7 text-xs"
                 onClick={resetMargins}
               >
                 Reset

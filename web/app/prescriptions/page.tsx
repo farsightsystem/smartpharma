@@ -427,40 +427,40 @@ export default function PrescriptionsPage() {
 
         {/* KPI Summary Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-sm">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-sm">
             <div className="flex items-center justify-between text-text-secondary">
               <span className="text-xs font-medium">Pending Review</span>
               <Clock className="h-4 w-4 text-amber-500" />
             </div>
             <p className="text-2xl font-bold text-amber-500 mt-2">{pendingCount}</p>
-            <p className="text-[11px] text-text-secondary mt-0.5">Awaiting Pharmacist</p>
+            <p className="text-xs text-text-secondary mt-0.5">Awaiting Pharmacist</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-sm">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-sm">
             <div className="flex items-center justify-between text-text-secondary">
               <span className="text-xs font-medium">Verified & Ready</span>
               <UserCheck className="h-4 w-4 text-blue-500" />
             </div>
             <p className="text-2xl font-bold text-blue-500 mt-2">{verifiedCount}</p>
-            <p className="text-[11px] text-text-secondary mt-0.5">Authorized for Dispense</p>
+            <p className="text-xs text-text-secondary mt-0.5">Authorized for Dispense</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-sm">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-sm">
             <div className="flex items-center justify-between text-text-secondary">
               <span className="text-xs font-medium">Partially Dispensed</span>
               <ArrowRightLeft className="h-4 w-4 text-purple-500" />
             </div>
             <p className="text-2xl font-bold text-purple-500 mt-2">{partialCount}</p>
-            <p className="text-[11px] text-text-secondary mt-0.5">Partial Fills Active</p>
+            <p className="text-xs text-text-secondary mt-0.5">Partial Fills Active</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-sm">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-sm">
             <div className="flex items-center justify-between text-text-secondary">
               <span className="text-xs font-medium">Fully Dispensed</span>
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
             </div>
             <p className="text-2xl font-bold text-emerald-500 mt-2">{fullyDispensedCount}</p>
-            <p className="text-[11px] text-text-secondary mt-0.5">Completed Workflows</p>
+            <p className="text-xs text-text-secondary mt-0.5">Completed Workflows</p>
           </div>
         </div>
 
@@ -524,7 +524,7 @@ export default function PrescriptionsPage() {
             </div>
 
             {/* Prescriptions Table */}
-            <div className="border border-border rounded-xl bg-surface overflow-hidden shadow-sm">
+            <div className="border border-border rounded-md bg-surface overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left">
                   <thead className="bg-surface-2/60 border-b border-border text-text-secondary font-medium">
@@ -557,7 +557,7 @@ export default function PrescriptionsPage() {
                             <span className="font-mono font-bold text-text-primary text-sm">
                               {rx.prescriptionNumber}
                             </span>
-                            <div className="text-[11px] text-text-secondary flex items-center gap-1 mt-0.5">
+                            <div className="text-xs text-text-secondary flex items-center gap-1 mt-0.5">
                               <Calendar className="h-3 w-3" />
                               {formatDate(rx.prescribedDate)}
                             </div>
@@ -570,7 +570,7 @@ export default function PrescriptionsPage() {
                                 <span className="text-text-secondary font-normal">({rx.patientAge}y)</span>
                               )}
                             </div>
-                            <div className="text-[11px] text-text-secondary flex items-center gap-2 mt-0.5">
+                            <div className="text-xs text-text-secondary flex items-center gap-2 mt-0.5">
                               {rx.patientIdentifier && (
                                 <span className="font-mono px-1 rounded bg-surface-2 border border-border">
                                   ID: {rx.patientIdentifier}
@@ -590,7 +590,7 @@ export default function PrescriptionsPage() {
                               {rx.doctorName}
                             </div>
                             {rx.doctorLicense && (
-                              <div className="text-[11px] text-text-secondary">
+                              <div className="text-xs text-text-secondary">
                                 Lic: <span className="font-mono">{rx.doctorLicense}</span>
                               </div>
                             )}
@@ -604,13 +604,13 @@ export default function PrescriptionsPage() {
                                 {rx.items?.slice(0, 2).map((item) => (
                                   <span
                                     key={item.id}
-                                    className="px-1.5 py-0.5 rounded text-[10px] bg-surface-2 border border-border text-text-secondary max-w-[130px] truncate"
+                                    className="px-1.5 py-0.5 rounded text-xs bg-surface-2 border border-border text-text-secondary max-w-[130px] truncate"
                                   >
                                     {item.prescribedDrugName} ({item.quantityRemaining}/{item.quantityPrescribed})
                                   </span>
                                 ))}
                                 {(rx.items?.length || 0) > 2 && (
-                                  <span className="px-1 py-0.5 rounded text-[10px] bg-surface-2 text-text-secondary">
+                                  <span className="px-1 py-0.5 rounded text-xs bg-surface-2 text-text-secondary">
                                     +{(rx.items?.length || 0) - 2} more
                                   </span>
                                 )}
@@ -619,22 +619,22 @@ export default function PrescriptionsPage() {
                           </td>
                           <td className="py-3 px-4 text-center">
                             {rx.status === "PENDING" && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20">
                                 Pending Verification
                               </span>
                             )}
                             {rx.status === "VERIFIED" && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/20">
                                 Verified & Ready
                               </span>
                             )}
                             {rx.status === "PARTIALLY_DISPENSED" && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/10 text-purple-500 border border-purple-500/20">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-500 border border-purple-500/20">
                                 Partial Fill
                               </span>
                             )}
                             {rx.status === "FULLY_DISPENSED" && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                                 Fully Dispensed
                               </span>
                             )}
@@ -683,7 +683,7 @@ export default function PrescriptionsPage() {
               </div>
             </div>
 
-            <div className="border border-border rounded-xl bg-surface overflow-hidden shadow-sm">
+            <div className="border border-border rounded-md bg-surface overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left">
                   <thead className="bg-surface-2/60 border-b border-border text-text-secondary font-medium">
@@ -714,9 +714,9 @@ export default function PrescriptionsPage() {
                     ) : (
                       controlledLogs.map((log) => (
                         <tr key={log.id} className="hover:bg-surface-2/30 transition-colors">
-                          <td className="py-3 px-4 font-mono text-[11px] text-text-secondary">
+                          <td className="py-3 px-4 font-mono text-xs text-text-secondary">
                             <div>{formatDate(log.recordedAt)}</div>
-                            <div className="text-[10px]">{new Date(log.recordedAt).toLocaleTimeString()}</div>
+                            <div className="text-xs">{new Date(log.recordedAt).toLocaleTimeString()}</div>
                           </td>
                           <td className="py-3 px-4">
                             <div className="font-bold text-text-primary text-sm flex items-center gap-1.5">
@@ -727,25 +727,25 @@ export default function PrescriptionsPage() {
                                 </span>
                               )}
                             </div>
-                            <div className="text-[11px] text-text-secondary">
+                            <div className="text-xs text-text-secondary">
                               {log.product?.genericName} • {log.product?.strength}
                             </div>
                           </td>
-                          <td className="py-3 px-4 font-mono text-[11px]">
+                          <td className="py-3 px-4 font-mono text-xs">
                             <div>Batch: <span className="font-semibold text-text-primary">{log.batch?.batchNumber || "FEFO"}</span></div>
                             {log.prescription && (
-                              <div className="text-text-secondary text-[10px]">Rx: {log.prescription.prescriptionNumber}</div>
+                              <div className="text-text-secondary text-xs">Rx: {log.prescription.prescriptionNumber}</div>
                             )}
                           </td>
                           <td className="py-3 px-4">
                             <div className="font-semibold text-text-primary">{log.patientName}</div>
-                            <div className="font-mono text-[11px] text-text-secondary">
+                            <div className="font-mono text-xs text-text-secondary">
                               ID: <span className="font-bold">{log.patientIdentifier}</span>
                             </div>
                           </td>
                           <td className="py-3 px-4">
                             <div className="font-semibold text-text-primary">{log.doctorName}</div>
-                            <div className="font-mono text-[11px] text-text-secondary">
+                            <div className="font-mono text-xs text-text-secondary">
                               Lic: {log.doctorLicense}
                             </div>
                           </td>
@@ -757,10 +757,10 @@ export default function PrescriptionsPage() {
                           <td className="py-3 px-4 text-right font-mono font-bold text-text-primary text-sm">
                             {log.balanceAfter} units
                           </td>
-                          <td className="py-3 px-4 text-[11px]">
+                          <td className="py-3 px-4 text-xs">
                             <div className="font-medium text-text-primary">{log.pharmacistName}</div>
                             {log.witnessName && (
-                              <div className="text-text-secondary text-[10px]">
+                              <div className="text-text-secondary text-xs">
                                 Witness: {log.witnessName}
                               </div>
                             )}
@@ -783,7 +783,7 @@ export default function PrescriptionsPage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                className="bg-surface border border-border rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto flex flex-col"
+                className="bg-surface border border-border rounded-md shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto flex flex-col"
               >
                 <div className="p-5 border-b border-border flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -805,7 +805,7 @@ export default function PrescriptionsPage() {
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Patient Full Name *
                         </label>
                         <input
@@ -818,7 +818,7 @@ export default function PrescriptionsPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Patient Identifier (National ID / Iqama / Passport)
                         </label>
                         <input
@@ -830,7 +830,7 @@ export default function PrescriptionsPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Patient Phone
                         </label>
                         <input
@@ -845,7 +845,7 @@ export default function PrescriptionsPage() {
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">Age</label>
+                        <label className="text-xs font-medium text-text-secondary block mb-1">Age</label>
                         <input
                           type="number"
                           placeholder="Age"
@@ -855,7 +855,7 @@ export default function PrescriptionsPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">Gender</label>
+                        <label className="text-xs font-medium text-text-secondary block mb-1">Gender</label>
                         <select
                           value={newRx.patientGender}
                           onChange={(e) => setNewRx({ ...newRx, patientGender: e.target.value })}
@@ -867,7 +867,7 @@ export default function PrescriptionsPage() {
                         </select>
                       </div>
                       <div className="col-span-2">
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Diagnosis / Indication
                         </label>
                         <input
@@ -888,7 +888,7 @@ export default function PrescriptionsPage() {
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Doctor Name *
                         </label>
                         <input
@@ -901,7 +901,7 @@ export default function PrescriptionsPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Doctor License / Reg No.
                         </label>
                         <input
@@ -913,7 +913,7 @@ export default function PrescriptionsPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                        <label className="text-xs font-medium text-text-secondary block mb-1">
                           Clinic / Hospital
                         </label>
                         <input
@@ -961,7 +961,7 @@ export default function PrescriptionsPage() {
 
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             <div className="sm:col-span-2">
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Drug Name *</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Drug Name *</label>
                               <input
                                 required
                                 type="text"
@@ -979,7 +979,7 @@ export default function PrescriptionsPage() {
                               />
                             </div>
                             <div>
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Catalog Link (Optional)</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Catalog Link (Optional)</label>
                               <select
                                 value={item.productId || "none"}
                                 onChange={(e) => {
@@ -1014,7 +1014,7 @@ export default function PrescriptionsPage() {
 
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             <div>
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Dosage / Strength</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Dosage / Strength</label>
                               <input
                                 type="text"
                                 placeholder="e.g. 625mg"
@@ -1031,7 +1031,7 @@ export default function PrescriptionsPage() {
                               />
                             </div>
                             <div>
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Frequency</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Frequency</label>
                               <input
                                 type="text"
                                 placeholder="e.g. 1-0-1"
@@ -1048,7 +1048,7 @@ export default function PrescriptionsPage() {
                               />
                             </div>
                             <div>
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Duration</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Duration</label>
                               <input
                                 type="text"
                                 placeholder="e.g. 7 days"
@@ -1065,7 +1065,7 @@ export default function PrescriptionsPage() {
                               />
                             </div>
                             <div>
-                              <label className="text-[10px] text-text-secondary block mb-0.5">Quantity Prescribed *</label>
+                              <label className="text-xs text-text-secondary block mb-0.5">Quantity Prescribed *</label>
                               <input
                                 type="number"
                                 min={1}
@@ -1113,7 +1113,7 @@ export default function PrescriptionsPage() {
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                    <label className="text-xs font-medium text-text-secondary block mb-1">
                       Clinical & Dispensing Notes
                     </label>
                     <input
@@ -1155,7 +1155,7 @@ export default function PrescriptionsPage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                className="bg-surface border border-border rounded-xl shadow-xl w-full max-w-4xl max-h-[92vh] overflow-y-auto flex flex-col"
+                className="bg-surface border border-border rounded-md shadow-xl w-full max-w-4xl max-h-[92vh] overflow-y-auto flex flex-col"
               >
                 <div className="p-5 border-b border-border flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -1163,22 +1163,22 @@ export default function PrescriptionsPage() {
                       {selectedRx.prescriptionNumber}
                     </h2>
                     {selectedRx.status === "PENDING" && (
-                      <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20">
                         Needs Verification
                       </span>
                     )}
                     {selectedRx.status === "VERIFIED" && (
-                      <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/20">
                         Verified & Ready
                       </span>
                     )}
                     {selectedRx.status === "PARTIALLY_DISPENSED" && (
-                      <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/10 text-purple-500 border border-purple-500/20">
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-500 border border-purple-500/20">
                         Partially Dispensed
                       </span>
                     )}
                     {selectedRx.status === "FULLY_DISPENSED" && (
-                      <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                         Fully Dispensed
                       </span>
                     )}
@@ -1192,7 +1192,7 @@ export default function PrescriptionsPage() {
                   {/* Credentials Cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div className="p-3 rounded-lg border border-border bg-surface-2/40 space-y-1">
-                      <span className="font-bold text-text-secondary uppercase text-[10px]">Patient Information</span>
+                      <span className="font-bold text-text-secondary uppercase text-xs">Patient Information</span>
                       <p className="font-semibold text-text-primary text-sm">{selectedRx.patientName}</p>
                       <div className="text-text-secondary space-y-0.5">
                         {selectedRx.patientIdentifier && <p>ID: <span className="font-mono font-medium">{selectedRx.patientIdentifier}</span></p>}
@@ -1202,7 +1202,7 @@ export default function PrescriptionsPage() {
                     </div>
 
                     <div className="p-3 rounded-lg border border-border bg-surface-2/40 space-y-1">
-                      <span className="font-bold text-text-secondary uppercase text-[10px]">Prescribing Doctor</span>
+                      <span className="font-bold text-text-secondary uppercase text-xs">Prescribing Doctor</span>
                       <p className="font-semibold text-text-primary text-sm">{selectedRx.doctorName}</p>
                       <div className="text-text-secondary space-y-0.5">
                         {selectedRx.doctorLicense && <p>License: <span className="font-mono">{selectedRx.doctorLicense}</span></p>}
@@ -1213,7 +1213,7 @@ export default function PrescriptionsPage() {
 
                   {/* Pharmacist Verification Action Banner */}
                   {selectedRx.status === "PENDING" ? (
-                    <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 space-y-3">
+                    <div className="p-4 rounded-md border border-amber-500/30 bg-amber-500/10 space-y-3">
                       <div className="flex items-center gap-2 text-amber-500 font-bold text-sm">
                         <AlertTriangle className="h-4 w-4" />
                         Pharmacist Verification & Authorization Required
@@ -1253,7 +1253,7 @@ export default function PrescriptionsPage() {
                     <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary">
                       Prescribed Medications
                     </h3>
-                    <div className="border border-border rounded-xl bg-surface overflow-hidden">
+                    <div className="border border-border rounded-md bg-surface overflow-hidden">
                       <table className="w-full text-xs text-left">
                         <thead className="bg-surface-2/60 border-b border-border text-text-secondary">
                           <tr>
@@ -1278,26 +1278,26 @@ export default function PrescriptionsPage() {
                                     </span>
                                   )}
                                 </div>
-                                {item.dosage && <div className="text-[11px] text-text-secondary font-normal">{item.dosage}</div>}
+                                {item.dosage && <div className="text-xs text-text-secondary font-normal">{item.dosage}</div>}
                               </td>
                               <td className="py-2.5 px-3 text-text-secondary">
                                 <div>{item.frequency || "—"}</div>
-                                {item.instructions && <div className="text-[10px] italic">{item.instructions}</div>}
+                                {item.instructions && <div className="text-xs italic">{item.instructions}</div>}
                               </td>
                               <td className="py-2.5 px-3 text-center font-bold">{item.quantityPrescribed}</td>
                               <td className="py-2.5 px-3 text-center text-text-secondary">{item.quantityDispensed}</td>
                               <td className="py-2.5 px-3 text-center font-mono font-bold text-accent">{item.quantityRemaining}</td>
                               <td className="py-2.5 px-3 text-center">
                                 {item.status === "COMPLETED" ? (
-                                  <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-500 font-semibold">
+                                  <span className="px-1.5 py-0.5 rounded text-xs bg-emerald-500/10 text-emerald-500 font-semibold">
                                     Done
                                   </span>
                                 ) : item.status === "PARTIAL" ? (
-                                  <span className="px-1.5 py-0.5 rounded text-[10px] bg-purple-500/10 text-purple-500 font-semibold">
+                                  <span className="px-1.5 py-0.5 rounded text-xs bg-purple-500/10 text-purple-500 font-semibold">
                                     Partial
                                   </span>
                                 ) : (
-                                  <span className="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-500 font-semibold">
+                                  <span className="px-1.5 py-0.5 rounded text-xs bg-amber-500/10 text-amber-500 font-semibold">
                                     Pending
                                   </span>
                                 )}
@@ -1324,7 +1324,7 @@ export default function PrescriptionsPage() {
                       <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary">
                         Dispensing Audit History ({selectedRx.dispenseRecords.length})
                       </h3>
-                      <div className="border border-border rounded-xl bg-surface overflow-hidden">
+                      <div className="border border-border rounded-md bg-surface overflow-hidden">
                         <table className="w-full text-xs text-left">
                           <thead className="bg-surface-2/60 border-b border-border text-text-secondary">
                             <tr>
@@ -1349,11 +1349,11 @@ export default function PrescriptionsPage() {
                                 <td className="py-2 px-3 text-center font-bold text-accent">{dr.quantity}</td>
                                 <td className="py-2 px-3">
                                   {dr.isSubstitution ? (
-                                    <span className="text-[10px] text-blue-500 font-semibold">
+                                    <span className="text-xs text-blue-500 font-semibold">
                                       Generic Substituted
                                     </span>
                                   ) : dr.isPartialFill ? (
-                                    <span className="text-[10px] text-purple-500 font-semibold">
+                                    <span className="text-xs text-purple-500 font-semibold">
                                       Partial Fill
                                     </span>
                                   ) : (
@@ -1391,7 +1391,7 @@ export default function PrescriptionsPage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                className="bg-surface border border-border rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto flex flex-col"
+                className="bg-surface border border-border rounded-md shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto flex flex-col"
               >
                 <div className="p-4 border-b border-border flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -1412,7 +1412,7 @@ export default function PrescriptionsPage() {
                       <p className="text-text-secondary">Remaining to dispense: <strong className="text-accent">{activeItem.quantityRemaining} units</strong></p>
                     </div>
                     {activeItem.isControlled && (
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold border border-rose-500 text-rose-500 flex items-center gap-1">
+                      <span className="px-2 py-0.5 rounded text-xs font-bold border border-rose-500 text-rose-500 flex items-center gap-1">
                         <ShieldAlert className="h-3 w-3" />
                         Controlled
                       </span>
@@ -1426,12 +1426,12 @@ export default function PrescriptionsPage() {
                         <ArrowRightLeft className="h-4 w-4 text-blue-500" />
                         Brand-to-Generic Substitution Engine
                       </div>
-                      {loadingSubs && <span className="text-[10px] text-text-secondary">Scanning bioequivalents...</span>}
+                      {loadingSubs && <span className="text-xs text-text-secondary">Scanning bioequivalents...</span>}
                     </div>
 
                     {substitutions && substitutions.substitutions.length > 0 ? (
                       <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1">
-                        <p className="text-[11px] text-text-secondary">
+                        <p className="text-xs text-text-secondary">
                           In-stock bioequivalent alternatives with active ingredient <strong>{substitutions.originalProduct.genericName}</strong>:
                         </p>
                         {substitutions.substitutions.map((sub) => (
@@ -1453,13 +1453,13 @@ export default function PrescriptionsPage() {
                           >
                             <div>
                               <p className="font-semibold text-text-primary">{sub.name}</p>
-                              <p className="text-[10px] text-text-secondary">
+                              <p className="text-xs text-text-secondary">
                                 Price: {formatCurrency(sub.salePrice)} • In Stock: <strong className={sub.stockQty > 0 ? "text-emerald-500" : "text-rose-500"}>{sub.stockQty}</strong>
                               </p>
                             </div>
                             <div className="text-right">
                               {sub.priceDifference > 0 && (
-                                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                                   Save {formatCurrency(sub.priceDifference)}
                                 </span>
                               )}
@@ -1469,7 +1469,7 @@ export default function PrescriptionsPage() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-[11px] text-text-secondary italic">
+                      <p className="text-xs text-text-secondary italic">
                         {activeItem.productId
                           ? "No generic alternatives found in current store catalog."
                           : "Medication was captured manually. Select inventory product below."}
@@ -1479,7 +1479,7 @@ export default function PrescriptionsPage() {
 
                   {/* Dispensed Product Selector */}
                   <div>
-                    <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                    <label className="text-xs font-medium text-text-secondary block mb-1">
                       Product to Deduct from Inventory *
                     </label>
                     <select
@@ -1509,7 +1509,7 @@ export default function PrescriptionsPage() {
                   {/* Quantity to Dispense */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                      <label className="text-xs font-medium text-text-secondary block mb-1">
                         Quantity to Dispense *
                       </label>
                       <input
@@ -1521,13 +1521,13 @@ export default function PrescriptionsPage() {
                         className="w-full px-3 py-2 text-xs rounded-lg border border-border bg-surface text-text-primary font-bold focus:outline-none"
                       />
                       {dispenseQty < activeItem.quantityRemaining && (
-                        <p className="text-[10px] text-purple-500 font-semibold mt-1">
+                        <p className="text-xs text-purple-500 font-semibold mt-1">
                           Partial fill: {activeItem.quantityRemaining - dispenseQty} units will remain on Rx.
                         </p>
                       )}
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                      <label className="text-xs font-medium text-text-secondary block mb-1">
                         Batch Allocation
                       </label>
                       <input
@@ -1542,7 +1542,7 @@ export default function PrescriptionsPage() {
                   {/* Substitution Reason */}
                   {isSubstitution && (
                     <div className="p-3 rounded-lg border border-blue-500/20 bg-blue-500/5 space-y-1">
-                      <label className="text-[11px] font-bold text-blue-500 block">
+                      <label className="text-xs font-bold text-blue-500 block">
                         Substitution Reason *
                       </label>
                       <input
@@ -1558,7 +1558,7 @@ export default function PrescriptionsPage() {
                   {/* Controlled Drug Witness */}
                   {activeItem.isControlled && (
                     <div className="p-3 rounded-lg border border-rose-500/20 bg-rose-500/5 space-y-1">
-                      <label className="text-[11px] font-bold text-rose-500 block">
+                      <label className="text-xs font-bold text-rose-500 block">
                         Controlled Register Witness Name (Optional)
                       </label>
                       <input
@@ -1572,7 +1572,7 @@ export default function PrescriptionsPage() {
                   )}
 
                   <div>
-                    <label className="text-[11px] font-medium text-text-secondary block mb-1">
+                    <label className="text-xs font-medium text-text-secondary block mb-1">
                       Pharmacist Dispense Notes
                     </label>
                     <input

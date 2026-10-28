@@ -39,7 +39,7 @@ export function Button({
   const styles = StyleSheet.create({
     base: {
       height: SIZE_HEIGHTS[size],
-      borderRadius: 10,
+      borderRadius: 8,
       paddingHorizontal: size === 'sm' ? Spacing.three : Spacing.four,
       alignItems: 'center',
       justifyContent: 'center',

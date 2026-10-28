@@ -141,9 +141,9 @@ export default function AIApprovals() {
             className="h-8 pl-8 text-xs"
           />
         </div>
-        <label className="text-[11px] text-text-secondary">From</label>
+        <label className="text-xs text-text-secondary">From</label>
         <Input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="h-8 w-[140px] text-xs" />
-        <label className="text-[11px] text-text-secondary">To</label>
+        <label className="text-xs text-text-secondary">To</label>
         <Input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="h-8 w-[140px] text-xs" />
         {(search || from || to) && (
           <Button size="sm" variant="ghost" className="h-8" onClick={() => { setSearch(""); setSearchInput(""); setFrom(""); setTo(""); }}>
@@ -162,7 +162,7 @@ export default function AIApprovals() {
         </TabsList>
       </Tabs>
 
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <DataTable
           columns={columns}
           data={orders}
@@ -227,7 +227,7 @@ function OrderDetail({ orderId, anyBusy, onApprove, onReject, onSubmit, canAppro
   });
   if (!orderId || isLoading || !order) return null;
   return (
-    <div className="mt-3 rounded-xl border border-border overflow-hidden bg-bg-secondary/30">
+    <div className="mt-3 rounded-md border border-border overflow-hidden bg-bg-secondary/30">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/60">
         <div>
           <span className="text-sm font-medium text-text-primary">{order.orderNumber}</span>

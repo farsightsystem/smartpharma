@@ -244,13 +244,13 @@ export default function Settings() {
                   {/* Verification Status Badges */}
                   <div className="flex flex-wrap items-center gap-2">
                     {pharmacyData?.isEmailVerified ? (
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
                         <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                         <span>Email Verified</span>
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-medium">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-medium">
                           <AlertCircle className="h-4 w-4 text-amber-500 shrink-0" />
                           <span>
                             Email Unverified ({pharmacyData?.gracePeriod?.daysRemaining ?? 7}d grace)
@@ -276,7 +276,7 @@ export default function Settings() {
                         }))
                       }
                       className={cn(
-                        "flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all select-none",
+                        "flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-xs font-semibold cursor-pointer transition-all select-none",
                         pharmacyForm.isPhoneVerified
                           ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-300"
                           : "bg-surface border-border text-text-secondary hover:text-text-primary",
@@ -378,7 +378,7 @@ export default function Settings() {
                           onChange={(e) =>
                             setPharmacyForm((prev) => ({ ...prev, currency: e.target.value }))
                           }
-                          className="w-full h-10 pl-8 pr-3 text-xs rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
+                          className="w-full h-10 pl-8 pr-3 text-xs rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
                         >
                           {CURRENCIES.map((c) => (
                             <option key={c.code} value={c.code}>
@@ -399,7 +399,7 @@ export default function Settings() {
                           <button
                             type="button"
                             onClick={() => setVerifyModalOpen(true)}
-                            className="text-[11px] text-accent hover:underline font-semibold"
+                            className="text-xs text-accent hover:underline font-semibold"
                           >
                             Verify with OTP →
                           </button>

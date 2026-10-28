@@ -38,7 +38,7 @@ export default function CartItem({ item, onUpdateQuantity, onIncrementBy, onRemo
             </span>
           )}
         </div>
-        <p className="text-[10px] text-text-secondary mt-0.5">
+        <p className="text-xs text-text-secondary mt-0.5">
           {formatCurrency(item.unitPrice)} each
           {conversionRatio ? ` · 1 ${packagingUnit || 'Pack'} = ${conversionRatio} units` : (packLabel ? ` · ${packLabel}` : "")}
         </p>

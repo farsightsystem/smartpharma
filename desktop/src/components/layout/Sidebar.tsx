@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import logoUrl from "@/asset/logo.png";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, ShoppingCart, FileText, Package, Boxes, Users, CreditCard,
@@ -215,18 +216,12 @@ export default function Sidebar() {
         )}
       >
         <div className="flex items-center gap-3 min-w-0">
-          <div className="flex items-center justify-center rounded-xl h-9 w-9 bg-primary/10 text-primary border border-primary/20 shrink-0 font-bold shadow-2xs">
-            <svg
-              className="h-5 w-5 text-primary"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17" />
-            </svg>
+          <div className="flex items-center justify-center h-9 w-9 shrink-0">
+            <img
+              src={logoUrl}
+              alt="Pharma 360"
+              className="h-7 w-7 object-contain"
+            />
           </div>
 
           <AnimatePresence>
@@ -241,22 +236,15 @@ export default function Sidebar() {
                   {isPlatform ? "Platform Console" : "Pharma 360"}
                 </p>
                 {isHomeView && (
-                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                  <p className="text-xs text-text-secondary/70 truncate mt-0.5">
                     Home • {partitions.length} sections
                   </p>
                 )}
                 {!isHomeView && activePartition && (
-                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                  <p className="text-xs text-text-secondary/70 truncate mt-0.5">
                     {activePartition.label}
                   </p>
                 )}
-                <div
-                  onClick={(e) => { e.stopPropagation(); navigate("/branches"); }}
-                  className="flex items-center gap-1 text-[11px] text-text-secondary hover:text-primary transition-colors cursor-pointer mt-0.5"
-                >
-                  <span className="truncate">{user?.branchName || "Main Branch"}</span>
-                  <ChevronDown className="h-3 w-3 shrink-0 opacity-70" />
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -270,7 +258,7 @@ export default function Sidebar() {
         )}
 
         {!collapsed && isHomeView && (
-          <div className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-text-secondary bg-surface-2 rounded-md border border-border">
+          <div className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-xs font-mono text-text-secondary bg-surface-2 rounded-md border border-border">
             <span>ctrl</span>
             <span>k</span>
           </div>
@@ -287,7 +275,7 @@ export default function Sidebar() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary/60 select-none"
+                  className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-secondary/60 select-none"
                 >
                   Pharmacy
                 </motion.p>
@@ -302,7 +290,7 @@ export default function Sidebar() {
                   key={partition.key}
                   onClick={() => handlePartitionClick(partition)}
                   className={cn(
-                    "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
+                    "group relative flex items-center w-full rounded-md transition-all duration-150 cursor-pointer",
                     collapsed ? "justify-center h-9" : "gap-3 px-3 h-10",
                     isActive
                       ? "bg-primary/10 text-primary border border-primary/20 font-semibold"
@@ -358,7 +346,7 @@ export default function Sidebar() {
                   key={item.href}
                   onClick={() => handleItemClick(item.href)}
                   className={cn(
-                    "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
+                    "group relative flex items-center w-full rounded-md transition-all duration-150 cursor-pointer",
                     collapsed ? "justify-center h-9" : "gap-3 px-3 h-9",
                     isActive
                       ? "bg-surface-2 text-text-primary font-semibold shadow-2xs"
@@ -402,7 +390,7 @@ export default function Sidebar() {
                   {item.href === "/ai/approvals" && pendingApprovals > 0 && (
                     <span
                       className={cn(
-                        "flex items-center justify-center rounded-full bg-amber-500/20 text-amber-600 text-[10px] font-bold h-4 min-w-4 px-1 border border-amber-500/30",
+                        "flex items-center justify-center rounded-full bg-amber-500/20 text-amber-600 text-xs font-bold h-4 min-w-4 px-1 border border-amber-500/30",
                         collapsed ? "absolute top-1 right-1" : "ml-auto"
                       )}
                     >
@@ -420,7 +408,7 @@ export default function Sidebar() {
         <div
           onClick={() => setMenuOpen(!menuOpen)}
           className={cn(
-            "flex items-center rounded-xl p-2 hover:bg-surface-2 transition-colors cursor-pointer",
+            "flex items-center rounded-md p-2 hover:bg-surface-2 transition-colors cursor-pointer",
             collapsed ? "justify-center" : "justify-between"
           )}
         >
@@ -440,7 +428,7 @@ export default function Sidebar() {
                   <p className="text-xs font-semibold text-text-primary truncate leading-tight">
                     {user?.username || "Admin"}
                   </p>
-                  <p className="text-[10px] text-text-secondary truncate mt-0.5">
+                  <p className="text-xs text-text-secondary truncate mt-0.5">
                     {isPlatform ? "Platform Admin" : "Pharma 360 Central"}
                   </p>
                 </motion.div>
@@ -454,7 +442,7 @@ export default function Sidebar() {
         </div>
 
         {menuOpen && !collapsed && (
-          <div className="absolute bottom-16 left-3 right-3 bg-surface border border-border rounded-xl shadow-lg p-1.5 space-y-1 z-50 text-xs">
+          <div className="absolute bottom-16 left-3 right-3 bg-surface border border-border rounded-md shadow-lg p-1.5 space-y-1 z-50 text-xs">
             <button
               onClick={() => {
                 setMenuOpen(false);

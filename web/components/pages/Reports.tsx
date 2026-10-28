@@ -214,7 +214,7 @@ export default function Reports() {
               size="sm"
               onClick={() => handleExportCsv("sales_cogs")}
               disabled={isExporting}
-              className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
+              className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
             >
               <FileSpreadsheet className="h-4 w-4 text-success" />
               Export COGS Ledger
@@ -224,7 +224,7 @@ export default function Reports() {
               size="sm"
               onClick={() => handleExportCsv("pnl")}
               disabled={isExporting}
-              className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
+              className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
             >
               <Download className="h-4 w-4 text-accent" />
               Export P&L
@@ -234,7 +234,7 @@ export default function Reports() {
       />
 
       {/* Global Filter Bar */}
-      <div className="p-3 rounded-2xl border border-border/80 bg-surface shadow-xs flex flex-wrap items-center justify-between gap-4">
+      <div className="p-3 rounded-lg border border-border/80 bg-surface shadow-xs flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 text-text-secondary" />
@@ -243,7 +243,7 @@ export default function Reports() {
               type="date"
               value={dateRange.from}
               onChange={(e) => setDateRange((prev) => ({ ...prev, from: e.target.value }))}
-              className="h-9 w-36 text-xs rounded-xl border-border/80 bg-surface-2/40"
+              className="h-9 w-36 text-xs rounded-md border-border/80 bg-surface-2/40"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function Reports() {
               type="date"
               value={dateRange.to}
               onChange={(e) => setDateRange((prev) => ({ ...prev, to: e.target.value }))}
-              className="h-9 w-36 text-xs rounded-xl border-border/80 bg-surface-2/40"
+              className="h-9 w-36 text-xs rounded-md border-border/80 bg-surface-2/40"
             />
           </div>
           {branches.length > 1 && (
@@ -261,7 +261,7 @@ export default function Reports() {
               <select
                 value={selectedBranchId}
                 onChange={(e) => setSelectedBranchId(e.target.value)}
-                className="h-9 rounded-xl border border-border/80 bg-surface-2/40 px-3 text-xs outline-none focus:ring-1 focus:ring-accent"
+                className="h-9 rounded-md border border-border/80 bg-surface-2/40 px-3 text-xs outline-none focus:ring-1 focus:ring-accent"
               >
                 <option value="">All Branches</option>
                 {branches.map((b) => (
@@ -282,7 +282,7 @@ export default function Reports() {
             refetchLosses();
             refetchValuation();
           }}
-          className="h-9 rounded-xl text-xs gap-1.5 text-text-secondary hover:text-text-primary"
+          className="h-9 rounded-md text-xs gap-1.5 text-text-secondary hover:text-text-primary"
         >
           <RefreshCw className="h-3.5 w-3.5" />
           Refresh

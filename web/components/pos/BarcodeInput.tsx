@@ -23,7 +23,7 @@ export default function BarcodeInput({ value, onChange, onSubmit }: BarcodeInput
           }
         }}
         placeholder="Search by name or scan barcode..."
-        className="h-10 pl-9 pr-9 text-sm rounded-lg"
+        className="h-10 pl-9 pr-9 text-sm rounded-md"
       />
       <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-secondary" />
     </div>

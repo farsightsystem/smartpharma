@@ -23,7 +23,7 @@ export default function MoyasarDonutCard({
   items,
 }: MoyasarDonutCardProps) {
   return (
-    <div className="bg-surface border border-border/80 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+    <div className="bg-surface border border-border/80 rounded-lg p-5 shadow-xs flex flex-col justify-between">
       {title && (
         <h4 className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-4">
           {title}
@@ -52,7 +52,7 @@ export default function MoyasarDonutCard({
 
           {/* Centered Stat Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center px-2">
-            <span className="text-[10px] text-text-secondary font-medium tracking-tight">
+            <span className="text-xs text-text-secondary font-medium tracking-tight">
               {totalLabel}
             </span>
             <span className="text-sm font-bold text-text-primary tracking-tight mt-0.5">

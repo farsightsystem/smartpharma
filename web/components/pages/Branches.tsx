@@ -356,7 +356,7 @@ export default function Branches() {
       />
 
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
-        <TabsList className="grid grid-cols-3 max-w-xl bg-surface-2 p-1 rounded-xl">
+        <TabsList className="grid grid-cols-3 max-w-xl bg-surface-2 p-1 rounded-md">
           <TabsTrigger value="branches" className="gap-2">
             <Store className="h-4 w-4" />
             Branches & Staff
@@ -365,7 +365,7 @@ export default function Branches() {
             <ArrowLeftRight className="h-4 w-4" />
             Stock Transfers
             {transfers.filter((t) => t.status === "IN_TRANSIT" || t.status === "PENDING").length > 0 && (
-              <span className="ml-1 px-1.5 py-0.2 text-[10px] bg-primary text-white rounded-full">
+              <span className="ml-1 px-1.5 py-0.2 text-xs bg-primary text-white rounded-full">
                 {transfers.filter((t) => t.status === "IN_TRANSIT" || t.status === "PENDING").length}
               </span>
             )}
@@ -428,16 +428,16 @@ export default function Branches() {
                             <div className="flex items-center gap-1.5 mt-1">
                               <Badge
                                 variant={b.isActive ? "default" : "neutral"}
-                                className={`text-[10px] px-1.5 py-0 ${b.isActive ? "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20" : ""}`}
+                                className={`text-xs px-1.5 py-0 ${b.isActive ? "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20" : ""}`}
                               >
                                 {b.isActive ? "Active" : "Inactive"}
                               </Badge>
                               {b.allowPriceOverride ? (
-                                <Badge variant="outline" className="text-[10px] text-primary border-primary/30">
+                                <Badge variant="outline" className="text-xs text-primary border-primary/30">
                                   Custom Prices Enabled
                                 </Badge>
                               ) : (
-                                <Badge variant="outline" className="text-[10px] text-text-secondary">
+                                <Badge variant="outline" className="text-xs text-text-secondary">
                                   Central Pricing Only
                                 </Badge>
                               )}
@@ -469,7 +469,7 @@ export default function Branches() {
                       <div className="mt-4 space-y-1 text-xs text-text-secondary">
                         {b.address && <p className="truncate">{b.address}</p>}
                         {b.phone && (
-                          <p className="flex items-center gap-1 text-[11px]">
+                          <p className="flex items-center gap-1 text-xs">
                             <Phone className="h-3 w-3" />
                             {b.phone}
                           </p>
@@ -508,7 +508,7 @@ export default function Branches() {
         {/* TAB 2: INTER-BRANCH TRANSFERS                                       */}
         {/* =================================================================== */}
         <TabsContent value="transfers" className="space-y-4 mt-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 bg-surface p-4 rounded-xl border border-border">
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-surface p-4 rounded-md border border-border">
             <div className="flex items-center gap-3">
               <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">Status:</span>
               <div className="flex items-center gap-1">
@@ -553,7 +553,7 @@ export default function Branches() {
                 </Card>
               ))
             ) : transfers.length === 0 ? (
-              <div className="py-16 text-center text-text-secondary bg-surface border border-border rounded-xl">
+              <div className="py-16 text-center text-text-secondary bg-surface border border-border rounded-md">
                 <ArrowLeftRight className="h-10 w-10 mx-auto text-text-secondary/40 mb-3" />
                 <p className="font-medium text-text-primary">No stock transfers found</p>
                 <p className="text-xs mt-1">Create a transfer request to move inventory between branches with automated batch travel.</p>
@@ -701,7 +701,7 @@ export default function Branches() {
 
               {crossStockResult && (
                 <div className="mt-6 pt-6 border-t border-border space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-surface-2 rounded-xl border border-border">
+                  <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-surface-2 rounded-md border border-border">
                     <div>
                       <h4 className="font-bold text-lg text-text-primary">{crossStockResult.productName}</h4>
                       <p className="text-xs text-text-secondary font-mono">Barcode: {crossStockResult.barcode}</p>
@@ -722,7 +722,7 @@ export default function Branches() {
                           <div className="flex items-start justify-between">
                             <div>
                               <h5 className="font-semibold text-text-primary text-sm">{b.branchName}</h5>
-                              <p className="text-[11px] text-text-secondary">{b.branchAddress || "No address"}</p>
+                              <p className="text-xs text-text-secondary">{b.branchAddress || "No address"}</p>
                             </div>
                             <Badge
                               variant="outline"
@@ -738,17 +738,17 @@ export default function Branches() {
 
                           <div className="grid grid-cols-2 gap-2 text-xs py-2 border-y border-border">
                             <div>
-                              <span className="text-text-secondary block text-[10px]">Effective Price:</span>
+                              <span className="text-text-secondary block text-xs">Effective Price:</span>
                               <span className="font-semibold text-text-primary">
                                 ${b.effectiveSalePrice.toFixed(2)}
                               </span>
                               {b.hasPriceOverride && (
-                                <span className="block text-[10px] text-primary">(Custom Override)</span>
+                                <span className="block text-xs text-primary">(Custom Override)</span>
                               )}
                             </div>
                             <div>
-                              <span className="text-text-secondary block text-[10px]">Last Movement:</span>
-                              <span className="text-text-primary text-[11px]">
+                              <span className="text-text-secondary block text-xs">Last Movement:</span>
+                              <span className="text-text-primary text-xs">
                                 {b.lastUpdated ? new Date(b.lastUpdated).toLocaleDateString() : "No movement"}
                               </span>
                             </div>
@@ -759,7 +759,7 @@ export default function Branches() {
                             <div>
                               <button
                                 type="button"
-                                className="flex items-center justify-between w-full text-[11px] font-medium text-text-secondary hover:text-text-primary"
+                                className="flex items-center justify-between w-full text-xs font-medium text-text-secondary hover:text-text-primary"
                                 onClick={() =>
                                   setExpandedBranchBatchId(
                                     expandedBranchBatchId === b.branchId ? null : b.branchId,
@@ -775,7 +775,7 @@ export default function Branches() {
                               </button>
 
                               {expandedBranchBatchId === b.branchId && (
-                                <div className="mt-2 space-y-1.5 p-2 bg-surface-2 rounded-lg text-[11px]">
+                                <div className="mt-2 space-y-1.5 p-2 bg-surface-2 rounded-lg text-xs">
                                   {b.batches.map((batch) => (
                                     <div key={batch.id} className="flex justify-between items-center">
                                       <span className="font-mono text-text-primary">{batch.batchNumber}</span>
@@ -907,11 +907,11 @@ export default function Branches() {
           </DialogHeader>
 
           <div className="space-y-5">
-            <form onSubmit={handleAddPriceOverride} className="p-4 bg-surface-2 rounded-xl space-y-3">
+            <form onSubmit={handleAddPriceOverride} className="p-4 bg-surface-2 rounded-md space-y-3">
               <h4 className="text-xs font-semibold text-text-primary uppercase tracking-wider">Set New Price Override</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="space-y-1">
-                  <Label className="text-[11px]">Select Product</Label>
+                  <Label className="text-xs">Select Product</Label>
                   <Select value={newOverrideProductId} onValueChange={setNewOverrideProductId}>
                     <SelectTrigger className="text-xs h-9">
                       <SelectValue placeholder="Choose medicine..." />
@@ -927,7 +927,7 @@ export default function Branches() {
                 </div>
 
                 <div className="space-y-1">
-                  <Label className="text-[11px]">Branch Override Price ($)</Label>
+                  <Label className="text-xs">Branch Override Price ($)</Label>
                   <Input
                     type="number"
                     step="0.01"
@@ -941,7 +941,7 @@ export default function Branches() {
                 </div>
 
                 <div className="space-y-1">
-                  <Label className="text-[11px]">Reason / Justification</Label>
+                  <Label className="text-xs">Reason / Justification</Label>
                   <Input
                     placeholder="e.g. High rent area"
                     value={newOverrideReason}
@@ -1106,7 +1106,7 @@ export default function Branches() {
               />
               <Label htmlFor="send-immediately" className="text-xs cursor-pointer">
                 <span className="font-semibold block text-text-primary">Dispatch Immediately (In-Transit)</span>
-                <span className="text-text-secondary text-[11px]">
+                <span className="text-text-secondary text-xs">
                   Source branch inventory will be deducted right now and prepared for transit.
                 </span>
               </Label>

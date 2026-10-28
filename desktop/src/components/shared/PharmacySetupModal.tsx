@@ -89,7 +89,7 @@ export default function PharmacySetupModal() {
     <Dialog open={open} onOpenChange={(val) => !val && handleDismiss()}>
       <DialogContent className="sm:max-w-lg p-6">
         <DialogHeader className="space-y-2">
-          <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-1">
+          <div className="h-10 w-10 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-1">
             <Building2 className="h-5 w-5" />
           </div>
           <DialogTitle className="text-lg font-bold">Complete Pharmacy Configuration</DialogTitle>
@@ -109,7 +109,7 @@ export default function PharmacySetupModal() {
           <div className="grid grid-cols-2 gap-3">
             {/* City */}
             <div className="space-y-1.5">
-              <Label htmlFor="setup-city" className="text-[11px] uppercase tracking-wider text-text-secondary">
+              <Label htmlFor="setup-city" className="text-xs uppercase tracking-wider text-text-secondary">
                 City *
               </Label>
               <div className="relative">
@@ -127,7 +127,7 @@ export default function PharmacySetupModal() {
 
             {/* Base Currency */}
             <div className="space-y-1.5">
-              <Label htmlFor="setup-currency" className="text-[11px] uppercase tracking-wider text-text-secondary">
+              <Label htmlFor="setup-currency" className="text-xs uppercase tracking-wider text-text-secondary">
                 Base Currency *
               </Label>
               <div className="relative">
@@ -136,7 +136,7 @@ export default function PharmacySetupModal() {
                   id="setup-currency"
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="w-full h-10 pl-8 pr-3 text-xs rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
+                  className="w-full h-10 pl-8 pr-3 text-xs rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-all appearance-none cursor-pointer"
                 >
                   {CURRENCIES.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -150,7 +150,7 @@ export default function PharmacySetupModal() {
 
           {/* Phone */}
           <div className="space-y-1.5">
-            <Label htmlFor="setup-phone" className="text-[11px] uppercase tracking-wider text-text-secondary">
+            <Label htmlFor="setup-phone" className="text-xs uppercase tracking-wider text-text-secondary">
               Pharmacy Contact Phone
             </Label>
             <div className="relative">
@@ -168,7 +168,7 @@ export default function PharmacySetupModal() {
 
           {/* Address */}
           <div className="space-y-1.5">
-            <Label htmlFor="setup-address" className="text-[11px] uppercase tracking-wider text-text-secondary">
+            <Label htmlFor="setup-address" className="text-xs uppercase tracking-wider text-text-secondary">
               Physical Street Address
             </Label>
             <Input

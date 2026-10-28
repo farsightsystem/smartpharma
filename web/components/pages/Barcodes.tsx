@@ -119,7 +119,7 @@ export default function Barcodes() {
         b.product ? (
           <div>
             <span className="font-semibold text-text-primary text-xs">{b.product.name}</span>
-            <p className="text-[11px] text-text-secondary mt-0.5">Medicine Catalog Item</p>
+            <p className="text-xs text-text-secondary mt-0.5">Medicine Catalog Item</p>
           </div>
         ) : (
           <span className="text-xs text-text-secondary italic">Unassigned Custom Tag</span>
@@ -130,11 +130,11 @@ export default function Barcodes() {
       header: "Tag Type",
       cell: (b: BarcodeEntry) =>
         b.productId ? (
-          <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-success/10 text-success font-medium border border-success/20">
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-success/10 text-success font-medium border border-success/20">
             Product Assigned
           </span>
         ) : (
-          <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-medium border border-purple-500/20">
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-medium border border-purple-500/20">
             Custom Tag
           </span>
         ),
@@ -216,7 +216,7 @@ export default function Barcodes() {
       </div>
 
       {/* Standardized Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-2xl border border-border/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-lg border border-border/80 shadow-xs">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
           <Input
@@ -224,13 +224,13 @@ export default function Barcodes() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by barcode or product name..."
-            className="pl-9 h-9 rounded-xl text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
+            className="pl-9 h-9 rounded-md text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
           />
         </div>
 
         <div className="flex items-center gap-2">
           {/* View toggle */}
-          <div className="flex items-center p-0.5 bg-surface-2/60 rounded-xl border border-border/60">
+          <div className="flex items-center p-0.5 bg-surface-2/60 rounded-md border border-border/60">
             <button
               onClick={() => setView("grid")}
               className={cn(
@@ -263,11 +263,11 @@ export default function Barcodes() {
       {isLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
           {Array.from({ length: 10 }).map((_, i) => (
-            <Skeleton key={i} className="h-44 rounded-2xl" />
+            <Skeleton key={i} className="h-44 rounded-lg" />
           ))}
         </div>
       ) : filtered.length === 0 ? (
-        <div className="rounded-2xl border border-border/80 bg-surface p-8 shadow-xs">
+        <div className="rounded-lg border border-border/80 bg-surface p-8 shadow-xs">
           <EmptyState
             title="No barcodes found"
             description={
@@ -277,7 +277,7 @@ export default function Barcodes() {
             }
             icon={<Barcode className="h-6 w-6 text-accent" />}
             action={
-              <Button onClick={openGenerate} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+              <Button onClick={openGenerate} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
                 <Plus className="h-3.5 w-3.5" /> Generate First Barcode
               </Button>
             }
@@ -288,7 +288,7 @@ export default function Barcodes() {
           {filtered.map((b) => (
             <div
               key={b.id}
-              className="group relative flex flex-col items-center justify-between p-4 rounded-2xl border border-border/80 bg-surface shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200"
+              className="group relative flex flex-col items-center justify-between p-4 rounded-lg border border-border/80 bg-surface shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200"
             >
               {!b.productId && (
                 <button
@@ -299,11 +299,11 @@ export default function Barcodes() {
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
               )}
-              <div className="flex items-center justify-center w-full min-h-[56px] py-1 bg-white/70 dark:bg-white/10 rounded-xl mb-2 px-2 border border-border/40">
+              <div className="flex items-center justify-center w-full min-h-[56px] py-1 bg-white/70 dark:bg-white/10 rounded-md mb-2 px-2 border border-border/40">
                 <svg id={`bc-${b.id}`} className="max-w-full h-[46px]" />
               </div>
               <div className="w-full text-center mb-3">
-                <span className="inline-block text-[11px] font-mono font-semibold text-text-primary bg-surface-2/80 px-2 py-0.5 rounded-md border border-border/60 break-all mb-1.5">
+                <span className="inline-block text-xs font-mono font-semibold text-text-primary bg-surface-2/80 px-2 py-0.5 rounded-md border border-border/60 break-all mb-1.5">
                   {b.code}
                 </span>
                 <p className="text-xs font-medium text-text-primary line-clamp-2 min-h-[2rem] leading-tight">
@@ -318,7 +318,7 @@ export default function Barcodes() {
                 size="sm"
                 variant="outline"
                 onClick={() => openPrint(b.code)}
-                className="w-full h-8 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
+                className="w-full h-8 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2 font-medium"
               >
                 <Printer className="h-3.5 w-3.5" />
                 Print Label

@@ -234,7 +234,7 @@ export default function Arrears() {
       cell: (a: Arrear) => (
         <div>
           <span className="font-semibold text-text-primary text-sm">{a.customer_name}</span>
-          <p className="text-[11px] text-text-secondary font-mono mt-0.5">ID: {a.id.slice(0, 8)}</p>
+          <p className="text-xs text-text-secondary font-mono mt-0.5">ID: {a.id.slice(0, 8)}</p>
         </div>
       ),
     },
@@ -369,7 +369,7 @@ export default function Arrears() {
       </div>
 
       {/* Standardized Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-2xl border border-border/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-lg border border-border/80 shadow-xs">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 flex-1">
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
@@ -377,12 +377,12 @@ export default function Arrears() {
               placeholder="Search customer name or ID..."
               value={search}
               onChange={handleSearchChange}
-              className="pl-9 h-9 rounded-xl text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
+              className="pl-9 h-9 rounded-md text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
             />
           </div>
 
           {/* Status Tabs */}
-          <div className="flex items-center p-0.5 bg-surface-2/60 rounded-xl border border-border/60">
+          <div className="flex items-center p-0.5 bg-surface-2/60 rounded-md border border-border/60">
             <button
               onClick={() => handleFilterChange("all")}
               className={cn(
@@ -423,7 +423,7 @@ export default function Arrears() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() =>
               downloadCSV(
                 `arrears_${new Date().toISOString().split("T")[0]}.csv`,
@@ -444,7 +444,7 @@ export default function Arrears() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() =>
               downloadPDF(
                 `arrears_${new Date().toISOString().split("T")[0]}.pdf`,
@@ -494,7 +494,7 @@ export default function Arrears() {
         if (!arrear) return null;
         const payments = arrear.payments ?? [];
         return (
-          <div className="rounded-2xl border border-border/80 overflow-hidden bg-surface shadow-xs">
+          <div className="rounded-lg border border-border/80 overflow-hidden bg-surface shadow-xs">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border/80 bg-surface-2/40">
               <div className="flex items-center gap-2.5">
                 <div className="h-7 w-7 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
@@ -502,7 +502,7 @@ export default function Arrears() {
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-text-primary">Payment History — {arrear.customer_name}</h4>
-                  <p className="text-[11px] text-text-secondary mt-0.5">
+                  <p className="text-xs text-text-secondary mt-0.5">
                     Original Bill: {formatCurrency(arrear.total_bill)} • Current Due: {formatCurrency(arrear.balance_due)}
                   </p>
                 </div>
@@ -526,9 +526,9 @@ export default function Arrears() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border/60 bg-surface-2/20">
-                      <th className="text-left px-5 py-2.5 text-[11px] font-semibold text-text-secondary uppercase">Date</th>
-                      <th className="text-left px-5 py-2.5 text-[11px] font-semibold text-text-secondary uppercase">Amount Paid</th>
-                      <th className="text-left px-5 py-2.5 text-[11px] font-semibold text-text-secondary uppercase">Running Total</th>
+                      <th className="text-left px-5 py-2.5 text-xs font-semibold text-text-secondary uppercase">Date</th>
+                      <th className="text-left px-5 py-2.5 text-xs font-semibold text-text-secondary uppercase">Amount Paid</th>
+                      <th className="text-left px-5 py-2.5 text-xs font-semibold text-text-secondary uppercase">Running Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -579,7 +579,7 @@ export default function Arrears() {
                   placeholder="0.00"
                   value={form.totalBill}
                   onChange={(e) => setForm({ ...form, totalBill: e.target.value })}
-                  className="mt-1 h-9 rounded-xl font-mono text-xs"
+                  className="mt-1 h-9 rounded-md font-mono text-xs"
                 />
               </div>
               <div>
@@ -589,12 +589,12 @@ export default function Arrears() {
                   placeholder="0.00"
                   value={form.amountPaid}
                   onChange={(e) => setForm({ ...form, amountPaid: e.target.value })}
-                  className="mt-1 h-9 rounded-xl font-mono text-xs"
+                  className="mt-1 h-9 rounded-md font-mono text-xs"
                 />
               </div>
             </div>
             <Button
-              className="w-full h-9 rounded-xl text-xs font-medium shadow-xs"
+              className="w-full h-9 rounded-md text-xs font-medium shadow-xs"
               disabled={!form.customerId || !form.totalBill || createMutation.isPending}
               onClick={() => createMutation.mutate()}
             >
@@ -622,9 +622,9 @@ export default function Arrears() {
             </DialogDescription>
           </DialogHeader>
           <div className="px-5 pb-5 space-y-4">
-            <div className="p-3 rounded-xl bg-surface-2/60 border border-border/80 flex items-center justify-between">
+            <div className="p-3 rounded-md bg-surface-2/60 border border-border/80 flex items-center justify-between">
               <div>
-                <p className="text-[11px] text-text-secondary">Current Balance Due</p>
+                <p className="text-xs text-text-secondary">Current Balance Due</p>
                 <p className="text-base font-bold font-mono text-warning">
                   {paymentDialog.arrear ? formatCurrency(paymentDialog.arrear.balance_due) : "$0.00"}
                 </p>
@@ -652,7 +652,7 @@ export default function Arrears() {
                 value={paymentDialog.amount}
                 onChange={(e) => setPaymentDialog((prev) => ({ ...prev, amount: e.target.value }))}
                 placeholder="0.00"
-                className="mt-1 h-9 rounded-xl font-mono text-xs"
+                className="mt-1 h-9 rounded-md font-mono text-xs"
                 autoFocus
               />
             </div>
@@ -667,7 +667,7 @@ export default function Arrears() {
                 value={paymentDialog.password}
                 onChange={(e) => setPaymentDialog((prev) => ({ ...prev, password: e.target.value }))}
                 placeholder="Enter admin password to authorize"
-                className="mt-1 h-9 rounded-xl text-xs"
+                className="mt-1 h-9 rounded-md text-xs"
               />
             </div>
 
@@ -675,14 +675,14 @@ export default function Arrears() {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 rounded-xl text-xs"
+                className="h-9 rounded-md text-xs"
                 onClick={() => setPaymentDialog({ open: false, arrear: null, amount: "", password: "" })}
               >
                 Cancel
               </Button>
               <Button
                 size="sm"
-                className="h-9 rounded-xl text-xs font-medium shadow-xs"
+                className="h-9 rounded-md text-xs font-medium shadow-xs"
                 disabled={
                   !paymentDialog.amount ||
                   Number(paymentDialog.amount) <= 0 ||
@@ -735,7 +735,7 @@ export default function Arrears() {
                 value={settleDialog.password}
                 onChange={(e) => setSettleDialog((prev) => ({ ...prev, password: e.target.value }))}
                 placeholder="Enter admin password to confirm"
-                className="mt-1 h-9 rounded-xl text-xs"
+                className="mt-1 h-9 rounded-md text-xs"
                 autoFocus
               />
             </div>
@@ -744,14 +744,14 @@ export default function Arrears() {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 rounded-xl text-xs"
+                className="h-9 rounded-md text-xs"
                 onClick={() => setSettleDialog({ open: false, arrear: null, password: "" })}
               >
                 Cancel
               </Button>
               <Button
                 size="sm"
-                className="h-9 rounded-xl text-xs font-medium shadow-xs bg-success text-white hover:bg-success/90"
+                className="h-9 rounded-md text-xs font-medium shadow-xs bg-success text-white hover:bg-success/90"
                 disabled={!settleDialog.password || settleMutation.isPending}
                 onClick={() => {
                   if (settleDialog.arrear && settleDialog.password) {
@@ -790,7 +790,7 @@ export default function Arrears() {
             <Button
               variant="outline"
               size="sm"
-              className="h-9 rounded-xl text-xs"
+              className="h-9 rounded-md text-xs"
               onClick={() => setDeleteDialog({ open: false, arrear: null, password: "" })}
             >
               Cancel
@@ -798,7 +798,7 @@ export default function Arrears() {
             <Button
               size="sm"
               variant="destructive"
-              className="h-9 rounded-xl text-xs font-medium shadow-xs"
+              className="h-9 rounded-md text-xs font-medium shadow-xs"
               disabled={deleteMutation.isPending}
               onClick={() => {
                 if (deleteDialog.arrear) {
@@ -833,14 +833,14 @@ export default function Arrears() {
             <Button
               variant="outline"
               size="sm"
-              className="h-9 rounded-xl text-xs"
+              className="h-9 rounded-md text-xs"
               onClick={() => setPrintDialog({ open: false, saleId: null })}
             >
               Skip
             </Button>
             <Button
               size="sm"
-              className="h-9 rounded-xl text-xs font-medium shadow-xs"
+              className="h-9 rounded-md text-xs font-medium shadow-xs"
               onClick={() => {
                 setViewSaleId(printDialog.saleId);
                 setPrintDialog({ open: false, saleId: null });

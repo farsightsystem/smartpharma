@@ -59,7 +59,7 @@ export default function CountrySelect({
       {label && (
         <label
           htmlFor={id}
-          className="block text-[11px] font-medium tracking-wide uppercase text-text-secondary select-none"
+          className="block text-xs font-medium tracking-wide uppercase text-text-secondary select-none"
         >
           {label}
         </label>
@@ -72,7 +72,7 @@ export default function CountrySelect({
         disabled={disabled}
         onClick={() => setOpen(!open)}
         className={cn(
-          "w-full h-10 rounded-xl border border-border bg-surface px-3.5 text-sm text-text-primary",
+          "w-full h-10 rounded-md border border-border bg-surface px-3.5 text-sm text-text-primary",
           "flex items-center justify-between gap-2 text-left cursor-pointer",
           "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60",
           "transition-all duration-150",
@@ -95,7 +95,7 @@ export default function CountrySelect({
 
       {/* Dropdown Popover */}
       {open && (
-        <div className="absolute z-50 left-0 right-0 mt-1.5 rounded-xl border border-border bg-card shadow-xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="absolute z-50 left-0 right-0 mt-1.5 rounded-md border border-border bg-card shadow-xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
           {/* Search Header */}
           <div className="p-2 border-b border-border bg-surface/50">
             <div className="relative">
@@ -140,9 +140,9 @@ export default function CountrySelect({
                       <span className="text-base leading-none">{c.flag}</span>
                       <span className="truncate">{c.name}</span>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 text-[11px] text-text-secondary">
+                    <div className="flex items-center gap-2 shrink-0 text-xs text-text-secondary">
                       <span className="font-mono">{c.dialCode}</span>
-                      <span className="px-1.5 py-0.5 rounded bg-surface/80 border border-border/60 text-[10px] uppercase font-semibold">
+                      <span className="px-1.5 py-0.5 rounded bg-surface/80 border border-border/60 text-xs uppercase font-semibold">
                         {c.currency}
                       </span>
                       {isSelected && <Check className="h-3.5 w-3.5 text-accent" />}

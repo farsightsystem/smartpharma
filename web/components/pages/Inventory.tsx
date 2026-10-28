@@ -62,14 +62,14 @@ function daysUntilExpiry(dateStr: string): number {
 
 function expiryBadge(dateStr: string) {
   const days = daysUntilExpiry(dateStr);
-  if (days < 0) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-mono text-[11px] font-semibold">Expired</Badge>;
-  if (days <= 30) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-mono text-[11px] font-semibold">{days}d left</Badge>;
-  if (days <= 90) return <Badge variant="outline" className="bg-warning/10 text-warning border-warning/30 font-mono text-[11px] font-semibold">{days}d left</Badge>;
-  return <Badge variant="outline" className="bg-success/10 text-success border-success/30 font-mono text-[11px] font-semibold">{days}d</Badge>;
+  if (days < 0) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-mono text-xs font-semibold">Expired</Badge>;
+  if (days <= 30) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-mono text-xs font-semibold">{days}d left</Badge>;
+  if (days <= 90) return <Badge variant="outline" className="bg-warning/10 text-warning border-warning/30 font-mono text-xs font-semibold">{days}d left</Badge>;
+  return <Badge variant="outline" className="bg-success/10 text-success border-success/30 font-mono text-xs font-semibold">{days}d</Badge>;
 }
 
 function statusBadge(status: string, isRecalled: boolean) {
-  if (isRecalled) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-semibold text-[11px]">Recalled</Badge>;
+  if (isRecalled) return <Badge variant="outline" className="bg-danger/10 text-danger border-danger/30 font-semibold text-xs">Recalled</Badge>;
   const map: Record<string, string> = {
     ACTIVE: "bg-success/10 text-success border-success/30",
     DEPLETED: "bg-surface-2 text-text-secondary border-border/80",
@@ -77,7 +77,7 @@ function statusBadge(status: string, isRecalled: boolean) {
     RECALLED: "bg-danger/10 text-danger border-danger/30",
     EXPIRED: "bg-danger/10 text-danger border-danger/30",
   };
-  return <Badge variant="outline" className={`font-semibold text-[11px] ${map[status] ?? "bg-surface-2 text-text-secondary border-border/80"}`}>{status}</Badge>;
+  return <Badge variant="outline" className={`font-semibold text-xs ${map[status] ?? "bg-surface-2 text-text-secondary border-border/80"}`}>{status}</Badge>;
 }
 
 function movementIcon(type: string) {
@@ -340,14 +340,14 @@ export default function Inventory() {
               size="sm"
               onClick={() => scanMutation.mutate()}
               disabled={scanMutation.isPending}
-              className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+              className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             >
               <RefreshCw className={`h-3.5 w-3.5 ${scanMutation.isPending ? "animate-spin" : ""}`} />
               Run Expiry Scan
             </Button>
             <Button
               size="sm"
-              className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs"
+              className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs"
               onClick={() => setReceiveOpen(true)}
             >
               <Plus className="h-3.5 w-3.5" />
@@ -391,7 +391,7 @@ export default function Inventory() {
 
       {/* ---- Near-expiry alert banner ---- */}
       {nearExpiry > 0 && (
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-warning/30 bg-warning/5 p-4 text-xs shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-warning/30 bg-warning/5 p-4 text-xs shadow-xs">
           <div className="flex items-center gap-2.5">
             <AlertTriangle className="h-4 w-4 text-warning shrink-0" />
             <p className="text-text-primary">
@@ -402,7 +402,7 @@ export default function Inventory() {
           <Button
             size="sm"
             variant="outline"
-            className="h-8 rounded-xl text-xs border-warning/30 hover:bg-warning/10 shrink-0"
+            className="h-8 rounded-md text-xs border-warning/30 hover:bg-warning/10 shrink-0"
             onClick={() => setTab("expiring")}
           >
             Review Expiring Lots
@@ -412,7 +412,7 @@ export default function Inventory() {
 
       {/* ---- Tabs ---- */}
       <Tabs value={tab} onValueChange={setTab} className="space-y-4">
-        <TabsList className="bg-surface-2/80 p-1 rounded-xl border border-border/80">
+        <TabsList className="bg-surface-2/80 p-1 rounded-md border border-border/80">
           <TabsTrigger value="batches" className="gap-1.5 text-xs rounded-lg">
             <Layers className="h-3.5 w-3.5" /> Batches
           </TabsTrigger>
@@ -420,7 +420,7 @@ export default function Inventory() {
             <AlertTriangle className="h-3.5 w-3.5" />
             Near Expiry
             {nearExpiry > 0 && (
-              <span className="ml-1 inline-flex items-center justify-center rounded-full bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.2">
+              <span className="ml-1 inline-flex items-center justify-center rounded-full bg-amber-500 text-white text-xs font-bold px-1.5 py-0.2">
                 {nearExpiry > 99 ? "99+" : nearExpiry}
               </span>
             )}
@@ -432,11 +432,11 @@ export default function Inventory() {
 
         {/* ---- Batches Tab ---- */}
         <TabsContent value="batches" className="space-y-4 mt-0">
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-2xl border border-border/80 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-lg border border-border/80 shadow-xs">
             <div className="relative flex-1 max-w-sm">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
               <Input
-                className="pl-9 h-9 rounded-xl text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
+                className="pl-9 h-9 rounded-md text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
                 placeholder="Search batch number, product, GTIN…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -445,7 +445,7 @@ export default function Inventory() {
             <div className="flex items-center gap-2">
               <Filter className="h-3.5 w-3.5 text-text-secondary" />
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="h-9 w-36 rounded-xl text-xs border-border/80">
+                <SelectTrigger className="h-9 w-36 rounded-md text-xs border-border/80">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -469,7 +469,7 @@ export default function Inventory() {
             emptyTitle="No inventory batches found"
             emptyDescription={search ? `No batches matched "${search}".` : "Receive a new batch to register stock into the inventory."}
             emptyAction={
-              <Button onClick={() => setReceiveOpen(true)} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+              <Button onClick={() => setReceiveOpen(true)} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
                 <Plus className="h-3.5 w-3.5" /> Receive First Batch
               </Button>
             }

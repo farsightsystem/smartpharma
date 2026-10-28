@@ -106,24 +106,24 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
               <h2 className="text-xs font-display font-semibold text-text-primary tracking-tight">
                 Invoice
               </h2>
-              <span className="text-[10px] font-mono text-text-secondary tabular-nums">
+              <span className="text-xs font-mono text-text-secondary tabular-nums">
                 {formatDateTime(sale.created_at)}
               </span>
             </div>
             <div className="flex items-center justify-between gap-2 mb-3">
-              <p className="font-mono text-[10px] text-text-secondary tracking-wider">
+              <p className="font-mono text-xs text-text-secondary tracking-wider">
                 {sale.id}
               </p>
               {sale.prescription_number && (
-                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">
+                <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">
                   Rx: {sale.prescription_number}
                 </span>
               )}
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-text-primary mb-3 pb-2.5 border-b border-border">
+            <div className="flex items-center justify-between text-xs text-text-primary mb-3 pb-2.5 border-b border-border">
               <div>
-                <span className="text-text-secondary text-[10px] block">Customer</span>
+                <span className="text-text-secondary text-xs block">Customer</span>
                 {sale.customer_name ? (
                   <span className="font-medium">{sale.customer_name}</span>
                 ) : (
@@ -132,7 +132,7 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
               </div>
               {sale.cashier_name && (
                 <div className="text-right">
-                  <span className="text-text-secondary text-[10px] block">Cashier</span>
+                  <span className="text-text-secondary text-xs block">Cashier</span>
                   <span className="text-text-primary font-medium">{sale.cashier_name}</span>
                 </div>
               )}
@@ -146,7 +146,7 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
                 const name = item.product_name || "";
                 return (
                   <div key={item.id} className="border-b border-border/40 pb-1.5 last:border-0 last:pb-0">
-                    <div className="flex items-baseline gap-2 text-[11px] leading-relaxed">
+                    <div className="flex items-baseline gap-2 text-xs leading-relaxed">
                       <span className="text-text-primary truncate flex-1 min-w-0 font-medium">{name}</span>
                       <span className="font-mono text-text-secondary shrink-0 tabular-nums">
                         {qty} &times; {price}
@@ -156,7 +156,7 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
                       </span>
                     </div>
                     {(item.batch_number || item.expiry_date) && (
-                      <div className="flex items-center gap-2 text-[10px] font-mono text-text-secondary mt-0.5 pl-1">
+                      <div className="flex items-center gap-2 text-xs font-mono text-text-secondary mt-0.5 pl-1">
                         {item.batch_number && <span>Batch: {item.batch_number}</span>}
                         {item.batch_number && item.expiry_date && <span>&bull;</span>}
                         {item.expiry_date && (
@@ -186,12 +186,12 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-text-secondary">Payment Tender</span>
-                <span className="font-mono font-medium px-2 py-0.5 rounded text-[11px] bg-surface-2 border border-border">
+                <span className="font-mono font-medium px-2 py-0.5 rounded text-xs bg-surface-2 border border-border">
                   {sale.payment_method || "CASH"}
                 </span>
               </div>
               {sale.payment_method === "SPLIT" ? (
-                <div className="pl-3 py-1 space-y-1 border-l-2 border-accent/40 my-1 bg-surface/50 text-[11px]">
+                <div className="pl-3 py-1 space-y-1 border-l-2 border-accent/40 my-1 bg-surface/50 text-xs">
                   <div className="flex justify-between">
                     <span className="text-text-secondary">Cash Portion</span>
                     <span className="font-mono text-success tabular-nums">{formatCurrency(sale.cash_amount ?? 0)}</span>
@@ -202,7 +202,7 @@ export default function InvoiceDetailDialog({ open, onOpenChange, saleId }: Invo
                   </div>
                 </div>
               ) : sale.payment_method === "CREDIT" ? (
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-warning">Added to Customer Arrears</span>
                   <span className="font-mono text-warning tabular-nums">{formatCurrency(sale.credit_amount ?? sale.total)}</span>
                 </div>

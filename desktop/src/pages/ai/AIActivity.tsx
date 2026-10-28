@@ -45,7 +45,7 @@ export default function AIActivity() {
         action={{ label: "Refresh", onClick: () => refetch() }}
       />
 
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <DataTable
           columns={columns}
           data={logs}

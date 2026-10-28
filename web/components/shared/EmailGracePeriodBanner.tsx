@@ -51,7 +51,7 @@ export default function EmailGracePeriodBanner() {
                 <span className="font-bold underline decoration-amber-500 decoration-2 underline-offset-2">
                   {daysRemaining} {daysRemaining === 1 ? "day" : "days"} remaining
                 </span>{" "}
-                to verify <span className="font-mono text-[11px] opacity-90">{profile.email || user.email}</span>.
+                to verify <span className="font-mono text-xs opacity-90">{profile.email || user.email}</span>.
               </>
             )}
           </span>
@@ -62,7 +62,7 @@ export default function EmailGracePeriodBanner() {
             type="button"
             onClick={() => setModalOpen(true)}
             className={cn(
-              "px-3 py-1 rounded-lg font-semibold text-[11px] transition-all duration-150 flex items-center gap-1.5 shadow-sm active:scale-95",
+              "px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-150 flex items-center gap-1.5 shadow-sm active:scale-95",
               isRestricted
                 ? "bg-red-600 text-white hover:bg-red-700"
                 : "bg-amber-600 text-white hover:bg-amber-700",

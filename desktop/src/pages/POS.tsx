@@ -388,7 +388,7 @@ export default function POS() {
         </div>
         <button
           onClick={handleNewSale}
-          className="inline-flex items-center justify-center gap-1.5 h-8 px-3 rounded-xl text-xs font-medium border border-border/80 bg-surface hover:bg-surface-2 text-text-primary transition-colors shrink-0 self-end sm:self-center shadow-xs"
+          className="inline-flex items-center justify-center gap-1.5 h-8 px-3 rounded-md text-xs font-medium border border-border/80 bg-surface hover:bg-surface-2 text-text-primary transition-colors shrink-0 self-end sm:self-center shadow-xs"
         >
           <Plus className="h-3.5 w-3.5 text-accent" />
           New Sale
@@ -477,11 +477,11 @@ export default function POS() {
                       {opt.unitType}
                     </span>
                   </div>
-                  <span className="text-[11px] text-text-secondary mt-0.5 block">{opt.description}</span>
+                  <span className="text-xs text-text-secondary mt-0.5 block">{opt.description}</span>
                 </div>
                 <div className="text-right">
                   <span className="font-mono font-bold text-accent text-sm">{formatCurrency(opt.salePrice)}</span>
-                  <span className="text-[10px] text-text-secondary block">per {opt.unitType.toLowerCase()}</span>
+                  <span className="text-xs text-text-secondary block">per {opt.unitType.toLowerCase()}</span>
                 </div>
               </button>
             ))}

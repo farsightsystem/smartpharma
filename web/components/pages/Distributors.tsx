@@ -178,14 +178,14 @@ export default function Distributors() {
       </div>
 
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-2xl border border-border/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-lg border border-border/80 shadow-xs">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
           <Input
             placeholder="Search distributor or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 h-9 rounded-xl text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
+            className="pl-9 h-9 rounded-md text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
           />
         </div>
 
@@ -193,7 +193,7 @@ export default function Distributors() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() => downloadCSV(`distributors_${new Date().toISOString().split("T")[0]}.csv`, ["Name","Contact Number","Company","Products"], filtered.map((d: Distributor) => [d.name, d.phone, d.company_name||"", d.product_count||0]))}
           >
             <Download className="h-3.5 w-3.5" /> CSV
@@ -201,13 +201,13 @@ export default function Distributors() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() => downloadPDF(`distributors_${new Date().toISOString().split("T")[0]}.pdf`, "Distributors List", ["Name","Contact Number","Company","Products"], filtered.map((d: Distributor) => [d.name, d.phone, d.company_name||"", d.product_count||0]))}
           >
             <Download className="h-3.5 w-3.5" /> PDF
           </Button>
 
-          <div className="flex items-center border border-border/80 rounded-xl overflow-hidden bg-surface-2/40 p-0.5">
+          <div className="flex items-center border border-border/80 rounded-md overflow-hidden bg-surface-2/40 p-0.5">
             <button
               onClick={() => setViewMode("grid")}
               className={cn("p-1.5 rounded-lg transition-colors", viewMode === "grid" ? "bg-accent text-white shadow-xs" : "text-text-secondary hover:text-text-primary")}
@@ -261,7 +261,7 @@ export default function Distributors() {
           emptyTitle="No distributors found"
           emptyDescription={search ? `No distributors match "${search}".` : "Add wholesale distributors and vendors to manage payables and purchase shipments."}
           emptyAction={
-            <Button onClick={openAdd} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+            <Button onClick={openAdd} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
               <Plus className="h-3.5 w-3.5" /> Add Distributor
             </Button>
           }
@@ -270,16 +270,16 @@ export default function Distributors() {
         <div>
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-44 rounded-2xl" />)}
+              {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-44 rounded-lg" />)}
             </div>
           ) : filtered.length === 0 ? (
-            <div className="rounded-2xl border border-border/80 bg-surface p-8 shadow-xs">
+            <div className="rounded-lg border border-border/80 bg-surface p-8 shadow-xs">
               <EmptyState
                 title="No distributors found"
                 description={search ? `No distributors match "${search}". Try adjusting your search query.` : "Register your supply partners to track delivery history and running ledger balances."}
                 icon={<Factory className="h-6 w-6 text-accent" />}
                 action={
-                  <Button onClick={openAdd} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+                  <Button onClick={openAdd} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
                     <Plus className="h-3.5 w-3.5" /> Add First Distributor
                   </Button>
                 }
@@ -288,11 +288,11 @@ export default function Distributors() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map((dist: Distributor) => (
-                <div key={dist.id} className="group rounded-2xl border border-border/80 bg-surface p-5 shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200 flex flex-col justify-between">
+                <div key={dist.id} className="group rounded-lg border border-border/80 bg-surface p-5 shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200 flex flex-col justify-between">
                   <div>
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3 min-w-0 flex-1">
-                        <div className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                        <div className="h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
                           <Factory className="h-5 w-5" />
                         </div>
                         <div className="min-w-0">
@@ -331,7 +331,7 @@ export default function Distributors() {
                       variant="outline"
                       size="sm"
                       onClick={() => openLedger(dist)}
-                      className="w-full text-xs font-medium gap-1.5 h-8 rounded-xl border-accent/30 text-accent hover:bg-accent/10"
+                      className="w-full text-xs font-medium gap-1.5 h-8 rounded-md border-accent/30 text-accent hover:bg-accent/10"
                     >
                       <Receipt className="h-3.5 w-3.5" />
                       View Statement & Ledger
@@ -410,14 +410,14 @@ export default function Distributors() {
                   <CardContent className="p-4">
                     <p className="text-xs text-text-secondary font-medium uppercase tracking-wider">Total Billed / Invoiced</p>
                     <p className="text-xl font-bold font-mono text-text-primary mt-1">{formatCurrency(ledgerData.summary.totalInvoiced)}</p>
-                    <p className="text-[11px] text-text-secondary mt-1">{ledgerData.summary.totalInvoicesCount} invoices delivered</p>
+                    <p className="text-xs text-text-secondary mt-1">{ledgerData.summary.totalInvoicesCount} invoices delivered</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-surface-2 border-border">
                   <CardContent className="p-4">
                     <p className="text-xs text-text-secondary font-medium uppercase tracking-wider">Total Paid</p>
                     <p className="text-xl font-bold font-mono text-emerald-500 mt-1">{formatCurrency(ledgerData.summary.totalPaid)}</p>
-                    <p className="text-[11px] text-text-secondary mt-1">{ledgerData.payments.length} payments recorded</p>
+                    <p className="text-xs text-text-secondary mt-1">{ledgerData.payments.length} payments recorded</p>
                   </CardContent>
                 </Card>
                 <Card className={cn("border", ledgerData.summary.outstandingBalance > 0 ? "bg-amber-500/10 border-amber-500/30" : "bg-emerald-500/10 border-emerald-500/30")}>
@@ -426,7 +426,7 @@ export default function Distributors() {
                     <p className={cn("text-xl font-bold font-mono mt-1", ledgerData.summary.outstandingBalance > 0 ? "text-amber-500" : "text-emerald-500")}>
                       {formatCurrency(ledgerData.summary.outstandingBalance)}
                     </p>
-                    <p className="text-[11px] text-text-secondary mt-1">
+                    <p className="text-xs text-text-secondary mt-1">
                       {ledgerData.summary.unpaidInvoicesCount > 0 ? `${ledgerData.summary.unpaidInvoicesCount} unpaid/partial invoices` : "All accounts settled"}
                     </p>
                   </CardContent>
@@ -440,14 +440,14 @@ export default function Distributors() {
                   <span className="text-xs text-text-secondary font-normal font-mono">{ledgerData.statement.length} entries</span>
                 </h4>
                 {ledgerData.statement.length === 0 ? (
-                  <div className="text-center py-10 border border-dashed border-border rounded-xl text-text-secondary text-sm">
+                  <div className="text-center py-10 border border-dashed border-border rounded-md text-text-secondary text-sm">
                     No transactions recorded for this supplier yet.
                   </div>
                 ) : (
-                  <div className="rounded-xl border border-border overflow-hidden">
+                  <div className="rounded-md border border-border overflow-hidden">
                     <div className="overflow-x-auto max-h-[360px]">
                       <table className="w-full text-xs text-left">
-                        <thead className="bg-surface-2 text-text-secondary border-b border-border sticky top-0 uppercase text-[10px] tracking-wider">
+                        <thead className="bg-surface-2 text-text-secondary border-b border-border sticky top-0 uppercase text-xs tracking-wider">
                           <tr>
                             <th className="py-2.5 px-3">Date</th>
                             <th className="py-2.5 px-3">Type</th>
@@ -463,18 +463,18 @@ export default function Distributors() {
                               <td className="py-2.5 px-3 font-mono text-text-secondary">{formatDate(entry.date)}</td>
                               <td className="py-2.5 px-3">
                                 {entry.type === "INVOICE" ? (
-                                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-400">
+                                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-semibold bg-blue-500/10 text-blue-400">
                                     <ArrowDownRight className="h-3 w-3" /> INVOICE
                                   </span>
                                 ) : (
-                                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400">
+                                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/10 text-emerald-400">
                                     <ArrowUpRight className="h-3 w-3" /> PAYMENT
                                   </span>
                                 )}
                               </td>
                               <td className="py-2.5 px-3 font-medium text-text-primary">
                                 <div>{entry.description}</div>
-                                {entry.status && <span className="text-[10px] text-text-secondary font-mono">Status: {entry.status}</span>}
+                                {entry.status && <span className="text-xs text-text-secondary font-mono">Status: {entry.status}</span>}
                               </td>
                               <td className="py-2.5 px-3 text-right font-mono font-medium text-text-primary">
                                 {entry.debit > 0 ? formatCurrency(entry.debit) : "—"}

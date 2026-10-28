@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
@@ -48,10 +49,10 @@ function Field({
   return (
     <div className="space-y-1.5">
       <div className="flex items-baseline justify-between">
-        <label htmlFor={id} className="block text-[11px] font-medium tracking-wide uppercase text-text-secondary select-none">
+        <label htmlFor={id} className="block text-xs font-medium tracking-wide uppercase text-text-secondary select-none">
           {label}
         </label>
-        {optional && <span className="text-[10px] text-text-secondary/60">Optional</span>}
+        {optional && <span className="text-xs text-text-secondary/60">Optional</span>}
       </div>
       <div className="relative">
         <input
@@ -63,7 +64,7 @@ function Field({
           autoFocus={autoFocus}
           autoComplete="off"
           className={cn(
-            "w-full h-11 rounded-xl border border-border bg-surface px-3.5 text-sm text-text-primary placeholder:text-text-secondary/40",
+            "w-full h-11 rounded-md border border-border bg-surface px-3.5 text-sm text-text-primary placeholder:text-text-secondary/40",
             "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60",
             "transition-all duration-150",
             suffix && "pr-10",
@@ -75,7 +76,7 @@ function Field({
           </div>
         )}
       </div>
-      {hint && <p className="text-[11px] text-text-secondary/70">{hint}</p>}
+      {hint && <p className="text-xs text-text-secondary/70">{hint}</p>}
     </div>
   );
 }
@@ -86,7 +87,7 @@ function SubmitButton({ loading, label, loadingLabel }: { loading: boolean; labe
       type="submit"
       disabled={loading}
       className={cn(
-        "w-full h-11 rounded-xl text-sm font-semibold flex items-center justify-center gap-2",
+        "w-full h-11 rounded-md text-sm font-semibold flex items-center justify-center gap-2",
         "bg-foreground text-background",
         "hover:opacity-90 active:scale-[0.98]",
         "transition-all duration-150",
@@ -124,9 +125,7 @@ function BrandPanel() {
 
       <div className="relative z-10">
         <div className="flex items-center gap-2.5">
-          <div className="h-7 w-7 rounded-lg bg-background/10 flex items-center justify-center">
-            <span className="text-background text-xs font-bold">Rx</span>
-          </div>
+          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-6 w-6 object-contain" />
           <span className="text-background font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
       </div>
@@ -153,7 +152,7 @@ function BrandPanel() {
       </div>
 
       <div className="relative z-10">
-        <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} Pharma 360</p>
+        <p className="text-background/30 text-xs">© {new Date().getFullYear()} Pharma 360</p>
       </div>
     </div>
   );
@@ -296,9 +295,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
       {/* Header */}
       <div className="space-y-1">
         <div className="lg:hidden flex items-center gap-2 mb-6">
-          <div className="h-6 w-6 rounded-md bg-foreground flex items-center justify-center">
-            <span className="text-background text-[10px] font-bold">Rx</span>
-          </div>
+          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
           <span className="text-text-primary font-semibold text-sm">Pharma 360</span>
         </div>
         <AnimatePresence mode="wait">
@@ -378,7 +375,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
           >
             {recDone ? (
               <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8 space-y-3">
-                <div className="h-12 w-12 rounded-2xl bg-success/10 flex items-center justify-center mx-auto">
+                <div className="h-12 w-12 rounded-lg bg-success/10 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="h-6 w-6 text-success" />
                 </div>
                 <p className="text-sm font-semibold text-text-primary">Password reset successfully</p>
@@ -387,7 +384,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
             ) : (
               <>
                 {/* Recovery Mode Tabs */}
-                <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-surface border border-border text-xs">
+                <div className="grid grid-cols-3 gap-1 p-1 rounded-md bg-surface border border-border text-xs">
                   <button
                     type="button"
                     onClick={() => { setRecoveryMode("otp"); setOtpError(""); }}
@@ -454,9 +451,9 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
                       </form>
                     ) : (
                       <form onSubmit={handleResetWithOtp} className="space-y-3 pt-1">
-                        <div className="bg-accent/10 border border-accent/20 rounded-xl p-3 text-xs text-accent space-y-1">
+                        <div className="bg-accent/10 border border-accent/20 rounded-md p-3 text-xs text-accent space-y-1">
                           <p className="font-semibold">Reset code sent!</p>
-                          <p className="text-[11px] text-text-secondary">
+                          <p className="text-xs text-text-secondary">
                             A 6-digit code has been delivered to <span className="font-mono text-text-primary">{maskedEmail}</span>.
                           </p>
                         </div>
@@ -511,7 +508,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
                 {/* Sub-mode 2: Staff Help Card */}
                 {recoveryMode === "staff" && (
                   <div className="space-y-4 pt-1">
-                    <div className="bg-surface border border-border rounded-xl p-4 space-y-3">
+                    <div className="bg-surface border border-border rounded-md p-4 space-y-3">
                       <div className="flex items-center gap-2 text-text-primary font-semibold text-xs">
                         <Users className="h-4 w-4 text-accent" />
                         <span>Staff Password Reset (Cashiers & Dispensers)</span>
@@ -519,7 +516,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
                       <p className="text-xs text-text-secondary leading-relaxed">
                         In enterprise pharmacy operations, staff members (cashiers, technicians, inventory handlers) do not possess individual billing email addresses.
                       </p>
-                      <div className="rounded-lg bg-surface-2/60 p-3 space-y-1.5 border border-border/50 text-[11px] text-text-secondary">
+                      <div className="rounded-lg bg-surface-2/60 p-3 space-y-1.5 border border-border/50 text-xs text-text-secondary">
                         <strong className="text-text-primary block font-medium">How to get your password reset:</strong>
                         <ol className="list-decimal list-inside space-y-1 pl-1">
                           <li>Contact your <strong>Pharmacy Administrator</strong> or <strong>Store Manager</strong>.</li>
@@ -612,9 +609,7 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
       {/* Header */}
       <div className="space-y-1">
         <div className="lg:hidden flex items-center gap-2 mb-6">
-          <div className="h-6 w-6 rounded-md bg-foreground flex items-center justify-center">
-            <span className="text-background text-[10px] font-bold">Rx</span>
-          </div>
+          <Image src="/logo.png" alt="Pharma 360" width={32} height={32} className="h-5 w-5 object-contain" />
           <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
         <h1 className="text-2xl font-bold text-text-primary tracking-tight">Create your pharmacy</h1>

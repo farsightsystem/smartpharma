@@ -46,7 +46,7 @@ export function SectionTitle({ title, subtitle, action }: SectionTitleProps) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 14,
+    borderRadius: 8,
     borderWidth: 1,
   },
   padded: {

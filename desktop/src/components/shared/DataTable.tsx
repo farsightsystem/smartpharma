@@ -52,12 +52,12 @@ export default function DataTable<T>({
 }: DataTableProps<T>) {
   if (loading) {
     return (
-      <div className={cn("rounded-2xl border border-border/80 bg-surface overflow-hidden shadow-xs", containerClassName)}>
+      <div className={cn("rounded-lg border border-border/80 bg-surface overflow-hidden shadow-xs", containerClassName)}>
         <Table>
           <TableHeader className="bg-surface-2/60">
             <TableRow>
               {columns.map((col) => (
-                <TableHead key={col.key} className={cn("text-[11px] font-semibold text-text-secondary uppercase tracking-wider py-3 px-4", col.className)}>
+                <TableHead key={col.key} className={cn("text-xs font-semibold text-text-secondary uppercase tracking-wider py-3 px-4", col.className)}>
                   {col.header}
                 </TableHead>
               ))}
@@ -80,12 +80,12 @@ export default function DataTable<T>({
   }
 
   return (
-    <div className={cn("rounded-2xl border border-border/80 bg-surface overflow-hidden shadow-xs", containerClassName)}>
+    <div className={cn("rounded-lg border border-border/80 bg-surface overflow-hidden shadow-xs", containerClassName)}>
       <Table>
         <TableHeader className="bg-surface-2/60 border-b border-border/80">
           <TableRow>
             {columns.map((col) => (
-              <TableHead key={col.key} className={cn("text-[11px] font-semibold text-text-secondary uppercase tracking-wider py-3.5 px-4", col.className)}>
+              <TableHead key={col.key} className={cn("text-xs font-semibold text-text-secondary uppercase tracking-wider py-3.5 px-4", col.className)}>
                 {col.header}
               </TableHead>
             ))}

@@ -457,7 +457,7 @@ export default function DispensingPage() {
                         </div>
                         <div className="text-xs text-text-secondary flex items-center gap-2 mt-0.5">
                           {rx.patientIdentifier && (
-                            <Badge variant="outline" className="font-mono text-[10px] px-1 py-0">
+                            <Badge variant="outline" className="font-mono text-xs px-1 py-0">
                               ID: {rx.patientIdentifier}
                             </Badge>
                           )}
@@ -501,13 +501,13 @@ export default function DispensingPage() {
                             <Badge
                               key={i.id}
                               variant="neutral"
-                              className="text-[10px] px-1.5 py-0 max-w-[140px] truncate"
+                              className="text-xs px-1.5 py-0 max-w-[140px] truncate"
                             >
                               {i.prescribedDrugName} ({i.quantityRemaining}/{i.quantityPrescribed})
                             </Badge>
                           ))}
                           {(rx.items?.length || 0) > 2 && (
-                            <Badge variant="outline" className="text-[10px] px-1 py-0">
+                            <Badge variant="outline" className="text-xs px-1 py-0">
                               +{(rx.items?.length || 0) - 2} more
                             </Badge>
                           )}
@@ -593,7 +593,7 @@ export default function DispensingPage() {
                         <span className="font-medium text-text-primary">
                           {formatDate(r.recordedAt)}
                         </span>
-                        <div className="text-[10px] text-text-secondary font-mono">
+                        <div className="text-xs text-text-secondary font-mono">
                           {new Date(r.recordedAt).toLocaleTimeString()}
                         </div>
                       </div>
@@ -625,7 +625,7 @@ export default function DispensingPage() {
                       <div className="text-xs font-mono">
                         <div>Batch: <span className="font-semibold">{r.batch?.batchNumber || "FEFO"}</span></div>
                         {r.prescription && (
-                          <div className="text-[11px] text-text-secondary">Rx: {r.prescription.prescriptionNumber}</div>
+                          <div className="text-xs text-text-secondary">Rx: {r.prescription.prescriptionNumber}</div>
                         )}
                       </div>
                     ),
@@ -636,7 +636,7 @@ export default function DispensingPage() {
                     cell: (r: ControlledDrugRegister) => (
                       <div>
                         <div className="font-medium text-text-primary text-xs">{r.patientName}</div>
-                        <div className="text-[11px] text-text-secondary font-mono">
+                        <div className="text-xs text-text-secondary font-mono">
                           ID: <span className="font-semibold">{r.patientIdentifier}</span>
                         </div>
                       </div>
@@ -648,7 +648,7 @@ export default function DispensingPage() {
                     cell: (r: ControlledDrugRegister) => (
                       <div>
                         <div className="font-medium text-text-primary text-xs">{r.doctorName}</div>
-                        <div className="text-[11px] text-text-secondary font-mono">
+                        <div className="text-xs text-text-secondary font-mono">
                           Lic: {r.doctorLicense}
                         </div>
                       </div>
@@ -681,7 +681,7 @@ export default function DispensingPage() {
                       <div className="text-xs">
                         <div className="text-text-primary font-medium">{r.pharmacistName}</div>
                         {r.witnessName && (
-                          <div className="text-[10px] text-text-secondary">
+                          <div className="text-xs text-text-secondary">
                             Witness: {r.witnessName}
                           </div>
                         )}
@@ -732,7 +732,7 @@ export default function DispensingPage() {
                     value={newRx.patientIdentifier}
                     onChange={(e) => setNewRx({ ...newRx, patientIdentifier: e.target.value })}
                   />
-                  <p className="text-[10px] text-text-secondary">Required for controlled drugs</p>
+                  <p className="text-xs text-text-secondary">Required for controlled drugs</p>
                 </div>
                 <div className="space-y-1">
                   <Label className="text-xs">Patient Phone</Label>
@@ -803,7 +803,7 @@ export default function DispensingPage() {
                     value={newRx.doctorLicense}
                     onChange={(e) => setNewRx({ ...newRx, doctorLicense: e.target.value })}
                   />
-                  <p className="text-[10px] text-text-secondary">Required for controlled drugs</p>
+                  <p className="text-xs text-text-secondary">Required for controlled drugs</p>
                 </div>
                 <div className="space-y-1">
                   <Label className="text-xs">Clinic / Hospital</Label>
@@ -1044,7 +1044,7 @@ export default function DispensingPage() {
             {/* Header info cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="border border-border/60 rounded-md p-3 bg-muted/20 space-y-1">
-                <span className="font-semibold text-text-secondary uppercase tracking-wider text-[10px]">Patient</span>
+                <span className="font-semibold text-text-secondary uppercase tracking-wider text-xs">Patient</span>
                 <p className="font-medium text-text-primary text-sm">{selectedRx.patientName}</p>
                 <div className="text-text-secondary space-y-0.5">
                   {selectedRx.patientIdentifier && <p>ID: <span className="font-mono font-medium">{selectedRx.patientIdentifier}</span></p>}
@@ -1054,7 +1054,7 @@ export default function DispensingPage() {
               </div>
 
               <div className="border border-border/60 rounded-md p-3 bg-muted/20 space-y-1">
-                <span className="font-semibold text-text-secondary uppercase tracking-wider text-[10px]">Prescriber</span>
+                <span className="font-semibold text-text-secondary uppercase tracking-wider text-xs">Prescriber</span>
                 <p className="font-medium text-text-primary text-sm">{selectedRx.doctorName}</p>
                 <div className="text-text-secondary space-y-0.5">
                   {selectedRx.doctorLicense && <p>License: <span className="font-mono">{selectedRx.doctorLicense}</span></p>}
@@ -1133,26 +1133,26 @@ export default function DispensingPage() {
                               </Badge>
                             )}
                           </div>
-                          {item.dosage && <div className="text-[11px] text-text-secondary">{item.dosage}</div>}
+                          {item.dosage && <div className="text-xs text-text-secondary">{item.dosage}</div>}
                         </td>
                         <td className="p-2.5 text-text-secondary">
                           <div>{item.frequency || "—"}</div>
-                          {item.duration && <div className="text-[10px]">{item.duration}</div>}
+                          {item.duration && <div className="text-xs">{item.duration}</div>}
                         </td>
                         <td className="p-2.5 text-center font-semibold text-text-primary">{item.quantityPrescribed}</td>
                         <td className="p-2.5 text-center font-medium text-text-secondary">{item.quantityDispensed}</td>
                         <td className="p-2.5 text-center font-bold text-primary">{item.quantityRemaining}</td>
                         <td className="p-2.5 text-center">
                           {item.status === "COMPLETED" ? (
-                            <Badge variant="outline" className="text-[10px] text-emerald-500 border-emerald-500/30">
+                            <Badge variant="outline" className="text-xs text-emerald-500 border-emerald-500/30">
                               Completed
                             </Badge>
                           ) : item.status === "PARTIAL" ? (
-                            <Badge variant="outline" className="text-[10px] text-purple-500 border-purple-500/30">
+                            <Badge variant="outline" className="text-xs text-purple-500 border-purple-500/30">
                               Partial Fill
                             </Badge>
                           ) : (
-                            <Badge variant="outline" className="text-[10px] text-amber-500 border-amber-500/30">
+                            <Badge variant="outline" className="text-xs text-amber-500 border-amber-500/30">
                               Pending
                             </Badge>
                           )}
@@ -1267,12 +1267,12 @@ export default function DispensingPage() {
                     <ArrowRightLeft className="h-4 w-4 text-blue-500" />
                     Brand-to-Generic Substitution Engine
                   </div>
-                  {loadingSubstitutions && <span className="text-[11px] text-text-secondary">Searching bioequivalents...</span>}
+                  {loadingSubstitutions && <span className="text-xs text-text-secondary">Searching bioequivalents...</span>}
                 </div>
 
                 {substitutions && substitutions.substitutions.length > 0 ? (
                   <div className="space-y-2">
-                    <p className="text-text-secondary text-[11px]">
+                    <p className="text-text-secondary text-xs">
                       Identical active ingredient (<strong>{substitutions.originalProduct.genericName}</strong>) alternatives in stock:
                     </p>
                     <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
@@ -1304,29 +1304,29 @@ export default function DispensingPage() {
                                 </Badge>
                               )}
                             </div>
-                            <div className="text-[11px] text-text-secondary">
+                            <div className="text-xs text-text-secondary">
                               Price: {formatCurrency(sub.salePrice)} • In Stock: <strong className={sub.stockQty > 0 ? "text-emerald-500" : "text-rose-500"}>{sub.stockQty}</strong>
                             </div>
                           </div>
 
                           <div className="text-right">
                             {sub.priceDifference > 0 ? (
-                              <Badge className="bg-emerald-500/15 text-emerald-500 border-emerald-500/30 text-[10px]">
+                              <Badge className="bg-emerald-500/15 text-emerald-500 border-emerald-500/30 text-xs">
                                 Save {formatCurrency(sub.priceDifference)}
                               </Badge>
                             ) : (
-                              <Badge variant="outline" className="text-[10px]">
+                              <Badge variant="outline" className="text-xs">
                                 Alternative
                               </Badge>
                             )}
-                            <div className="text-[10px] text-text-secondary mt-0.5">Click to substitute</div>
+                            <div className="text-xs text-text-secondary mt-0.5">Click to substitute</div>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <p className="text-[11px] text-text-secondary italic">
+                  <p className="text-xs text-text-secondary italic">
                     {activeItemToDispense.productId
                       ? "No generic alternatives found in store catalog."
                       : "Prescribed drug not linked to master product. Select inventory item below."}
@@ -1375,7 +1375,7 @@ export default function DispensingPage() {
                     onChange={(e) => setDispenseQty(parseInt(e.target.value, 10) || 1)}
                   />
                   {dispenseQty < activeItemToDispense.quantityRemaining && (
-                    <p className="text-[10px] text-purple-500 font-medium">
+                    <p className="text-xs text-purple-500 font-medium">
                       Partial fill: {activeItemToDispense.quantityRemaining - dispenseQty} units will remain on Rx
                     </p>
                   )}

@@ -118,7 +118,7 @@ export default function AIProviderSetupPage() {
 
       <div className="max-w-2xl space-y-6">
         {missingConnection && aiConfig && (
-          <div className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3 text-sm text-amber-600">
+          <div className="flex items-center gap-2 rounded-md border border-amber-500/30 bg-amber-500/5 px-4 py-3 text-sm text-amber-600">
             <ShieldAlert className="h-4 w-4 shrink-0" />
             The active provider is {normalizeProvider(aiConfig.provider || "")}. Saving here switches the AI agent to {preset.label}.
           </div>
@@ -147,12 +147,12 @@ export default function AIProviderSetupPage() {
                 className="font-mono"
                 autoComplete="off"
               />
-              <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-text-secondary">
+              <div className="mt-1.5 flex items-center gap-1.5 text-xs text-text-secondary">
                 <KeyRound className="h-3 w-3" />
                 Stored locally in your config file. Never shared.
               </div>
               {keyMismatch && (
-                <div className="mt-2 flex items-start gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-[11px] text-amber-600">
+                <div className="mt-2 flex items-start gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs text-amber-600">
                   <ShieldAlert className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                   That key does not look like a {preset.label} key. It may be for a different provider and
                   could be rejected by {preset.label} — double-check before saving.
@@ -170,7 +170,7 @@ export default function AIProviderSetupPage() {
                   placeholder="https://generativelanguage.googleapis.com/v1beta/openai"
                   className="font-mono"
                 />
-                <p className="text-[11px] text-text-secondary mt-1">OpenAI-compatible chat completions endpoint root.</p>
+                <p className="text-xs text-text-secondary mt-1">OpenAI-compatible chat completions endpoint root.</p>
               </div>
               <div>
                 <Label htmlFor="provider-model">Model</Label>

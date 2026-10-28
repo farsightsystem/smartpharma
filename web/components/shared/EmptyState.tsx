@@ -17,7 +17,7 @@ export default function EmptyState({ title, description, icon, action, className
       animate={{ opacity: 1, y: 0 }}
       className={`flex flex-col items-center justify-center py-16 px-4 text-center ${className || ""}`}
     >
-      <div className="h-14 w-14 rounded-2xl bg-surface-2 border border-border/80 flex items-center justify-center mb-4 text-text-secondary shadow-xs">
+      <div className="h-14 w-14 rounded-lg bg-surface-2 border border-border/80 flex items-center justify-center mb-4 text-text-secondary shadow-xs">
         {icon || <Inbox className="h-6 w-6 stroke-[1.75]" />}
       </div>
       <h3 className="text-sm font-semibold text-text-primary tracking-tight mb-1">{title}</h3>

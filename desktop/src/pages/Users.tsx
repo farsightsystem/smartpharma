@@ -220,7 +220,7 @@ export default function Users() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading ? (
-          Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-xl" />)
+          Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-md" />)
         ) : filtered.length === 0 ? (
           <div className="col-span-full text-center py-12 text-sm text-text-secondary">
             No users found. Set up your team to get started.
@@ -236,7 +236,7 @@ export default function Users() {
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm text-text-primary truncate">{u.name || u.username}</h3>
-                      <p className="text-[11px] text-text-secondary truncate">@{u.username}</p>
+                      <p className="text-xs text-text-secondary truncate">@{u.username}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
@@ -265,28 +265,28 @@ export default function Users() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <Badge variant="outline" className="text-[10px]">
+                  <Badge variant="outline" className="text-xs">
                     {u.roleName || "No role"}
                   </Badge>
                   {u.jobRole && (
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-xs">
                       {JOB_ROLE_LABELS[u.jobRole] || u.jobRole}
                     </Badge>
                   )}
                   {u.branchName && (
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-xs">
                       <Store className="h-3 w-3 mr-0.5" />
                       {u.branchName}
                     </Badge>
                   )}
                   <Badge
                     variant={u.isActive ? "success" : "neutral"}
-                    className="text-[10px]"
+                    className="text-xs"
                   >
                     {u.isActive ? "Active" : "Inactive"}
                   </Badge>
                   {perms && (u.permissions?.length ?? 0) > 0 && (
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-xs">
                       <ShieldCheck className="h-3 w-3 mr-0.5" />
                       {u.permissions?.length} perms
                     </Badge>
@@ -294,12 +294,12 @@ export default function Users() {
                 </div>
 
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="text-[11px] text-text-secondary">
+                  <span className="text-xs text-text-secondary">
                     Last login: {u.lastLoginAt ? new Date(u.lastLoginAt).toLocaleDateString() : "never"}
                   </span>
                   <button
                     onClick={() => statusMutation.mutate({ id: u.id, isActive: !u.isActive })}
-                    className="flex items-center gap-1 text-[11px] text-text-secondary hover:text-accent transition-colors"
+                    className="flex items-center gap-1 text-xs text-text-secondary hover:text-accent transition-colors"
                   >
                     {u.isActive ? <UserX className="h-3 w-3" /> : <UserCheck className="h-3 w-3" />}
                     {u.isActive ? "Deactivate" : "Activate"}

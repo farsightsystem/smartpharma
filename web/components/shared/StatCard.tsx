@@ -71,7 +71,7 @@ export default function StatCard({
 
   if (loading) {
     return (
-      <div className={`rounded-2xl border border-border/80 bg-surface p-5 space-y-3 ${className || ""}`}>
+      <div className={`rounded-lg border border-border/80 bg-surface p-5 space-y-3 ${className || ""}`}>
         <div className="h-3 w-20 bg-surface-2 rounded-md animate-pulse" />
         <div className="h-7 w-28 bg-surface-2 rounded-md animate-pulse" />
       </div>
@@ -86,14 +86,14 @@ export default function StatCard({
       whileHover={isClickable ? { y: -2 } : undefined}
       whileTap={isClickable ? { scale: 0.99 } : undefined}
       onClick={onClick}
-      className={`group rounded-2xl border border-border/80 bg-surface p-5 relative overflow-hidden transition-all duration-200 shadow-xs ${
+      className={`group rounded-lg border border-border/80 bg-surface p-5 relative overflow-hidden transition-all duration-200 shadow-xs ${
         isClickable ? `cursor-pointer hover:shadow-md ${colorStyles.border}` : "hover:shadow-sm"
       } ${className || ""}`}
     >
       <span className={`absolute left-0 top-0 bottom-0 w-1 ${colorStyles.bar} transition-colors duration-200`} />
       <div className="flex items-start justify-between">
         <div className="space-y-2">
-          <p className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">{title}</p>
+          <p className="text-xs font-semibold text-text-secondary tracking-wider uppercase">{title}</p>
           <div className="flex items-baseline gap-1.5">
             <p className="text-2xl font-bold text-text-primary tabular-nums tracking-tight font-mono">
               {typeof value === "string" ? value : isCurrency ? formatCurrency(animatedValue) : animatedValue.toLocaleString()}
@@ -102,10 +102,10 @@ export default function StatCard({
               <span className="text-[9px] text-text-secondary animate-pulse">...</span>
             )}
           </div>
-          {subtitle && <p className="text-[11px] text-text-secondary">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-text-secondary">{subtitle}</p>}
         </div>
         <div className="flex items-center gap-2">
-          <div className={`h-10 w-10 rounded-xl ${colorStyles.iconBg} flex items-center justify-center transition-all duration-200`}>
+          <div className={`h-10 w-10 rounded-md ${colorStyles.iconBg} flex items-center justify-center transition-all duration-200`}>
             {icon}
           </div>
           {isClickable && (
@@ -118,7 +118,7 @@ export default function StatCard({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: delay + 0.2 }}
-          className="mt-3.5 flex items-center gap-1.5 text-[11px] pt-3 border-t border-border/50"
+          className="mt-3.5 flex items-center gap-1.5 text-xs pt-3 border-t border-border/50"
         >
           {trend.positive ? (
             <TrendingUp className="h-3.5 w-3.5 text-success" />

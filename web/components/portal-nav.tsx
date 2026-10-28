@@ -28,17 +28,17 @@ export function PortalNav() {
         {/* Left: Brand & Nav Links */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="h-9 w-9 rounded-xl bg-foreground flex items-center justify-center text-background font-bold text-sm shadow-sm group-hover:scale-105 transition-transform">
+            <div className="h-9 w-9 rounded-md bg-foreground flex items-center justify-center text-background font-bold text-sm shadow-sm group-hover:scale-105 transition-transform">
               Rx
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
                 <span className="font-bold text-base tracking-tight text-text-primary">Pharma 360</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
+                <span className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
                   <ShieldCheck className="h-2.5 w-2.5" /> Regulatory Compliance
                 </span>
               </div>
-              <span className="text-[11px] text-text-secondary leading-none">Cloud Management Portal</span>
+              <span className="text-xs text-text-secondary leading-none">Cloud Management Portal</span>
             </div>
           </Link>
 
@@ -76,7 +76,7 @@ export function PortalNav() {
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent/5 border border-accent/15 text-accent">
                 <User className="h-3 w-3" />
                 <span className="font-medium">{user.name || user.username}</span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-accent/15 text-accent font-bold uppercase">
+                <span className="text-xs px-1.5 py-0.2 rounded bg-accent/15 text-accent font-bold uppercase">
                   {user.role}
                 </span>
               </div>

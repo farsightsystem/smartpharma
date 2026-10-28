@@ -41,7 +41,7 @@ export default function AIOverview() {
     { key: "name", header: "Product", cell: (r: AIReorderCandidate) => (
       <div>
         <span className="font-medium text-text-primary">{r.name}</span>
-        <span className="block text-[10px] font-mono text-text-secondary">{r.barcode}</span>
+        <span className="block text-xs font-mono text-text-secondary">{r.barcode}</span>
       </div>
     ) },
     { key: "current", header: "In Stock", cell: (r: AIReorderCandidate) => (
@@ -61,7 +61,7 @@ export default function AIOverview() {
     ) },
     { key: "risk", header: "Risk", cell: (r: AIReorderCandidate) => <RiskBadge risk={r.riskLevel} /> },
     { key: "recommended", header: "Recommended", cell: (r: AIReorderCandidate) => (
-      <span className="font-mono font-semibold text-accent">{r.recommendedQuantity} <span className="text-[10px] text-text-secondary font-normal">({r.recommendedQuantityPacked} pk)</span></span>
+      <span className="font-mono font-semibold text-accent">{r.recommendedQuantity} <span className="text-xs text-text-secondary font-normal">({r.recommendedQuantityPacked} pk)</span></span>
     ) },
   ];
 
@@ -88,7 +88,7 @@ export default function AIOverview() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border/60">
           <div className="flex items-center gap-2">
             <BrainCircuit className="h-4 w-4 text-accent" />

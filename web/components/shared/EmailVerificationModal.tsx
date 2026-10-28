@@ -100,7 +100,7 @@ export default function EmailVerificationModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md p-6">
         <DialogHeader className="space-y-2">
-          <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-1">
+          <div className="h-10 w-10 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-1">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <DialogTitle className="text-lg font-bold">Verify Pharmacy Email</DialogTitle>
@@ -111,12 +111,12 @@ export default function EmailVerificationModal({
         </DialogHeader>
 
         {/* Grace Period Notification Card */}
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 text-xs text-amber-700 dark:text-amber-300 space-y-1">
+        <div className="bg-amber-500/10 border border-amber-500/20 rounded-md p-3 text-xs text-amber-700 dark:text-amber-300 space-y-1">
           <div className="flex items-center gap-1.5 font-medium">
             <AlertCircle className="h-4 w-4 shrink-0 text-amber-500" />
             <span>7-Day Grace Period Active</span>
           </div>
-          <p className="text-[11px] leading-relaxed text-amber-600/90 dark:text-amber-400/90 pl-5.5">
+          <p className="text-xs leading-relaxed text-amber-600/90 dark:text-amber-400/90 pl-5.5">
             You have <strong className="font-bold">{daysRemaining} days remaining</strong> to verify.
             During this period, all POS, Inventory, and Dispensing operations remain fully unlocked.
           </p>
@@ -126,14 +126,14 @@ export default function EmailVerificationModal({
           {/* Target Email Row */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <Label className="text-[11px] uppercase tracking-wider text-text-secondary">
+              <Label className="text-xs uppercase tracking-wider text-text-secondary">
                 Registered Email
               </Label>
               {!codeSent && (
                 <button
                   type="button"
                   onClick={() => setIsEditingEmail(!isEditingEmail)}
-                  className="text-[11px] text-accent hover:underline font-medium"
+                  className="text-xs text-accent hover:underline font-medium"
                 >
                   {isEditingEmail ? "Cancel" : "Change Email"}
                 </button>
@@ -165,7 +165,7 @@ export default function EmailVerificationModal({
                   <span className="font-mono">{email || "No email registered"}</span>
                 </span>
                 {user?.pharmacyProfile?.isEmailVerified && (
-                  <span className="flex items-center gap-1 text-emerald-600 text-[11px] font-semibold">
+                  <span className="flex items-center gap-1 text-emerald-600 text-xs font-semibold">
                     <CheckCircle2 className="h-3.5 w-3.5" /> Verified
                   </span>
                 )}
@@ -197,14 +197,14 @@ export default function EmailVerificationModal({
             <form onSubmit={handleVerify} className="space-y-4 pt-1">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="otp-input" className="text-[11px] uppercase tracking-wider text-text-secondary">
+                  <Label htmlFor="otp-input" className="text-xs uppercase tracking-wider text-text-secondary">
                     Enter 6-Digit OTP Code
                   </Label>
                   <button
                     type="button"
                     disabled={cooldown > 0 || sending}
                     onClick={handleSendCode}
-                    className="text-[11px] text-accent hover:underline disabled:opacity-50 disabled:no-underline font-medium flex items-center gap-1"
+                    className="text-xs text-accent hover:underline disabled:opacity-50 disabled:no-underline font-medium flex items-center gap-1"
                   >
                     {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend Code"}
                   </button>

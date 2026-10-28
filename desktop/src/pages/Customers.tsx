@@ -301,7 +301,7 @@ export default function Customers() {
             {c.name}
           </span>
           {c.national_id && (
-            <span className="font-mono text-[10px] text-text-secondary">ID: {c.national_id}</span>
+            <span className="font-mono text-xs text-text-secondary">ID: {c.national_id}</span>
           )}
         </div>
       ),
@@ -312,7 +312,7 @@ export default function Customers() {
       cell: (c: Customer) => (
         <div className="text-xs">
           <span className="font-mono text-text-secondary">{c.phone || "—"}</span>
-          {c.father_phone && <span className="block text-[10px] text-text-secondary/70">Alt: {c.father_phone}</span>}
+          {c.father_phone && <span className="block text-xs text-text-secondary/70">Alt: {c.father_phone}</span>}
         </div>
       ),
     },
@@ -325,12 +325,12 @@ export default function Customers() {
         return (
           <div className="flex flex-wrap gap-1 max-w-[200px]">
             {hasAllergies && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-danger/10 text-danger border border-danger/20" title={`Allergies: ${c.allergies?.join(", ")}`}>
+              <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-danger/10 text-danger border border-danger/20" title={`Allergies: ${c.allergies?.join(", ")}`}>
                 Allergy ({c.allergies?.length})
               </span>
             )}
             {hasChronic && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20" title="Has active chronic regimen">
+              <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20" title="Has active chronic regimen">
                 Chronic ({c.active_chronic_meds ?? c.chronic_conditions?.length ?? 0})
               </span>
             )}
@@ -344,11 +344,11 @@ export default function Customers() {
       header: "Consent",
       cell: (c: Customer) => (
         c.consent_given ? (
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
             <CheckCircle2 className="h-3 w-3" /> Signed
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
             <AlertTriangle className="h-3 w-3" /> Pending
           </span>
         )
@@ -484,7 +484,7 @@ export default function Customers() {
         </div>
 
         <TabsContent value="customers" className="mt-4">
-          <div className="rounded-xl border border-border">
+          <div className="rounded-md border border-border">
             <DataTable
               columns={customerColumns}
               data={filteredCustomers}
@@ -495,7 +495,7 @@ export default function Customers() {
         </TabsContent>
 
         <TabsContent value="refills" className="mt-4">
-          <div className="rounded-xl border border-border overflow-hidden">
+          <div className="rounded-md border border-border overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -538,11 +538,11 @@ export default function Customers() {
                             <div className="font-medium text-text-primary text-xs hover:text-accent cursor-pointer" onClick={() => navigate(`/customers/${item.customer_id}`)}>
                               {item.customer_name}
                             </div>
-                            <div className="font-mono text-[11px] text-text-secondary">{item.customer_phone}</div>
+                            <div className="font-mono text-xs text-text-secondary">{item.customer_phone}</div>
                           </td>
                           <td className="px-4 py-3">
                             <div className="font-medium text-xs text-text-primary">{item.medication_name}</div>
-                            <div className="text-[11px] text-text-secondary">
+                            <div className="text-xs text-text-secondary">
                               {item.dosage} {item.frequency ? `\u2022 ${item.frequency}` : ""} ({item.days_supply}d supply)
                             </div>
                           </td>
@@ -554,14 +554,14 @@ export default function Customers() {
                                 </span>
                               </div>
                             ) : (
-                              <span className="text-[10px] text-text-secondary">Unlinked catalog item</span>
+                              <span className="text-xs text-text-secondary">Unlinked catalog item</span>
                             )}
                           </td>
                           <td className="px-4 py-3 font-mono text-xs text-text-secondary">
                             {formatDate(item.next_refill_date)}
                           </td>
                           <td className="px-4 py-3">
-                            <span className={cn("px-2 py-0.5 rounded text-[10px] font-bold border", urgencyColor)}>
+                            <span className={cn("px-2 py-0.5 rounded text-xs font-bold border", urgencyColor)}>
                               {item.urgency === "OVERDUE"
                                 ? `${Math.abs(item.days_remaining)}d Overdue`
                                 : item.urgency === "DUE_TODAY"
@@ -572,15 +572,15 @@ export default function Customers() {
                           <td className="px-4 py-3 text-xs text-text-secondary">
                             {item.last_contacted_at ? (
                               <div>
-                                <span className="text-[10px] font-mono">{formatDate(item.last_contacted_at)}</span>
+                                <span className="text-xs font-mono">{formatDate(item.last_contacted_at)}</span>
                                 {item.contact_notes && (
-                                  <div className="text-[10px] text-text-secondary truncate max-w-[140px]" title={item.contact_notes}>
+                                  <div className="text-xs text-text-secondary truncate max-w-[140px]" title={item.contact_notes}>
                                     {item.contact_notes}
                                   </div>
                                 )}
                               </div>
                             ) : (
-                              <span className="text-text-secondary/50 text-[11px]">Not contacted</span>
+                              <span className="text-text-secondary/50 text-xs">Not contacted</span>
                             )}
                           </td>
                           <td className="px-4 py-3 text-right">
@@ -588,7 +588,7 @@ export default function Customers() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="h-7 text-[11px] gap-1"
+                                className="h-7 text-xs gap-1"
                                 onClick={() => {
                                   setSelectedRefillItem(item);
                                   setContactNotesInput(item.contact_notes || "");
@@ -600,7 +600,7 @@ export default function Customers() {
                               </Button>
                               <Button
                                 size="sm"
-                                className="h-7 text-[11px] gap-1 bg-accent text-accent-foreground hover:bg-accent-hover"
+                                className="h-7 text-xs gap-1 bg-accent text-accent-foreground hover:bg-accent-hover"
                                 onClick={() => {
                                   setSelectedRefillItem(item);
                                   setRefillDaysSupply(String(item.days_supply || 30));
@@ -726,7 +726,7 @@ export default function Customers() {
                   placeholder="e.g. Penicillin, Sulfa, Aspirin"
                   className="h-8 text-xs border-danger/40 focus:border-danger"
                 />
-                <span className="text-[10px] text-text-secondary">Dispensing counter checks these when filling prescriptions.</span>
+                <span className="text-xs text-text-secondary">Dispensing counter checks these when filling prescriptions.</span>
               </div>
 
               <div className="space-y-1">
@@ -759,7 +759,7 @@ export default function Customers() {
                     Patient Health Data Processing Consent
                   </Label>
                 </div>
-                <p className="text-[11px] text-text-secondary pl-6 leading-relaxed">
+                <p className="text-xs text-text-secondary pl-6 leading-relaxed">
                   Patient gives informed consent for the pharmacy to store their medical history, chronic medication schedule, and contact them for refill reminders.
                 </p>
                 {consentGiven && (
@@ -784,7 +784,7 @@ export default function Customers() {
                     placeholder="0.00"
                     className="h-8 text-xs font-mono"
                   />
-                  <span className="text-[10px] text-text-secondary">Maximum allowed arrears balance.</span>
+                  <span className="text-xs text-text-secondary">Maximum allowed arrears balance.</span>
                 </div>
                 <div className="flex items-center gap-2 pt-6">
                   <Checkbox id="allowCreditCheck" checked={allowCredit} onCheckedChange={(v) => setAllowCredit(!!v)} />

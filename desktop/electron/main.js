@@ -24,7 +24,7 @@ function createWindow({ posOnly = false } = {}) {
     height: 900,
     minWidth: 1024,
     minHeight: 700,
-    title: "Faraz Pharmacy",
+    title: "Pharma 360",
     icon: path.join(__dirname, "..", "src", "asset", "image", "logo.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),

@@ -128,7 +128,7 @@ export default function Roles() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading ? (
-          Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-32 rounded-xl" />)
+          Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-32 rounded-md" />)
         ) : filtered.length === 0 ? (
           <div className="col-span-full text-center py-12 text-sm text-text-secondary">
             {search ? "No roles match your search" : "No roles yet. Create your first role to start."}
@@ -144,7 +144,7 @@ export default function Roles() {
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm text-text-primary truncate">{role.name}</h3>
-                      <p className="text-[11px] text-text-secondary truncate">
+                      <p className="text-xs text-text-secondary truncate">
                         {role.userCount ?? 0} user{(role.userCount ?? 0) === 1 ? "" : "s"}
                       </p>
                     </div>
@@ -161,12 +161,12 @@ export default function Roles() {
                 <p className="text-xs text-text-secondary mt-2 line-clamp-2">{role.description || "No description"}</p>
                 <div className="flex flex-wrap gap-1 mt-3">
                   {(role.permissions ?? []).slice(0, 6).map((p: Permission) => (
-                    <span key={p.name} className="text-[10px] px-1.5 py-0.5 rounded bg-surface-2 text-text-secondary border border-border">
+                    <span key={p.name} className="text-xs px-1.5 py-0.5 rounded bg-surface-2 text-text-secondary border border-border">
                       {p.name}
                     </span>
                   ))}
                   {(role.permissions ?? []).length > 6 && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-surface-2 text-text-secondary">
+                    <span className="text-xs px-1.5 py-0.5 rounded bg-surface-2 text-text-secondary">
                       +{(role.permissions ?? []).length - 6}
                     </span>
                   )}
@@ -212,12 +212,12 @@ export default function Roles() {
                         />
                         {group.label}
                       </label>
-                      <span className="text-[10px] text-text-secondary">{groupPerms.length}</span>
+                      <span className="text-xs text-text-secondary">{groupPerms.length}</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-2 pl-6">
                       {groupPerms.map((p: Permission) => (
                         <label key={p.name} className={cn(
-                          "flex items-center gap-1.5 text-[11px] px-2 py-1 rounded-md border cursor-pointer transition-colors",
+                          "flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border cursor-pointer transition-colors",
                           selected.includes(p.name)
                             ? "border-accent/30 bg-accent/10 text-text-primary"
                             : "border-border bg-surface text-text-secondary hover:bg-surface-2"

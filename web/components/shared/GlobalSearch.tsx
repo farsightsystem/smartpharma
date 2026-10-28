@@ -204,15 +204,15 @@ export default function GlobalSearch() {
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
           placeholder="Search products, customers..."
-          className="h-9 w-80 pl-10 pr-14 rounded-xl border-2 border-accent/30 bg-accent/5 text-xs text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/60 transition-all"
+          className="h-9 w-80 pl-10 pr-14 rounded-md border-2 border-accent/30 bg-accent/5 text-xs text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/60 transition-all"
         />
-        <kbd className="absolute right-2.5 pointer-events-none h-5 px-1.5 rounded border border-border bg-surface text-[10px] text-text-secondary font-medium">
+        <kbd className="absolute right-2.5 pointer-events-none h-5 px-1.5 rounded border border-border bg-surface text-xs text-text-secondary font-medium">
           ⌘K
         </kbd>
       </div>
 
       {showDropdown && (
-        <div className="absolute top-full left-0 right-0 mt-1.5 bg-surface border border-border rounded-xl shadow-xl overflow-hidden z-50 max-h-[420px] overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1.5 bg-surface border border-border rounded-md shadow-xl overflow-hidden z-50 max-h-[420px] overflow-y-auto">
           {isLoading && (
             <div className="flex items-center justify-center gap-2 py-8 text-text-secondary">
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -234,7 +234,7 @@ export default function GlobalSearch() {
                   <div key={type}>
                     <div className="px-4 py-2 flex items-center gap-2">
                       <Icon className="h-3.5 w-3.5 text-text-secondary/60" />
-                      <span className="text-[11px] font-medium text-text-secondary/60 uppercase tracking-wider">
+                      <span className="text-xs font-medium text-text-secondary/60 uppercase tracking-wider">
                         {typeLabels[type as keyof typeof typeLabels]}
                       </span>
                     </div>
@@ -258,10 +258,10 @@ export default function GlobalSearch() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-medium truncate">{item.title}</p>
-                          <p className="text-[11px] text-text-secondary truncate">{item.subtitle}</p>
+                          <p className="text-xs text-text-secondary truncate">{item.subtitle}</p>
                         </div>
                         {item.meta && (
-                          <span className="text-[11px] text-text-secondary tabular-nums shrink-0">
+                          <span className="text-xs text-text-secondary tabular-nums shrink-0">
                             {item.meta}
                           </span>
                         )}

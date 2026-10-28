@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Server, Monitor, Sun, Moon, RefreshCw, Database, Wifi, Clock } from "lucide-react";
+import { Server, Monitor, Sun, Moon, RefreshCw, Database, Wifi, Clock, ChevronDown } from "lucide-react";
 import { useServerConnection } from "@/contexts/ServerConnectionContext";
 import { useAuth } from "@/contexts/AuthContext";
 import GlobalSearch from "@/components/shared/GlobalSearch";
@@ -99,6 +99,13 @@ export default function Topbar() {
           </motion.div>
 
           {!isPlatform && <GlobalSearch />}
+
+          {!isPlatform && (
+            <div className="flex items-center gap-1 text-xs text-text-secondary hover:text-primary transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-surface/50 border border-transparent hover:border-border/40">
+              <span className="truncate">{user?.branchName || "Main Branch"}</span>
+              <ChevronDown className="h-3 w-3 shrink-0 opacity-70" />
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-3">
@@ -106,7 +113,7 @@ export default function Topbar() {
           <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setShowConnectionDropdown(!showConnectionDropdown)}
-              className="flex items-center gap-1.5 px-2.5 h-7 rounded-lg bg-muted text-[11px] text-text-secondary font-medium hover:bg-muted/80 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-2.5 h-7 rounded-md bg-muted text-xs text-text-secondary font-medium hover:bg-muted/80 transition-all cursor-pointer"
             >
               <span
                 className={`h-2 w-2 rounded-full shrink-0 ${
@@ -132,7 +139,7 @@ export default function Topbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -4, scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-1.5 w-72 bg-surface border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                  className="absolute right-0 top-full mt-1.5 w-72 bg-surface border border-border rounded-md shadow-xl overflow-hidden z-50"
                 >
                   <div className="p-3 border-b border-border">
                     <div className="flex items-center justify-between">
@@ -152,22 +159,22 @@ export default function Topbar() {
                   <div className="p-3 space-y-3">
                     {/* Server */}
                     <div className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <div className="h-7 w-7 rounded-md bg-accent/10 flex items-center justify-center shrink-0">
                         <Server className="h-3.5 w-3.5 text-accent" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] text-text-secondary uppercase tracking-wider">Server</p>
+                        <p className="text-xs text-text-secondary uppercase tracking-wider">Server</p>
                         <p className="text-xs font-mono font-medium text-text-primary truncate">{connectionInfo.serverUrl.replace(/^https?:\/\//, "")}</p>
                       </div>
                     </div>
 
                     {/* Status */}
                     <div className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-success/10 flex items-center justify-center shrink-0">
+                      <div className="h-7 w-7 rounded-md bg-success/10 flex items-center justify-center shrink-0">
                         <Wifi className="h-3.5 w-3.5 text-success" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] text-text-secondary uppercase tracking-wider">Status</p>
+                        <p className="text-xs text-text-secondary uppercase tracking-wider">Status</p>
                         <div className="flex items-center gap-1.5">
                           <span className={`h-1.5 w-1.5 rounded-full ${connectionInfo.isOnline ? "bg-success" : "bg-danger"}`} />
                           <p className={`text-xs font-medium ${connectionInfo.isOnline ? "text-success" : "text-danger"}`}>
@@ -179,11 +186,11 @@ export default function Topbar() {
 
                     {/* Response */}
                     <div className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-muted flex items-center justify-center shrink-0">
+                      <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center shrink-0">
                         <Clock className="h-3.5 w-3.5 text-text-secondary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] text-text-secondary uppercase tracking-wider">Response</p>
+                        <p className="text-xs text-text-secondary uppercase tracking-wider">Response</p>
                         <p className="text-xs font-mono font-medium text-text-primary">
                           {connectionInfo.responseTime !== null ? `${connectionInfo.responseTime} ms` : "—"}
                         </p>
@@ -192,11 +199,11 @@ export default function Topbar() {
 
                     {/* Database */}
                     <div className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-muted flex items-center justify-center shrink-0">
+                      <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center shrink-0">
                         <Database className="h-3.5 w-3.5 text-text-secondary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] text-text-secondary uppercase tracking-wider">Database</p>
+                        <p className="text-xs text-text-secondary uppercase tracking-wider">Database</p>
                         <div className="flex items-center gap-1.5">
                           <span className={`h-1.5 w-1.5 rounded-full ${connectionInfo.databaseOnline ? "bg-success" : "bg-danger"}`} />
                           <p className={`text-xs font-medium ${connectionInfo.databaseOnline ? "text-success" : "text-danger"}`}>
@@ -208,7 +215,7 @@ export default function Topbar() {
 
                     {/* Last Checked */}
                     <div className="pt-2 border-t border-border">
-                      <p className="text-[10px] text-text-secondary">
+                      <p className="text-xs text-text-secondary">
                         Last checked: <span className="font-medium text-text-primary">{formatLastChecked(connectionInfo.lastChecked)}</span>
                       </p>
                     </div>
@@ -222,7 +229,7 @@ export default function Topbar() {
 
           <button
             onClick={toggleDark}
-            className="h-8 w-8 rounded-lg flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-muted transition-all"
+            className="h-8 w-8 rounded-md flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-muted transition-all"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>

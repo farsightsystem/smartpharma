@@ -84,7 +84,7 @@ export default function SetupChecklist() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
-      className="bg-accent/5 border border-accent/20 rounded-2xl shadow-sm"
+      className="bg-accent/5 border border-accent/20 rounded-lg shadow-sm"
     >
       <Card className="border-0 bg-transparent shadow-none">
         <CardHeader className="flex flex-row items-center justify-between py-3 px-0 border-0">
@@ -107,7 +107,7 @@ export default function SetupChecklist() {
               <button
                 key={task.id}
                 onClick={() => navigate(task.href)}
-                className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl border border-border/50 bg-surface hover:bg-surface-2 hover:border-accent/30 transition-colors cursor-pointer text-left"
+                className="flex items-center justify-between w-full px-3 py-2.5 rounded-md border border-border/50 bg-surface hover:bg-surface-2 hover:border-accent/30 transition-colors cursor-pointer text-left"
               >
                 <div className="flex items-center gap-3">
                   <div className="h-8 w-8 rounded-lg flex items-center justify-center border border-accent/20 bg-accent/5">
@@ -115,7 +115,7 @@ export default function SetupChecklist() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-semibold text-text-primary leading-tight">{task.title}</p>
-                    <p className="text-[10px] text-text-secondary/70 leading-tight">{task.subtitle}</p>
+                    <p className="text-xs text-text-secondary/70 leading-tight">{task.subtitle}</p>
                   </div>
                   <CheckCircle2 className="h-3 w-3 text-text-secondary/40" />
                 </div>

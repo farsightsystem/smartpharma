@@ -292,7 +292,7 @@ export default function SupplierReturnsHub() {
         <Card className="border-border">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+              <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
                 Total RTV Returns
               </div>
               <div className="text-xl font-bold font-mono text-text-primary mt-1">
@@ -308,7 +308,7 @@ export default function SupplierReturnsHub() {
         <Card className="border-border">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+              <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
                 Pending Approval
               </div>
               <div className="text-xl font-bold font-mono text-amber-500 mt-1">
@@ -324,7 +324,7 @@ export default function SupplierReturnsHub() {
         <Card className="border-border">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+              <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
                 Approved / Credited Value
               </div>
               <div className="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-1">
@@ -340,7 +340,7 @@ export default function SupplierReturnsHub() {
         <Card className="border-border hover:border-amber-500/50 transition-colors cursor-pointer" onClick={() => setCandidatesDrawerOpen(true)}>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-[11px] font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-1">
+              <div className="text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-1">
                 <AlertTriangle className="w-3.5 h-3.5" />
                 Near-Expiry Eligible
               </div>
@@ -356,7 +356,7 @@ export default function SupplierReturnsHub() {
       </div>
 
       {/* 2. Toolbar & Action Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface border border-border rounded-xl p-3">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface border border-border rounded-md p-3">
         <div className="flex flex-1 items-center gap-2 flex-wrap">
           <div className="relative flex-1 min-w-[200px]">
             <Search className="w-4 h-4 text-text-secondary absolute left-2.5 top-2.5" />
@@ -421,7 +421,7 @@ export default function SupplierReturnsHub() {
       </div>
 
       {/* 3. Supplier Returns Table */}
-      <div className="bg-surface border border-border rounded-xl overflow-hidden">
+      <div className="bg-surface border border-border rounded-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead className="bg-muted/40 text-text-secondary uppercase border-b border-border">
@@ -466,7 +466,7 @@ export default function SupplierReturnsHub() {
                         {ret.distributor?.name || "Distributor"}
                       </td>
                       <td className="py-3 px-4">
-                        <span className="text-[11px] text-text-secondary">
+                        <span className="text-xs text-text-secondary">
                           {REASON_LABELS[ret.reason] || ret.reason}
                         </span>
                       </td>
@@ -483,14 +483,14 @@ export default function SupplierReturnsHub() {
                         <div className="flex flex-col gap-0.5">
                           <Badge
                             variant="outline"
-                            className={`text-[10px] w-fit font-semibold uppercase ${
+                            className={`text-xs w-fit font-semibold uppercase ${
                               statusColors[ret.status] || ""
                             }`}
                           >
                             {ret.status}
                           </Badge>
                           {ret.creditNoteNumber && (
-                            <span className="text-[10px] text-text-secondary font-mono">
+                            <span className="text-xs text-text-secondary font-mono">
                               CN: {ret.creditNoteNumber}
                             </span>
                           )}
@@ -585,7 +585,7 @@ export default function SupplierReturnsHub() {
             </div>
 
             {/* Line Items Card / Entry */}
-            <div className="border border-border rounded-xl p-3 bg-muted/20 space-y-3">
+            <div className="border border-border rounded-md p-3 bg-muted/20 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-xs text-text-primary flex items-center gap-1.5">
                   <Package className="w-4 h-4 text-accent" />
@@ -599,7 +599,7 @@ export default function SupplierReturnsHub() {
               {/* Sub-form: Add medicine */}
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 p-2.5 bg-surface border border-border rounded-lg items-end text-xs">
                 <div className="sm:col-span-4 space-y-1">
-                  <Label className="text-[11px]">Product Search</Label>
+                  <Label className="text-xs">Product Search</Label>
                   <Input
                     placeholder="Search medicine..."
                     value={productSearch}
@@ -622,7 +622,7 @@ export default function SupplierReturnsHub() {
                           className="p-2 hover:bg-surface-hover cursor-pointer"
                         >
                           <div className="font-medium text-xs text-text-primary">{p.name}</div>
-                          <div className="text-[10px] text-text-secondary font-mono">{p.barcode} • Stock: {p.stock_qty}</div>
+                          <div className="text-xs text-text-secondary font-mono">{p.barcode} • Stock: {p.stock_qty}</div>
                         </div>
                       ))}
                     </div>
@@ -630,7 +630,7 @@ export default function SupplierReturnsHub() {
                 </div>
 
                 <div className="sm:col-span-3 space-y-1">
-                  <Label className="text-[11px]">Batch #</Label>
+                  <Label className="text-xs">Batch #</Label>
                   <Input
                     placeholder="e.g. B982"
                     value={itemBatchNumber}
@@ -640,7 +640,7 @@ export default function SupplierReturnsHub() {
                 </div>
 
                 <div className="sm:col-span-2 space-y-1">
-                  <Label className="text-[11px]">Packs</Label>
+                  <Label className="text-xs">Packs</Label>
                   <Input
                     type="number"
                     min="1"
@@ -651,7 +651,7 @@ export default function SupplierReturnsHub() {
                 </div>
 
                 <div className="sm:col-span-2 space-y-1">
-                  <Label className="text-[11px]">Unit Cost</Label>
+                  <Label className="text-xs">Unit Cost</Label>
                   <Input
                     type="number"
                     step="0.01"
@@ -678,7 +678,7 @@ export default function SupplierReturnsHub() {
               {returnItems.length > 0 && (
                 <div className="max-h-48 overflow-y-auto rounded-lg border border-border bg-surface">
                   <table className="w-full text-xs">
-                    <thead className="bg-muted/40 text-text-secondary uppercase border-b border-border text-[10px]">
+                    <thead className="bg-muted/40 text-text-secondary uppercase border-b border-border text-xs">
                       <tr>
                         <th className="py-2 px-3 text-left">Medicine</th>
                         <th className="py-2 px-3 text-left">Batch</th>
@@ -820,12 +820,12 @@ export default function SupplierReturnsHub() {
                           {c.suggestedReason} ({c.daysToExpiry <= 0 ? "Expired" : `${c.daysToExpiry}d left`})
                         </Badge>
                       </div>
-                      <div className="text-[11px] text-text-secondary flex items-center gap-3">
+                      <div className="text-xs text-text-secondary flex items-center gap-3">
                         <span>Batch: <strong className="font-mono text-text-primary">{c.batchNumber}</strong></span>
                         <span>Exp: {new Date(c.expiryDate).toLocaleDateString()}</span>
                         <span>Distributor: {c.distributorName}</span>
                       </div>
-                      <div className="text-[11px] font-mono">
+                      <div className="text-xs font-mono">
                         Available Stock: <strong>{c.quantityAvailable} units</strong> • Estimated Cost: {formatCurrency(c.unitCost * c.quantityAvailable)}
                       </div>
                     </div>
@@ -861,7 +861,7 @@ export default function SupplierReturnsHub() {
                 <FileText className="w-5 h-5" />
                 <DialogTitle>Supplier Return Voucher #{selectedReturn?.returnNumber}</DialogTitle>
               </div>
-              <Badge variant="outline" className="uppercase text-[10px]">
+              <Badge variant="outline" className="uppercase text-xs">
                 {selectedReturn?.status}
               </Badge>
             </div>
@@ -894,7 +894,7 @@ export default function SupplierReturnsHub() {
               {/* Items Table */}
               <div className="border border-border rounded-lg overflow-hidden">
                 <table className="w-full text-xs">
-                  <thead className="bg-muted/40 text-text-secondary uppercase border-b border-border text-[10px]">
+                  <thead className="bg-muted/40 text-text-secondary uppercase border-b border-border text-xs">
                     <tr>
                       <th className="py-2.5 px-3 text-left">Medicine Name</th>
                       <th className="py-2.5 px-3 text-left">Batch #</th>
@@ -928,7 +928,7 @@ export default function SupplierReturnsHub() {
               </div>
 
               {selectedReturn.notes && (
-                <div className="p-2.5 rounded-lg border border-border bg-surface text-text-secondary text-[11px]">
+                <div className="p-2.5 rounded-lg border border-border bg-surface text-text-secondary text-xs">
                   <strong>Notes:</strong> {selectedReturn.notes}
                 </div>
               )}
@@ -989,7 +989,7 @@ export default function SupplierReturnsHub() {
                 className="font-mono text-xs"
                 autoFocus
               />
-              <span className="text-[11px] text-text-secondary">
+              <span className="text-xs text-text-secondary">
                 If the distributor hasn't issued a number yet, leave blank. The RTV number will be used.
               </span>
             </div>

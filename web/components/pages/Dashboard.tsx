@@ -84,10 +84,10 @@ export default function Dashboard() {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-[480px] w-full rounded-2xl" />
+        <Skeleton className="h-[480px] w-full rounded-lg" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <Skeleton className="h-60 rounded-2xl" />
-          <Skeleton className="h-60 rounded-2xl" />
+          <Skeleton className="h-60 rounded-lg" />
+          <Skeleton className="h-60 rounded-lg" />
         </div>
       </div>
     );
@@ -103,7 +103,7 @@ export default function Dashboard() {
         variants={sectionVariants}
         initial="hidden"
         animate="visible"
-        className="bg-surface border border-border/80 rounded-2xl shadow-xs overflow-hidden"
+        className="bg-surface border border-border/80 rounded-lg shadow-xs overflow-hidden"
       >
         {/* Top Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 pt-6 pb-4 border-b border-border/40">
@@ -145,7 +145,7 @@ export default function Dashboard() {
                 {hourlyEstimate > 1000 ? `${(hourlyEstimate / 1000).toFixed(2)}K` : hourlyEstimate}
               </span>
             </div>
-            <p className="text-[11px] text-text-secondary/70 mt-0.5">02:00 PM – now</p>
+            <p className="text-xs text-text-secondary/70 mt-0.5">02:00 PM – now</p>
           </div>
 
           {/* Gross Value */}
@@ -159,7 +159,7 @@ export default function Dashboard() {
                 {todayRevenue > 1000 ? `${(todayRevenue / 1000).toFixed(2)}K` : todayRevenue.toLocaleString()}
               </span>
             </div>
-            <p className="text-[11px] text-text-secondary/70 mt-0.5">Today's Balance</p>
+            <p className="text-xs text-text-secondary/70 mt-0.5">Today's Balance</p>
           </div>
 
           {/* Payment Status Dropdown Selector */}
@@ -220,7 +220,7 @@ export default function Dashboard() {
             <button
               key={action.label}
               onClick={() => navigate(action.href)}
-              className="group flex items-center justify-between p-4 rounded-xl border border-border/80 bg-surface hover:border-primary/40 hover:shadow-xs transition-all text-left cursor-pointer"
+              className="group flex items-center justify-between p-4 rounded-md border border-border/80 bg-surface hover:border-primary/40 hover:shadow-xs transition-all text-left cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <div className={`h-9 w-9 rounded-lg flex items-center justify-center border ${action.color}`}>
@@ -230,10 +230,10 @@ export default function Dashboard() {
                   <p className="text-xs font-semibold text-text-primary group-hover:text-primary transition-colors">
                     {action.label}
                   </p>
-                  <p className="text-[10px] text-text-secondary">Quick action</p>
+                  <p className="text-xs text-text-secondary">Quick action</p>
                 </div>
               </div>
-              <span className="text-[10px] font-mono text-text-secondary bg-surface-2 px-1.5 py-0.5 rounded-md border border-border/60">
+              <span className="text-xs font-mono text-text-secondary bg-surface-2 px-1.5 py-0.5 rounded-md border border-border/60">
                 {action.badge}
               </span>
             </button>
@@ -247,7 +247,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Low Stock Warning */}
         <motion.div variants={sectionVariants} initial="hidden" animate="visible">
-          <Card className="h-full border-border/80 rounded-2xl shadow-2xs">
+          <Card className="h-full border-border/80 rounded-lg shadow-2xs">
             <CardHeader className="flex flex-row items-center justify-between pb-3">
               <div className="flex items-center gap-2.5">
                 <div className="h-8 w-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
@@ -255,12 +255,12 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <CardTitle className="text-sm font-semibold">Low Stock Threshold</CardTitle>
-                  <CardDescription className="text-[11px]">Items requiring purchase replenishment</CardDescription>
+                  <CardDescription className="text-xs">Items requiring purchase replenishment</CardDescription>
                 </div>
               </div>
               <button
                 onClick={() => navigate("/stock")}
-                className="text-[11px] text-primary hover:underline font-medium inline-flex items-center gap-1 cursor-pointer"
+                className="text-xs text-primary hover:underline font-medium inline-flex items-center gap-1 cursor-pointer"
               >
                 Reorder <ArrowRight className="h-3 w-3" />
               </button>
@@ -277,11 +277,11 @@ export default function Dashboard() {
                     <div
                       key={product.id}
                       onClick={() => navigate("/stock")}
-                      className="flex items-center justify-between p-2.5 rounded-xl bg-surface-2/60 hover:bg-surface-2 cursor-pointer transition-colors border border-border/40"
+                      className="flex items-center justify-between p-2.5 rounded-md bg-surface-2/60 hover:bg-surface-2 cursor-pointer transition-colors border border-border/40"
                     >
                       <div className="flex-1 min-w-0 pr-3">
                         <p className="text-xs font-semibold text-text-primary truncate">{product.name}</p>
-                        <p className="text-[10px] text-text-secondary font-mono">{product.barcode || "No barcode"}</p>
+                        <p className="text-xs text-text-secondary font-mono">{product.barcode || "No barcode"}</p>
                       </div>
                       <div className="text-right">
                         <span className="inline-block px-2 py-0.5 text-xs font-bold font-mono rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20">
@@ -298,7 +298,7 @@ export default function Dashboard() {
 
         {/* Expiring Batches Warning */}
         <motion.div variants={sectionVariants} initial="hidden" animate="visible">
-          <Card className="h-full border-border/80 rounded-2xl shadow-2xs">
+          <Card className="h-full border-border/80 rounded-lg shadow-2xs">
             <CardHeader className="flex flex-row items-center justify-between pb-3">
               <div className="flex items-center gap-2.5">
                 <div className="h-8 w-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
@@ -306,12 +306,12 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <CardTitle className="text-sm font-semibold">Near Expiry FEFO Batches</CardTitle>
-                  <CardDescription className="text-[11px]">Batches expiring within next 30 days</CardDescription>
+                  <CardDescription className="text-xs">Batches expiring within next 30 days</CardDescription>
                 </div>
               </div>
               <button
                 onClick={() => navigate("/inventory")}
-                className="text-[11px] text-primary hover:underline font-medium inline-flex items-center gap-1 cursor-pointer"
+                className="text-xs text-primary hover:underline font-medium inline-flex items-center gap-1 cursor-pointer"
               >
                 Scan FEFO <ArrowRight className="h-3 w-3" />
               </button>
@@ -328,11 +328,11 @@ export default function Dashboard() {
                     <div
                       key={product.id}
                       onClick={() => navigate("/inventory")}
-                      className="flex items-center justify-between p-2.5 rounded-xl bg-surface-2/60 hover:bg-surface-2 cursor-pointer transition-colors border border-border/40"
+                      className="flex items-center justify-between p-2.5 rounded-md bg-surface-2/60 hover:bg-surface-2 cursor-pointer transition-colors border border-border/40"
                     >
                       <div className="flex-1 min-w-0 pr-3">
                         <p className="text-xs font-semibold text-text-primary truncate">{product.name}</p>
-                        <p className="text-[10px] text-text-secondary">In stock: {product.stock_qty}</p>
+                        <p className="text-xs text-text-secondary">In stock: {product.stock_qty}</p>
                       </div>
                       <div className="text-right">
                         <span className="inline-block px-2 py-0.5 text-xs font-semibold font-mono rounded-full bg-rose-500/10 text-rose-600 border border-rose-500/20">

@@ -275,11 +275,11 @@ export default function TransfersPage() {
   return (
     <div className="space-y-6">
         {/* Header Banner */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface p-6 rounded-2xl border border-border shadow-sm">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface p-6 rounded-lg border border-border shadow-sm">
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-2xl font-bold tracking-tight text-text-primary">Multi-Branch Operations</h1>
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
+              <span className="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
                 <ShieldCheck className="h-3 w-3" /> Batch Travel Enabled
               </span>
             </div>
@@ -297,7 +297,7 @@ export default function TransfersPage() {
                 }
                 setIsNewTransferOpen(true);
               }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
             >
               <Plus className="h-4 w-4" />
               New Stock Transfer
@@ -307,25 +307,25 @@ export default function TransfersPage() {
 
         {/* Stats Row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-surface p-4 rounded-xl border border-border">
+          <div className="bg-surface p-4 rounded-md border border-border">
             <div className="text-xs text-text-secondary font-medium">Total Branches</div>
             <div className="text-2xl font-black text-text-primary mt-1">{branches.length}</div>
-            <div className="text-[11px] text-text-secondary mt-0.5">Active across network</div>
+            <div className="text-xs text-text-secondary mt-0.5">Active across network</div>
           </div>
-          <div className="bg-surface p-4 rounded-xl border border-border">
+          <div className="bg-surface p-4 rounded-md border border-border">
             <div className="text-xs text-blue-600 font-medium">In-Transit Shipments</div>
             <div className="text-2xl font-black text-blue-600 mt-1">{inTransitCount}</div>
-            <div className="text-[11px] text-text-secondary mt-0.5">Awaiting branch receipt</div>
+            <div className="text-xs text-text-secondary mt-0.5">Awaiting branch receipt</div>
           </div>
-          <div className="bg-surface p-4 rounded-xl border border-border">
+          <div className="bg-surface p-4 rounded-md border border-border">
             <div className="text-xs text-amber-600 font-medium">Pending Requests</div>
             <div className="text-2xl font-black text-amber-600 mt-1">{pendingCount}</div>
-            <div className="text-[11px] text-text-secondary mt-0.5">Requires source dispatch</div>
+            <div className="text-xs text-text-secondary mt-0.5">Requires source dispatch</div>
           </div>
-          <div className="bg-surface p-4 rounded-xl border border-border">
+          <div className="bg-surface p-4 rounded-md border border-border">
             <div className="text-xs text-emerald-600 font-medium">Completed Transfers</div>
             <div className="text-2xl font-black text-emerald-600 mt-1">{receivedCount}</div>
-            <div className="text-[11px] text-text-secondary mt-0.5">Stock & batches settled</div>
+            <div className="text-xs text-text-secondary mt-0.5">Stock & batches settled</div>
           </div>
         </div>
 
@@ -333,7 +333,7 @@ export default function TransfersPage() {
         <div className="flex items-center gap-2 border-b border-border pb-3">
           <button
             onClick={() => setActiveTab("transfers")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold transition-all cursor-pointer ${
               activeTab === "transfers"
                 ? "bg-foreground text-background shadow-sm"
                 : "text-text-secondary hover:text-text-primary hover:bg-surface-2"
@@ -342,7 +342,7 @@ export default function TransfersPage() {
             <ArrowLeftRight className="h-4 w-4" />
             Stock Transfers Queue
             {inTransitCount + pendingCount > 0 && (
-              <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${activeTab === "transfers" ? "bg-background text-foreground" : "bg-primary text-white"}`}>
+              <span className={`px-1.5 py-0.2 rounded-full text-xs ${activeTab === "transfers" ? "bg-background text-foreground" : "bg-primary text-white"}`}>
                 {inTransitCount + pendingCount}
               </span>
             )}
@@ -350,7 +350,7 @@ export default function TransfersPage() {
 
           <button
             onClick={() => setActiveTab("cross-stock")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold transition-all cursor-pointer ${
               activeTab === "cross-stock"
                 ? "bg-foreground text-background shadow-sm"
                 : "text-text-secondary hover:text-text-primary hover:bg-surface-2"
@@ -362,7 +362,7 @@ export default function TransfersPage() {
 
           <button
             onClick={() => setActiveTab("pricing")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold transition-all cursor-pointer ${
               activeTab === "pricing"
                 ? "bg-foreground text-background shadow-sm"
                 : "text-text-secondary hover:text-text-primary hover:bg-surface-2"
@@ -379,7 +379,7 @@ export default function TransfersPage() {
         {activeTab === "transfers" && (
           <div className="space-y-4">
             {/* Filter Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 bg-surface p-4 rounded-xl border border-border">
+            <div className="flex flex-wrap items-center justify-between gap-4 bg-surface p-4 rounded-md border border-border">
               <div className="flex flex-wrap items-center gap-4">
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-text-secondary font-medium">Status:</span>
@@ -444,7 +444,7 @@ export default function TransfersPage() {
                 <p className="text-sm">Loading stock transfers...</p>
               </div>
             ) : transfers.length === 0 ? (
-              <div className="py-20 text-center bg-surface rounded-2xl border border-border p-8">
+              <div className="py-20 text-center bg-surface rounded-lg border border-border p-8">
                 <ArrowLeftRight className="h-12 w-12 mx-auto text-text-secondary/40 mb-3" />
                 <h3 className="font-semibold text-text-primary text-base">No stock transfers recorded</h3>
                 <p className="text-xs text-text-secondary mt-1 max-w-sm mx-auto">
@@ -456,13 +456,13 @@ export default function TransfersPage() {
                 {transfers.map((t) => (
                   <div
                     key={t.id}
-                    className="bg-surface p-5 rounded-2xl border border-border hover:border-accent/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm"
+                    className="bg-surface p-5 rounded-lg border border-border hover:border-accent/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm"
                   >
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center gap-3">
                         <span className="font-mono font-bold text-sm text-text-primary">{t.transferNumber}</span>
                         <span
-                          className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${
+                          className={`text-xs font-bold px-2 py-0.5 rounded-full border ${
                             t.status === "PENDING"
                               ? "bg-amber-500/10 text-amber-600 border-amber-500/20"
                               : t.status === "IN_TRANSIT"
@@ -551,7 +551,7 @@ export default function TransfersPage() {
         {/* TAB 2: CROSS-BRANCH STOCK FINDER                                */}
         {/* =============================================================== */}
         {activeTab === "cross-stock" && (
-          <div className="bg-surface p-6 rounded-2xl border border-border space-y-6">
+          <div className="bg-surface p-6 rounded-lg border border-border space-y-6">
             <div className="max-w-xl space-y-1">
               <h2 className="text-base font-bold text-text-primary">Cross-Branch Stock Visibility</h2>
               <p className="text-xs text-text-secondary">
@@ -565,12 +565,12 @@ export default function TransfersPage() {
                 value={crossStockQuery}
                 onChange={(e) => setCrossStockQuery(e.target.value)}
                 placeholder="Enter barcode or drug identifier (e.g. 628100001)..."
-                className="flex-1 px-3.5 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
+                className="flex-1 px-3.5 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary focus:outline-none focus:ring-1 focus:ring-accent"
               />
               <button
                 type="submit"
                 disabled={!crossStockQuery.trim() || crossStockLoading}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
               >
                 <Search className="h-3.5 w-3.5" />
                 {crossStockLoading ? "Searching..." : "Lookup Stock"}
@@ -579,7 +579,7 @@ export default function TransfersPage() {
 
             {crossStockResult && (
               <div className="pt-6 border-t border-border space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-4 p-5 bg-surface-2 rounded-2xl border border-border">
+                <div className="flex flex-wrap items-center justify-between gap-4 p-5 bg-surface-2 rounded-lg border border-border">
                   <div>
                     <h3 className="text-lg font-black text-text-primary">{crossStockResult.productName}</h3>
                     <p className="text-xs text-text-secondary font-mono">Barcode: {crossStockResult.barcode}</p>
@@ -595,11 +595,11 @@ export default function TransfersPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {crossStockResult.branches.map((b) => (
-                    <div key={b.branchId} className="bg-surface-2/60 p-5 rounded-2xl border border-border space-y-3">
+                    <div key={b.branchId} className="bg-surface-2/60 p-5 rounded-lg border border-border space-y-3">
                       <div className="flex items-start justify-between">
                         <div>
                           <h4 className="font-bold text-text-primary text-sm">{b.branchName}</h4>
-                          <p className="text-[11px] text-text-secondary">{b.branchAddress || "No address on file"}</p>
+                          <p className="text-xs text-text-secondary">{b.branchAddress || "No address on file"}</p>
                         </div>
                         <span
                           className={`text-xs font-bold px-2 py-0.5 rounded-full border ${
@@ -614,15 +614,15 @@ export default function TransfersPage() {
 
                       <div className="grid grid-cols-2 gap-2 text-xs py-2.5 border-y border-border">
                         <div>
-                          <span className="text-[10px] text-text-secondary block">Retail Price</span>
+                          <span className="text-xs text-text-secondary block">Retail Price</span>
                           <span className="font-bold text-text-primary">{formatCurrency(b.effectiveSalePrice)}</span>
                           {b.hasPriceOverride && (
-                            <span className="block text-[10px] text-accent font-medium">(Branch Override)</span>
+                            <span className="block text-xs text-accent font-medium">(Branch Override)</span>
                           )}
                         </div>
                         <div>
-                          <span className="text-[10px] text-text-secondary block">Last Updated</span>
-                          <span className="text-text-primary text-[11px]">
+                          <span className="text-xs text-text-secondary block">Last Updated</span>
+                          <span className="text-text-primary text-xs">
                             {b.lastUpdated ? formatDate(b.lastUpdated) : "—"}
                           </span>
                         </div>
@@ -638,7 +638,7 @@ export default function TransfersPage() {
                                 expandedBatchBranchId === b.branchId ? null : b.branchId
                               )
                             }
-                            className="flex items-center justify-between w-full text-[11px] font-medium text-text-secondary hover:text-text-primary cursor-pointer"
+                            className="flex items-center justify-between w-full text-xs font-medium text-text-secondary hover:text-text-primary cursor-pointer"
                           >
                             <span>{b.batches.length} Active Batch(es)</span>
                             {expandedBatchBranchId === b.branchId ? (
@@ -649,7 +649,7 @@ export default function TransfersPage() {
                           </button>
 
                           {expandedBatchBranchId === b.branchId && (
-                            <div className="mt-2 space-y-1.5 p-2.5 bg-surface rounded-xl border border-border text-[11px]">
+                            <div className="mt-2 space-y-1.5 p-2.5 bg-surface rounded-md border border-border text-xs">
                               {b.batches.map((batch) => (
                                 <div key={batch.id} className="flex justify-between items-center">
                                   <span className="font-mono text-text-primary">{batch.batchNumber}</span>
@@ -691,14 +691,14 @@ export default function TransfersPage() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {branches.map((b) => (
-                <div key={b.id} className="bg-surface p-5 rounded-2xl border border-border space-y-4 shadow-sm">
+                <div key={b.id} className="bg-surface p-5 rounded-lg border border-border space-y-4 shadow-sm">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="font-bold text-text-primary text-base">{b.name}</h3>
                       <p className="text-xs text-text-secondary">{b.address || "No address"}</p>
                     </div>
                     <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                      className={`text-xs font-bold px-2 py-0.5 rounded-full border ${
                         b.allowPriceOverride
                           ? "bg-accent/10 text-accent border-accent/20"
                           : "bg-surface-2 text-text-secondary border-border"
@@ -717,7 +717,7 @@ export default function TransfersPage() {
                   <button
                     onClick={() => setSelectedPricingBranch(b)}
                     disabled={!b.allowPriceOverride}
-                    className="w-full py-2 rounded-xl border border-border hover:bg-surface-2 disabled:opacity-40 text-xs font-semibold text-text-primary transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full py-2 rounded-md border border-border hover:bg-surface-2 disabled:opacity-40 text-xs font-semibold text-text-primary transition-colors cursor-pointer flex items-center justify-center gap-1.5"
                   >
                     <Tag className="h-3.5 w-3.5 text-accent" />
                     Manage Price Overrides
@@ -733,7 +733,7 @@ export default function TransfersPage() {
       {/* =============================================================== */}
       {isNewTransferOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-surface border border-border w-full max-w-lg rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="bg-surface border border-border w-full max-w-lg rounded-lg p-6 shadow-xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <h3 className="font-bold text-text-primary text-base flex items-center gap-2">
                 <ArrowLeftRight className="h-4 w-4 text-accent" />
@@ -754,7 +754,7 @@ export default function TransfersPage() {
                   <select
                     value={sourceBranchId}
                     onChange={(e) => setSourceBranchId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary"
+                    className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary"
                     required
                   >
                     <option value="">Select branch</option>
@@ -769,7 +769,7 @@ export default function TransfersPage() {
                   <select
                     value={destBranchId}
                     onChange={(e) => setDestBranchId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary"
+                    className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary"
                     required
                   >
                     <option value="">Select branch</option>
@@ -787,7 +787,7 @@ export default function TransfersPage() {
                 <select
                   value={selectedProductId}
                   onChange={(e) => setSelectedProductId(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary"
+                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary"
                   required
                 >
                   <option value="">Select drug to transfer...</option>
@@ -806,7 +806,7 @@ export default function TransfersPage() {
                   min="1"
                   value={transferQty}
                   onChange={(e) => setTransferQty(parseInt(e.target.value, 10) || 1)}
-                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary"
+                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary"
                   required
                 />
               </div>
@@ -817,11 +817,11 @@ export default function TransfersPage() {
                   value={transferNotes}
                   onChange={(e) => setTransferNotes(e.target.value)}
                   placeholder="Reason for transfer, driver details, or batch notes..."
-                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary h-20"
+                  className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary h-20"
                 />
               </div>
 
-              <div className="flex items-center gap-2 p-3 bg-surface-2 rounded-xl">
+              <div className="flex items-center gap-2 p-3 bg-surface-2 rounded-md">
                 <input
                   type="checkbox"
                   id="send-now"
@@ -831,7 +831,7 @@ export default function TransfersPage() {
                 />
                 <label htmlFor="send-now" className="text-xs text-text-primary cursor-pointer">
                   <span className="font-semibold block">Dispatch Immediately (In-Transit)</span>
-                  <span className="text-[11px] text-text-secondary">
+                  <span className="text-xs text-text-secondary">
                     Source stock will be deducted now and prepared for shipment.
                   </span>
                 </label>
@@ -840,7 +840,7 @@ export default function TransfersPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2.5 rounded-xl bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
+                className="w-full py-2.5 rounded-md bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? "Creating Transfer..." : "Confirm & Create Transfer"}
               </button>
@@ -854,7 +854,7 @@ export default function TransfersPage() {
       {/* =============================================================== */}
       {selectedTransfer && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-surface border border-border w-full max-w-2xl rounded-2xl p-6 shadow-xl space-y-5">
+          <div className="bg-surface border border-border w-full max-w-2xl rounded-lg p-6 shadow-xl space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div>
                 <h3 className="font-bold text-text-primary text-base">
@@ -872,7 +872,7 @@ export default function TransfersPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 p-4 bg-surface-2 rounded-xl text-xs">
+            <div className="grid grid-cols-2 gap-4 p-4 bg-surface-2 rounded-md text-xs">
               <div>
                 <span className="text-text-secondary block">Source Branch</span>
                 <span className="font-bold text-text-primary">{selectedTransfer.sourceBranch?.name}</span>
@@ -887,7 +887,7 @@ export default function TransfersPage() {
               <h4 className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">
                 Transferred Items & Batch Travel Info
               </h4>
-              <div className="border border-border rounded-xl overflow-hidden">
+              <div className="border border-border rounded-md overflow-hidden">
                 <table className="w-full text-xs text-left">
                   <thead className="bg-surface-2 text-text-secondary border-b border-border">
                     <tr>
@@ -914,7 +914,7 @@ export default function TransfersPage() {
             </div>
 
             {selectedTransfer.notes && (
-              <div className="p-3 bg-surface-2 rounded-xl text-xs">
+              <div className="p-3 bg-surface-2 rounded-md text-xs">
                 <span className="font-semibold text-text-primary block">Transfer Notes:</span>
                 <p className="text-text-secondary mt-0.5">{selectedTransfer.notes}</p>
               </div>
@@ -925,7 +925,7 @@ export default function TransfersPage() {
                 <button
                   onClick={() => handleSend(selectedTransfer.id)}
                   disabled={isSubmitting}
-                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs cursor-pointer"
+                  className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs cursor-pointer"
                 >
                   Approve & Dispatch
                 </button>
@@ -934,7 +934,7 @@ export default function TransfersPage() {
                 <button
                   onClick={() => handleReceive(selectedTransfer.id)}
                   disabled={isSubmitting}
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs cursor-pointer"
+                  className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs cursor-pointer"
                 >
                   Receive Stock into Destination Branch
                 </button>
@@ -949,7 +949,7 @@ export default function TransfersPage() {
       {/* =============================================================== */}
       {selectedPricingBranch && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-surface border border-border w-full max-w-2xl rounded-2xl p-6 shadow-xl space-y-5">
+          <div className="bg-surface border border-border w-full max-w-2xl rounded-lg p-6 shadow-xl space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div>
                 <h3 className="font-bold text-text-primary text-base flex items-center gap-2">
@@ -968,11 +968,11 @@ export default function TransfersPage() {
               </button>
             </div>
 
-            <form onSubmit={handleAddPriceOverride} className="p-4 bg-surface-2 rounded-xl space-y-3">
+            <form onSubmit={handleAddPriceOverride} className="p-4 bg-surface-2 rounded-md space-y-3">
               <h4 className="text-xs font-semibold text-text-primary uppercase tracking-wider">Set New Price Override</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[11px] text-text-secondary font-medium">Select Drug</label>
+                  <label className="text-xs text-text-secondary font-medium">Select Drug</label>
                   <select
                     value={overrideProductId}
                     onChange={(e) => setOverrideProductId(e.target.value)}
@@ -989,7 +989,7 @@ export default function TransfersPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-text-secondary font-medium">Branch Price</label>
+                  <label className="text-xs text-text-secondary font-medium">Branch Price</label>
                   <input
                     type="number"
                     step="0.01"
@@ -1003,7 +1003,7 @@ export default function TransfersPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-text-secondary font-medium">Reason</label>
+                  <label className="text-xs text-text-secondary font-medium">Reason</label>
                   <input
                     type="text"
                     placeholder="e.g. Airport location"
@@ -1017,7 +1017,7 @@ export default function TransfersPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !overrideProductId || !overridePrice}
-                className="w-full py-2 rounded-xl bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
+                className="w-full py-2 rounded-md bg-foreground text-background font-semibold text-xs shadow-sm hover:opacity-90 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? "Saving..." : "Save Branch Price Override"}
               </button>
@@ -1029,11 +1029,11 @@ export default function TransfersPage() {
               {overridesLoading ? (
                 <div className="py-8 text-center text-xs text-text-secondary">Loading price overrides...</div>
               ) : branchOverrides.length === 0 ? (
-                <div className="py-8 text-center text-xs text-text-secondary bg-surface-2 rounded-xl">
+                <div className="py-8 text-center text-xs text-text-secondary bg-surface-2 rounded-md">
                   No price overrides configured. Central catalog prices apply.
                 </div>
               ) : (
-                <div className="border border-border rounded-xl overflow-hidden">
+                <div className="border border-border rounded-md overflow-hidden">
                   <table className="w-full text-xs text-left">
                     <thead className="bg-surface-2 text-text-secondary border-b border-border">
                       <tr>
@@ -1075,7 +1075,7 @@ export default function TransfersPage() {
       {/* =============================================================== */}
       {rejectModalTransferId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-surface border border-border w-full max-w-md rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="bg-surface border border-border w-full max-w-md rounded-lg p-6 shadow-xl space-y-4">
             <h3 className="font-bold text-text-primary text-base">Reject Stock Transfer</h3>
             <p className="text-xs text-text-secondary">
               Rejecting this transfer will automatically return all deducted stock and batches back to the source branch.
@@ -1086,7 +1086,7 @@ export default function TransfersPage() {
                 value={rejectReason}
                 onChange={(e) => setRejectReason(e.target.value)}
                 placeholder="e.g. Package damaged in transit, temperature violation..."
-                className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-xl text-text-primary h-24"
+                className="w-full px-3 py-2 text-xs bg-surface-2 border border-border rounded-md text-text-primary h-24"
                 required
               />
             </div>

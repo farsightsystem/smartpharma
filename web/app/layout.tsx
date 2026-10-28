@@ -18,6 +18,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pharma 360 — Modern Pharmacy Healthcare ERP",
   description: "Advanced Pharmacy Management & Point of Sale System for Saudi Arabia, UAE, and beyond.",
+  icons: [
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/logo.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/logo.png",
+    },
+    {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      url: "/logo.png",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

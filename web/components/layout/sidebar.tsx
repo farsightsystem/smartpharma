@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -150,7 +151,6 @@ export default function Sidebar() {
 
   const activePartition = useMemo(() => {
     if (drillDown) return drillDown;
-    // Auto-detect partition from current URL when not drilling down
     return partitions.find((p) =>
       p.items.some((item) =>
         pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"))
@@ -160,7 +160,6 @@ export default function Sidebar() {
 
   const isHomeView = !drillDown;
 
-  // When inside a sub-item and user clicks logo, return to home view
   const fetchWindowCount = useCallback(async () => {
     try {
       if (typeof window !== "undefined" && window.getPosWindowCount) {
@@ -197,7 +196,6 @@ export default function Sidebar() {
 
   const handleItemClick = (href: string) => {
     router.push(href);
-    // Keep drillDown state so sidebar stays on this partition's items
   };
 
   const handleBackToHome = () => {
@@ -211,9 +209,6 @@ export default function Sidebar() {
         collapsed ? "w-[68px]" : "w-[260px]"
       )}
     >
-      {/* ======================================================== */}
-      {/* BRAND HEADER & LOGO (click to return home)              */}
-      {/* ======================================================== */}
       <div
         onClick={handleBackToHome}
         className={cn(
@@ -221,19 +216,16 @@ export default function Sidebar() {
           collapsed ? "justify-center px-2" : "px-4 justify-between"
         )}
       >
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="flex items-center justify-center rounded-xl h-9 w-9 bg-primary/10 text-primary border border-primary/20 shrink-0 font-bold shadow-2xs">
-            <svg
-              className="h-5 w-5 text-primary"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17" />
-            </svg>
+        <div className="flex items-center gap-1 min-w-0">
+          <div className="flex items-center justify-center h-16 w-16 shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Pharma 360"
+              width={32}
+              height={32}
+              className="h-full w-full object-contain"
+              priority
+            />
           </div>
 
           <AnimatePresence>
@@ -244,32 +236,24 @@ export default function Sidebar() {
                 exit={{ opacity: 0, width: "0" }}
                 className="min-w-0 overflow-hidden text-left"
               >
-                <p className="text-sm font-bold text-text-primary truncate tracking-tight leading-tight">
-                  {isPlatform ? "Platform Console" : "Pharma 360"}
+                <p className="text-lg font-bold text-text-primary truncate tracking-tight leading-tight">
+                  {isPlatform ? "Platform Console" : <>Pharma<span className="text-primary">360</span></>}
                 </p>
                 {isHomeView && (
-                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                  <p className="text-xs text-text-secondary/70 truncate mt-0.5">
                     Home • {partitions.length} sections
                   </p>
                 )}
                 {!isHomeView && activePartition && (
-                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                  <p className="text-xs text-text-secondary/70 truncate mt-0.5">
                     {activePartition.label}
                   </p>
                 )}
-                <div
-                  onClick={(e) => { e.stopPropagation(); router.push("/branches"); }}
-                  className="flex items-center gap-1 text-[11px] text-text-secondary hover:text-primary transition-colors cursor-pointer mt-0.5"
-                >
-                  <span className="truncate">{user?.branchName || "Main Branch"}</span>
-                  <ChevronDown className="h-3 w-3 shrink-0 opacity-70" />
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        {/* Back arrow when inside a partition */}
         {!collapsed && !isHomeView && (
           <ChevronLeft
             className="h-4 w-4 text-text-secondary hover:text-primary transition-colors cursor-pointer"
@@ -277,29 +261,20 @@ export default function Sidebar() {
           />
         )}
 
-        {!collapsed && isHomeView && (
-          <div className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-text-secondary bg-surface-2 rounded-md border border-border">
-            <span>ctrl</span>
-            <span>k</span>
-          </div>
-        )}
+        
       </div>
 
-      {/* ======================================================== */}
-      {/* NAVIGATION                                                */}
-      {/* ======================================================== */}
       <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin" data-sidebar>
 
         {isHomeView ? (
           <>
-            {/* Section category label */}
             <AnimatePresence>
               {!collapsed && (
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary/60 select-none"
+                  className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-secondary/60 select-none"
                 >
                   Pharmacy
                 </motion.p>
@@ -314,7 +289,7 @@ export default function Sidebar() {
                   key={partition.key}
                   onClick={() => handlePartitionClick(partition)}
                   className={cn(
-                    "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
+                    "group relative flex items-center w-full rounded-md transition-all duration-150 cursor-pointer",
                     collapsed ? "justify-center h-9" : "gap-3 px-3 h-10",
                     isActive
                       ? "bg-primary/10 text-primary border border-primary/20 font-semibold"
@@ -351,7 +326,6 @@ export default function Sidebar() {
           </>
         ) : (
           <>
-            {/* Back to home header */}
             <div className="flex items-center gap-2 px-2 mb-3">
               <ChevronLeft
                 className="h-4 w-4 text-text-secondary hover:text-primary transition-colors cursor-pointer mr-1"
@@ -371,7 +345,7 @@ export default function Sidebar() {
                   key={item.href}
                   onClick={() => handleItemClick(item.href)}
                   className={cn(
-                    "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
+                    "group relative flex items-center w-full rounded-md transition-all duration-150 cursor-pointer",
                     collapsed ? "justify-center h-9" : "gap-3 px-3 h-9",
                     isActive
                       ? "bg-surface-2 text-text-primary font-semibold shadow-2xs"
@@ -415,7 +389,7 @@ export default function Sidebar() {
                   {item.href === "/ai/approvals" && pendingApprovals > 0 && (
                     <span
                       className={cn(
-                        "flex items-center justify-center rounded-full bg-amber-500/20 text-amber-600 text-[10px] font-bold h-4 min-w-4 px-1 border border-amber-500/30",
+                        "flex items-center justify-center rounded-full bg-amber-500/20 text-amber-600 text-xs font-bold h-4 min-w-4 px-1 border border-amber-500/30",
                         collapsed ? "absolute top-1 right-1" : "ml-auto"
                       )}
                     >
@@ -429,14 +403,11 @@ export default function Sidebar() {
         )}
       </nav>
 
-      {/* ======================================================== */}
-      {/* USER PROFILE FOOTER                                      */}
-      {/* ======================================================== */}
       <div className="border-t border-border/70 p-3 relative bg-surface-2/30">
         <div
           onClick={() => setMenuOpen(!menuOpen)}
           className={cn(
-            "flex items-center rounded-xl p-2 hover:bg-surface-2 transition-colors cursor-pointer",
+            "flex items-center rounded-md p-2 hover:bg-surface-2 transition-colors cursor-pointer",
             collapsed ? "justify-center" : "justify-between"
           )}
         >
@@ -456,7 +427,7 @@ export default function Sidebar() {
                   <p className="text-xs font-semibold text-text-primary truncate leading-tight">
                     {user?.username || "Admin"}
                   </p>
-                  <p className="text-[10px] text-text-secondary truncate mt-0.5">
+                  <p className="text-xs text-text-secondary truncate mt-0.5">
                     {isPlatform ? "Platform Admin" : "Pharma 360 Central"}
                   </p>
                 </motion.div>
@@ -470,7 +441,7 @@ export default function Sidebar() {
         </div>
 
         {menuOpen && !collapsed && (
-          <div className="absolute bottom-16 left-3 right-3 bg-surface border border-border rounded-xl shadow-lg p-1.5 space-y-1 z-50 text-xs">
+          <div className="absolute bottom-16 left-3 right-3 bg-surface border border-border rounded-md shadow-lg p-1.5 space-y-1 z-50 text-xs">
             <button
               onClick={() => {
                 setMenuOpen(false);
@@ -503,7 +474,6 @@ export default function Sidebar() {
         )}
       </div>
 
-      {/* Collapse/Expand Toggle Button */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         className={cn(

@@ -103,15 +103,15 @@ export default function LoginScreen() {
           </Pressable>
 
           <View style={styles.brand}>
-            <View style={[styles.logoWrap, { backgroundColor: theme.surface, borderColor: theme.border }]}>
+            <View style={styles.logoWrap}>
               <Image
                 source={require('@/assets/images/faraz-logo.png')}
                 style={styles.logo}
-                contentFit="cover"
+                contentFit="contain"
               />
             </View>
             <Text style={[styles.appName, { color: theme.text, fontFamily: Fonts.sans }]}>
-              Faraz Pharmacy
+              Pharma 360
             </Text>
             <Text style={[styles.tagline, { color: theme.textSecondary }]}>
               {mode === 'login' ? 'Sign in to your account' : 'Create your pharmacy'}
@@ -353,15 +353,12 @@ const styles = StyleSheet.create({
   logoWrap: {
     width: 88,
     height: 88,
-    borderRadius: 22,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: 56,
+    height: 56,
   },
   appName: {
     fontSize: 24,

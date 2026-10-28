@@ -163,7 +163,7 @@ export default function PatientsPage() {
               <h1 className="text-2xl font-bold tracking-tight text-text-primary">
                 Patients, Chronic Refills & Credit
               </h1>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase tracking-wider">
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase tracking-wider">
                 Pillar H
               </span>
             </div>
@@ -175,7 +175,7 @@ export default function PatientsPage() {
 
         {/* Top KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-2xl border border-border bg-surface shadow-xs space-y-1">
+          <div className="p-4 rounded-lg border border-border bg-surface shadow-xs space-y-1">
             <div className="flex items-center justify-between text-text-secondary text-xs">
               <span>Total Patients</span>
               <UserCheck className="h-4 w-4 text-accent" />
@@ -183,7 +183,7 @@ export default function PatientsPage() {
             <div className="text-2xl font-bold font-mono text-text-primary">{totalPatients}</div>
           </div>
 
-          <div className="p-4 rounded-2xl border border-border bg-surface shadow-xs space-y-1">
+          <div className="p-4 rounded-lg border border-border bg-surface shadow-xs space-y-1">
             <div className="flex items-center justify-between text-text-secondary text-xs">
               <span>Active Chronic Regimens</span>
               <HeartPulse className="h-4 w-4 text-purple-400" />
@@ -191,7 +191,7 @@ export default function PatientsPage() {
             <div className="text-2xl font-bold font-mono text-purple-400">{activeChronicCount}</div>
           </div>
 
-          <div className="p-4 rounded-2xl border border-border bg-surface shadow-xs space-y-1">
+          <div className="p-4 rounded-lg border border-border bg-surface shadow-xs space-y-1">
             <div className="flex items-center justify-between text-text-secondary text-xs">
               <span>Overdue Refills</span>
               <AlertTriangle className="h-4 w-4 text-danger" />
@@ -199,7 +199,7 @@ export default function PatientsPage() {
             <div className="text-2xl font-bold font-mono text-danger">{overdueCount}</div>
           </div>
 
-          <div className="p-4 rounded-2xl border border-border bg-surface shadow-xs space-y-1">
+          <div className="p-4 rounded-lg border border-border bg-surface shadow-xs space-y-1">
             <div className="flex items-center justify-between text-text-secondary text-xs">
               <span>Customer Arrears Due</span>
               <CreditCard className="h-4 w-4 text-warning" />
@@ -213,7 +213,7 @@ export default function PatientsPage() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab("patients")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold transition-all ${
                 activeTab === "patients"
                   ? "bg-accent text-accent-foreground shadow-xs"
                   : "bg-surface text-text-secondary hover:text-text-primary border border-border"
@@ -224,7 +224,7 @@ export default function PatientsPage() {
             </button>
             <button
               onClick={() => setActiveTab("refills")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold transition-all ${
                 activeTab === "refills"
                   ? "bg-accent text-accent-foreground shadow-xs"
                   : "bg-surface text-text-secondary hover:text-text-primary border border-border"
@@ -243,7 +243,7 @@ export default function PatientsPage() {
                 placeholder="Search patient, phone, national ID..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-border bg-surface text-xs focus:outline-hidden focus:border-accent"
+                className="w-full pl-9 pr-3 py-1.5 rounded-md border border-border bg-surface text-xs focus:outline-hidden focus:border-accent"
               />
             </div>
           ) : (
@@ -267,7 +267,7 @@ export default function PatientsPage() {
 
         {/* Content Tab 1: Patients Directory */}
         {activeTab === "patients" && (
-          <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-xs">
+          <div className="rounded-lg border border-border bg-surface overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead className="bg-surface-2/60 border-b border-border text-text-secondary font-medium">
@@ -299,7 +299,7 @@ export default function PatientsPage() {
                       <tr key={c.id} className="hover:bg-surface-2/40 transition-colors">
                         <td className="px-4 py-3">
                           <div className="font-semibold text-text-primary text-xs">{c.name}</div>
-                          {c.national_id && <div className="font-mono text-[10px] text-text-secondary">ID: {c.national_id}</div>}
+                          {c.national_id && <div className="font-mono text-xs text-text-secondary">ID: {c.national_id}</div>}
                         </td>
                         <td className="px-4 py-3 font-mono text-text-secondary">{c.phone || "—"}</td>
                         <td className="px-4 py-3">
@@ -319,11 +319,11 @@ export default function PatientsPage() {
                         </td>
                         <td className="px-4 py-3">
                           {c.consent_given ? (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
                               <ShieldCheck className="h-3 w-3" /> Signed
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
                               <AlertTriangle className="h-3 w-3" /> Pending
                             </span>
                           )}
@@ -355,7 +355,7 @@ export default function PatientsPage() {
 
         {/* Content Tab 2: Chronic Refill Reminders Queue */}
         {activeTab === "refills" && (
-          <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-xs">
+          <div className="rounded-lg border border-border bg-surface overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead className="bg-surface-2/60 border-b border-border text-text-secondary font-medium">
@@ -396,11 +396,11 @@ export default function PatientsPage() {
                         <tr key={item.id} className="hover:bg-surface-2/40 transition-colors">
                           <td className="px-4 py-3">
                             <div className="font-semibold text-text-primary text-xs">{item.customer_name}</div>
-                            <div className="font-mono text-[10px] text-text-secondary">{item.customer_phone}</div>
+                            <div className="font-mono text-xs text-text-secondary">{item.customer_phone}</div>
                           </td>
                           <td className="px-4 py-3">
                             <div className="font-medium text-xs text-text-primary">{item.medication_name}</div>
-                            <div className="text-[11px] text-text-secondary">
+                            <div className="text-xs text-text-secondary">
                               {item.dosage} {item.frequency ? `\u2022 ${item.frequency}` : ""} ({item.days_supply}d supply)
                             </div>
                           </td>
@@ -410,12 +410,12 @@ export default function PatientsPage() {
                                 {item.product_stock > 0 ? `${item.product_stock} in stock` : "0 stock"}
                               </span>
                             ) : (
-                              <span className="text-text-secondary text-[10px]">Unlinked</span>
+                              <span className="text-text-secondary text-xs">Unlinked</span>
                             )}
                           </td>
                           <td className="px-4 py-3 font-mono text-text-secondary">{formatDate(item.next_refill_date)}</td>
                           <td className="px-4 py-3">
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${urgencyColor}`}>
+                            <span className={`px-2 py-0.5 rounded text-xs font-bold border ${urgencyColor}`}>
                               {item.urgency === "OVERDUE"
                                 ? `${Math.abs(item.days_remaining)}d Overdue`
                                 : item.urgency === "DUE_TODAY"
@@ -423,11 +423,11 @@ export default function PatientsPage() {
                                 : `${item.days_remaining}d Left`}
                             </span>
                           </td>
-                          <td className="px-4 py-3 text-text-secondary text-[11px]">
+                          <td className="px-4 py-3 text-text-secondary text-xs">
                             {item.last_contacted_at ? (
                               <div>
-                                <span className="font-mono text-[10px]">{formatDate(item.last_contacted_at)}</span>
-                                {item.contact_notes && <div className="text-[10px] truncate max-w-[120px]">{item.contact_notes}</div>}
+                                <span className="font-mono text-xs">{formatDate(item.last_contacted_at)}</span>
+                                {item.contact_notes && <div className="text-xs truncate max-w-[120px]">{item.contact_notes}</div>}
                               </div>
                             ) : (
                               <span className="text-text-secondary/50">None</span>
@@ -440,7 +440,7 @@ export default function PatientsPage() {
                                   setContactModalItem(item);
                                   setContactNote(item.contact_notes || "");
                                 }}
-                                className="px-2 py-1 rounded-lg border border-border bg-surface text-text-primary hover:border-accent text-[11px] font-medium transition-all cursor-pointer"
+                                className="px-2 py-1 rounded-lg border border-border bg-surface text-text-primary hover:border-accent text-xs font-medium transition-all cursor-pointer"
                               >
                                 Contact
                               </button>
@@ -450,7 +450,7 @@ export default function PatientsPage() {
                                   setRefillDaysSupply(String(item.days_supply || 30));
                                   setRefillNote("");
                                 }}
-                                className="px-2 py-1 rounded-lg bg-accent text-accent-foreground hover:bg-accent-hover text-[11px] font-semibold transition-all cursor-pointer"
+                                className="px-2 py-1 rounded-lg bg-accent text-accent-foreground hover:bg-accent-hover text-xs font-semibold transition-all cursor-pointer"
                               >
                                 Refill
                               </button>
@@ -488,18 +488,18 @@ export default function PatientsPage() {
               ) : selectedCustomer ? (
                 <div className="space-y-6">
                   {/* Clinical & Consent Summary */}
-                  <div className="p-4 rounded-xl border border-border bg-surface-2/40 space-y-3">
+                  <div className="p-4 rounded-md border border-border bg-surface-2/40 space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-text-primary flex items-center gap-1.5">
                         <HeartPulse className="h-4 w-4 text-purple-400" />
                         Clinical & Health Consent
                       </span>
                       {selectedCustomer.consent_given ? (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded-full border border-success/20">
                           <ShieldCheck className="h-3 w-3" /> Consent Verified
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning bg-warning/10 px-2 py-0.5 rounded-full border border-warning/20">
                           <AlertTriangle className="h-3 w-3" /> Consent Missing
                         </span>
                       )}
@@ -514,10 +514,10 @@ export default function PatientsPage() {
 
                     {selectedCustomer.allergies && selectedCustomer.allergies.length > 0 && (
                       <div className="pt-2 border-t border-border/50">
-                        <span className="text-[10px] font-semibold text-danger block mb-1">Recorded Drug Allergies</span>
+                        <span className="text-xs font-semibold text-danger block mb-1">Recorded Drug Allergies</span>
                         <div className="flex flex-wrap gap-1">
                           {selectedCustomer.allergies.map((a: string, i: number) => (
-                            <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium bg-danger/10 text-danger border border-danger/20">
+                            <span key={i} className="px-2 py-0.5 rounded text-xs font-medium bg-danger/10 text-danger border border-danger/20">
                               {a}
                             </span>
                           ))}
@@ -541,11 +541,11 @@ export default function PatientsPage() {
                           <div key={m.id} className="p-3 rounded-lg border border-border bg-surface flex items-center justify-between text-xs">
                             <div>
                               <div className="font-semibold text-text-primary">{m.medication_name}</div>
-                              <div className="text-text-secondary text-[11px]">{m.dosage} \u2022 {m.frequency} ({m.days_supply}d supply)</div>
+                              <div className="text-text-secondary text-xs">{m.dosage} \u2022 {m.frequency} ({m.days_supply}d supply)</div>
                             </div>
                             <div className="text-right">
-                              <span className="text-[10px] font-mono text-text-secondary block">Next: {formatDate(m.next_refill_date)}</span>
-                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-accent/10 text-accent">
+                              <span className="text-xs font-mono text-text-secondary block">Next: {formatDate(m.next_refill_date)}</span>
+                              <span className="px-2 py-0.5 rounded text-xs font-bold bg-accent/10 text-accent">
                                 {m.days_remaining}d Left
                               </span>
                             </div>
@@ -575,7 +575,7 @@ export default function PatientsPage() {
                         No credit invoices or payments on record.
                       </div>
                     ) : (
-                      <div className="rounded-xl border border-border overflow-hidden">
+                      <div className="rounded-md border border-border overflow-hidden">
                         <table className="w-full text-xs text-left">
                           <thead className="bg-surface-2/60 text-text-secondary border-b border-border">
                             <tr>
@@ -589,7 +589,7 @@ export default function PatientsPage() {
                           <tbody className="divide-y divide-border/60">
                             {statement.entries.map((entry, idx) => (
                               <tr key={idx} className="hover:bg-surface-2/30">
-                                <td className="px-3 py-2 font-mono text-[11px] text-text-secondary">{formatDate(entry.date)}</td>
+                                <td className="px-3 py-2 font-mono text-xs text-text-secondary">{formatDate(entry.date)}</td>
                                 <td className="px-3 py-2 text-text-primary truncate max-w-[180px]">{entry.description}</td>
                                 <td className="px-3 py-2 font-mono text-right">{entry.debit > 0 ? formatCurrency(entry.debit) : "—"}</td>
                                 <td className="px-3 py-2 font-mono text-right text-success">{entry.credit > 0 ? formatCurrency(entry.credit) : "—"}</td>
@@ -610,7 +610,7 @@ export default function PatientsPage() {
         {/* Contact Note Modal */}
         {contactModalItem && (
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-surface rounded-2xl border border-border p-5 space-y-4 shadow-xl">
+            <div className="w-full max-w-md bg-surface rounded-lg border border-border p-5 space-y-4 shadow-xl">
               <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
                 <MessageSquare className="h-4 w-4 text-accent" />
                 Log Refill Reminder Note
@@ -622,19 +622,19 @@ export default function PatientsPage() {
                 value={contactNote}
                 onChange={(e) => setContactNote(e.target.value)}
                 placeholder="e.g. Sent reminder via WhatsApp; patient acknowledged."
-                className="w-full p-2.5 rounded-xl border border-border bg-background text-xs h-24 focus:outline-hidden focus:border-accent"
+                className="w-full p-2.5 rounded-md border border-border bg-background text-xs h-24 focus:outline-hidden focus:border-accent"
               />
               <div className="flex justify-end gap-2">
                 <button
                   onClick={() => setContactModalItem(null)}
-                  className="px-3 py-1.5 rounded-xl border border-border text-xs text-text-secondary hover:text-text-primary cursor-pointer"
+                  className="px-3 py-1.5 rounded-md border border-border text-xs text-text-secondary hover:text-text-primary cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleContactSubmit}
                   disabled={!contactNote.trim() || isSubmitting}
-                  className="px-3 py-1.5 rounded-xl bg-accent text-accent-foreground text-xs font-semibold cursor-pointer"
+                  className="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-xs font-semibold cursor-pointer"
                 >
                   Save Note
                 </button>
@@ -646,7 +646,7 @@ export default function PatientsPage() {
         {/* Refill Dispense Modal */}
         {refillModalItem && (
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-surface rounded-2xl border border-border p-5 space-y-4 shadow-xl">
+            <div className="w-full max-w-md bg-surface rounded-lg border border-border p-5 space-y-4 shadow-xl">
               <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
                 <RefreshCw className="h-4 w-4 text-success" />
                 Dispense Chronic Refill
@@ -660,7 +660,7 @@ export default function PatientsPage() {
                   type="number"
                   value={refillDaysSupply}
                   onChange={(e) => setRefillDaysSupply(e.target.value)}
-                  className="w-full px-3 py-1.5 rounded-xl border border-border bg-background text-xs font-mono"
+                  className="w-full px-3 py-1.5 rounded-md border border-border bg-background text-xs font-mono"
                 />
               </div>
               <div className="space-y-2">
@@ -670,20 +670,20 @@ export default function PatientsPage() {
                   value={refillNote}
                   onChange={(e) => setRefillNote(e.target.value)}
                   placeholder="e.g. 30-day refill dispensed at pharmacy counter"
-                  className="w-full px-3 py-1.5 rounded-xl border border-border bg-background text-xs"
+                  className="w-full px-3 py-1.5 rounded-md border border-border bg-background text-xs"
                 />
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   onClick={() => setRefillModalItem(null)}
-                  className="px-3 py-1.5 rounded-xl border border-border text-xs text-text-secondary hover:text-text-primary cursor-pointer"
+                  className="px-3 py-1.5 rounded-md border border-border text-xs text-text-secondary hover:text-text-primary cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleRefillSubmit}
                   disabled={isSubmitting}
-                  className="px-3 py-1.5 rounded-xl bg-accent text-accent-foreground text-xs font-semibold cursor-pointer"
+                  className="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-xs font-semibold cursor-pointer"
                 >
                   Confirm Refill & Advance
                 </button>

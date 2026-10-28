@@ -67,7 +67,7 @@ export default function AIRecommendations() {
     { key: "product", header: "Product", cell: (r: AIRecommendation) => (
       <div>
         <span className="font-medium text-text-primary">{r.product.name}</span>
-        <span className="block text-[10px] font-mono text-text-secondary">{r.product.barcode}</span>
+        <span className="block text-xs font-mono text-text-secondary">{r.product.barcode}</span>
       </div>
     ) },
     { key: "risk", header: "Risk", cell: (r: AIRecommendation) => <RiskBadge risk={r.riskLevel} />, className: "text-center" },
@@ -130,7 +130,7 @@ export default function AIRecommendations() {
         </TabsList>
       </Tabs>
 
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <DataTable
           columns={columns}
           data={filtered}

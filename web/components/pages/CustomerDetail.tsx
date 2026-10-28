@@ -168,7 +168,7 @@ export default function CustomerDetail() {
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-6 w-32" />
         <div className="grid grid-cols-3 gap-4">
-          {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-xl" />)}
+          {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-md" />)}
         </div>
       </div>
     );
@@ -190,7 +190,7 @@ export default function CustomerDetail() {
       key: "tender",
       header: "Tender",
       cell: (s: Sale) => (
-        <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-surface-2 border border-border">
+        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-surface-2 border border-border">
           {s.payment_method || "CASH"}
         </span>
       ),
@@ -214,17 +214,17 @@ export default function CustomerDetail() {
       </Button>
 
       {/* Patient Profile Card */}
-      <div className="bg-surface rounded-xl border border-border p-5 space-y-4">
+      <div className="bg-surface rounded-md border border-border p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-2xl font-bold text-text-primary">{customer.name}</h1>
               {customer.consent_given ? (
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-success bg-success/10 px-2.5 py-0.5 rounded-full border border-success/20">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-success bg-success/10 px-2.5 py-0.5 rounded-full border border-success/20">
                   <ShieldCheck className="h-3.5 w-3.5" /> Consent Active
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-warning bg-warning/10 px-2.5 py-0.5 rounded-full border border-warning/20">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning bg-warning/10 px-2.5 py-0.5 rounded-full border border-warning/20">
                   <AlertTriangle className="h-3.5 w-3.5" /> Consent Pending
                 </span>
               )}
@@ -249,7 +249,7 @@ export default function CustomerDetail() {
         {/* Clinical Alerts Strip */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 border-t border-border/60">
           <div className="p-3 rounded-lg bg-surface-2/40 border border-border/60">
-            <span className="text-[11px] font-semibold text-danger block mb-1.5 flex items-center gap-1">
+            <span className="text-xs font-semibold text-danger block mb-1.5 flex items-center gap-1">
               <AlertTriangle className="h-3.5 w-3.5" /> Known Allergies
             </span>
             {(customer.allergies?.length ?? 0) > 0 ? (
@@ -266,7 +266,7 @@ export default function CustomerDetail() {
           </div>
 
           <div className="p-3 rounded-lg bg-surface-2/40 border border-border/60">
-            <span className="text-[11px] font-semibold text-purple-400 block mb-1.5 flex items-center gap-1">
+            <span className="text-xs font-semibold text-purple-400 block mb-1.5 flex items-center gap-1">
               <HeartPulse className="h-3.5 w-3.5" /> Chronic Medical Conditions
             </span>
             {(customer.chronic_conditions?.length ?? 0) > 0 ? (
@@ -404,7 +404,7 @@ export default function CustomerDetail() {
             </Button>
           </div>
 
-          <div className="rounded-xl border border-border overflow-hidden">
+          <div className="rounded-md border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-surface-2/40">
@@ -440,7 +440,7 @@ export default function CustomerDetail() {
                       <tr key={med.id} className="hover:bg-surface-2/30 transition-colors">
                         <td className="px-4 py-3">
                           <div className="font-medium text-xs text-text-primary">{med.medication_name}</div>
-                          {med.notes && <div className="text-[10px] text-text-secondary italic">{med.notes}</div>}
+                          {med.notes && <div className="text-xs text-text-secondary italic">{med.notes}</div>}
                         </td>
                         <td className="px-4 py-3 text-xs text-text-secondary">
                           {med.dosage} {med.frequency ? `• ${med.frequency}` : ""}
@@ -449,7 +449,7 @@ export default function CustomerDetail() {
                         <td className="px-4 py-3 font-mono text-xs text-text-secondary">{formatDate(med.last_dispensed_date)}</td>
                         <td className="px-4 py-3 font-mono text-xs text-text-secondary">{formatDate(med.next_refill_date)}</td>
                         <td className="px-4 py-3">
-                          <span className={cn("px-2 py-0.5 rounded text-[10px] font-bold border", urgencyClass)}>
+                          <span className={cn("px-2 py-0.5 rounded text-xs font-bold border", urgencyClass)}>
                             {daysRemaining < 0
                               ? `${Math.abs(daysRemaining)}d Overdue`
                               : daysRemaining === 0
@@ -462,7 +462,7 @@ export default function CustomerDetail() {
                             <Button
                               size="sm"
                               variant="outline"
-                              className="h-7 text-[11px] gap-1"
+                              className="h-7 text-xs gap-1"
                               onClick={() => {
                                 setSelectedMed(med);
                                 setContactNotes(med.contact_notes || "");
@@ -473,7 +473,7 @@ export default function CustomerDetail() {
                             </Button>
                             <Button
                               size="sm"
-                              className="h-7 text-[11px] gap-1 bg-accent text-accent-foreground hover:bg-accent-hover"
+                              className="h-7 text-xs gap-1 bg-accent text-accent-foreground hover:bg-accent-hover"
                               onClick={() => {
                                 setSelectedMed(med);
                                 setRefillDaysSupply(String(med.days_supply || 30));
@@ -529,29 +529,29 @@ export default function CustomerDetail() {
           </div>
 
           {statementLoading ? (
-            <Skeleton className="h-40 w-full rounded-xl" />
+            <Skeleton className="h-40 w-full rounded-md" />
           ) : !statement || statement.entries.length === 0 ? (
-            <div className="text-center py-12 text-xs text-text-secondary bg-surface rounded-xl border border-border">
+            <div className="text-center py-12 text-xs text-text-secondary bg-surface rounded-md border border-border">
               No credit transactions or arrears recorded on this account.
             </div>
           ) : (
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="p-3 rounded-lg border border-border bg-surface-2/40">
-                  <span className="text-[11px] text-text-secondary block">Total Billed on Credit</span>
+                  <span className="text-xs text-text-secondary block">Total Billed on Credit</span>
                   <span className="text-base font-mono font-bold text-text-primary">{formatCurrency(statement.summary.total_billed)}</span>
                 </div>
                 <div className="p-3 rounded-lg border border-border bg-surface-2/40">
-                  <span className="text-[11px] text-text-secondary block">Total Settled</span>
+                  <span className="text-xs text-text-secondary block">Total Settled</span>
                   <span className="text-base font-mono font-bold text-success">{formatCurrency(statement.summary.total_paid)}</span>
                 </div>
                 <div className="p-3 rounded-lg border border-border bg-surface-2/40">
-                  <span className="text-[11px] text-text-secondary block">Outstanding Balance</span>
+                  <span className="text-xs text-text-secondary block">Outstanding Balance</span>
                   <span className="text-base font-mono font-bold text-warning">{formatCurrency(statement.summary.current_balance)}</span>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-border overflow-hidden">
+              <div className="rounded-md border border-border overflow-hidden">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border bg-surface-2/40">
@@ -648,7 +648,7 @@ export default function CustomerDetail() {
                 placeholder="30"
                 className="h-8 text-xs font-mono"
               />
-              <span className="text-[10px] text-text-secondary">Refill will automatically trigger every {medDaysSupply} days.</span>
+              <span className="text-xs text-text-secondary">Refill will automatically trigger every {medDaysSupply} days.</span>
             </div>
 
             <div className="space-y-1">

@@ -51,7 +51,7 @@ export function Input({ containerStyle, inputStyle, error = false, multiline, ..
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 8,
     paddingHorizontal: Spacing.three,
   },
   input: {

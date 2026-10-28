@@ -38,7 +38,7 @@ export default function AIProvidersIndex() {
                   key={preset.id}
                   type="button"
                   onClick={() => navigate(`/settings/ai/${preset.id}`)}
-                  className={`group relative flex flex-col items-start gap-2.5 rounded-xl border p-4 text-left transition-all ${
+                  className={`group relative flex flex-col items-start gap-2.5 rounded-md border p-4 text-left transition-all ${
                     isActive
                       ? "border-accent bg-accent/5"
                       : "border-border bg-surface hover:bg-surface-2/50 hover:border-border/80"
@@ -51,11 +51,11 @@ export default function AIProvidersIndex() {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-text-primary">{preset.label}</p>
-                        <p className="text-[11px] text-text-secondary">{preset.tier}</p>
+                        <p className="text-xs text-text-secondary">{preset.tier}</p>
                       </div>
                     </div>
                     {isActive ? (
-                      <span className="flex items-center gap-1 rounded-full bg-success/10 text-success px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+                      <span className="flex items-center gap-1 rounded-full bg-success/10 text-success px-2 py-0.5 text-xs font-semibold uppercase tracking-wide">
                         <CheckCircle2 className="h-3 w-3" /> Active
                       </span>
                     ) : (
@@ -63,7 +63,7 @@ export default function AIProvidersIndex() {
                     )}
                   </div>
                   <p className="text-xs text-text-secondary leading-relaxed">{preset.description}</p>
-                  <div className="flex items-center gap-2 text-[11px] text-text-secondary">
+                  <div className="flex items-center gap-2 text-xs text-text-secondary">
                     {isActive ? (
                       keyConfigured ? (
                         <>
@@ -92,7 +92,7 @@ export default function AIProvidersIndex() {
         )}
 
         {activeProvider && aiConfig && (
-          <div className="mt-6 rounded-xl border border-border bg-surface p-4 flex items-center justify-between">
+          <div className="mt-6 rounded-md border border-border bg-surface p-4 flex items-center justify-between">
             <div className="min-w-0">
               <p className="text-sm text-text-secondary">Currently configured</p>
               <p className="text-sm font-semibold text-text-primary truncate">

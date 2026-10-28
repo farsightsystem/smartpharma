@@ -127,14 +127,14 @@ export default function Companies() {
       </div>
 
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-2xl border border-border/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface p-2.5 rounded-lg border border-border/80 shadow-xs">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
           <Input
             placeholder="Search company or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 h-9 rounded-xl text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
+            className="pl-9 h-9 rounded-md text-xs bg-surface-2/40 border-border/80 focus:bg-surface"
           />
         </div>
 
@@ -142,7 +142,7 @@ export default function Companies() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() => downloadCSV(`companies_${new Date().toISOString().split("T")[0]}.csv`, ["Name","Company Contact","Contact #2","Address","Products"], filtered.map((c: Company) => [c.name, c.phone, c.second_number||"", c.address, c.product_count||0]))}
           >
             <Download className="h-3.5 w-3.5" /> CSV
@@ -150,13 +150,13 @@ export default function Companies() {
           <Button
             variant="outline"
             size="sm"
-            className="h-9 rounded-xl text-xs gap-1.5 border-border/80 hover:bg-surface-2"
+            className="h-9 rounded-md text-xs gap-1.5 border-border/80 hover:bg-surface-2"
             onClick={() => downloadPDF(`companies_${new Date().toISOString().split("T")[0]}.pdf`, "Companies List", ["Name","Company Contact","Contact #2","Address","Products"], filtered.map((c: Company) => [c.name, c.phone, c.second_number||"", c.address, c.product_count||0]))}
           >
             <Download className="h-3.5 w-3.5" /> PDF
           </Button>
 
-          <div className="flex items-center border border-border/80 rounded-xl overflow-hidden bg-surface-2/40 p-0.5">
+          <div className="flex items-center border border-border/80 rounded-md overflow-hidden bg-surface-2/40 p-0.5">
             <button
               onClick={() => setViewMode("grid")}
               className={cn("p-1.5 rounded-lg transition-colors", viewMode === "grid" ? "bg-accent text-white shadow-xs" : "text-text-secondary hover:text-text-primary")}
@@ -201,7 +201,7 @@ export default function Companies() {
           emptyTitle="No companies found"
           emptyDescription={search ? `No companies match "${search}".` : "Add manufacturing companies and brands to map catalog products."}
           emptyAction={
-            <Button onClick={openAdd} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+            <Button onClick={openAdd} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
               <Plus className="h-3.5 w-3.5" /> Add Company
             </Button>
           }
@@ -210,16 +210,16 @@ export default function Companies() {
         <div>
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-36 rounded-2xl" />)}
+              {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-36 rounded-lg" />)}
             </div>
           ) : filtered.length === 0 ? (
-            <div className="rounded-2xl border border-border/80 bg-surface p-8 shadow-xs">
+            <div className="rounded-lg border border-border/80 bg-surface p-8 shadow-xs">
               <EmptyState
                 title="No companies found"
                 description={search ? `No companies match "${search}". Try adjusting your search query.` : "Register your pharmaceutical manufacturing companies to organize products."}
                 icon={<Building2 className="h-6 w-6 text-accent" />}
                 action={
-                  <Button onClick={openAdd} size="sm" className="h-9 rounded-xl text-xs gap-1.5 font-medium shadow-xs">
+                  <Button onClick={openAdd} size="sm" className="h-9 rounded-md text-xs gap-1.5 font-medium shadow-xs">
                     <Plus className="h-3.5 w-3.5" /> Add First Company
                   </Button>
                 }
@@ -228,10 +228,10 @@ export default function Companies() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map((comp: Company) => (
-                <div key={comp.id} className="group rounded-2xl border border-border/80 bg-surface p-5 shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200">
+                <div key={comp.id} className="group rounded-lg border border-border/80 bg-surface p-5 shadow-xs hover:shadow-md hover:border-accent/30 transition-all duration-200">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3 min-w-0 flex-1">
-                      <div className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                      <div className="h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
                         <Building2 className="h-5 w-5" />
                       </div>
                       <div className="min-w-0">

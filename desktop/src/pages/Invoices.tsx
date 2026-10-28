@@ -50,7 +50,7 @@ export default function Invoices() {
       key: "prescription_number",
       header: "Rx",
       cell: (s: Sale) => s.prescription_number ? (
-        <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-semibold">
+        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-accent/10 text-accent font-semibold">
           {s.prescription_number}
         </span>
       ) : <span className="text-text-secondary/40 text-xs">-</span>,
@@ -65,7 +65,7 @@ export default function Invoices() {
           : method === "CREDIT" ? "bg-warning/10 text-warning"
           : "bg-surface-2 text-text-secondary";
         return (
-          <span className={`font-mono text-[10px] font-medium px-2 py-0.5 rounded ${colorClass}`}>
+          <span className={`font-mono text-xs font-medium px-2 py-0.5 rounded ${colorClass}`}>
             {method}
           </span>
         );
@@ -100,7 +100,7 @@ export default function Invoices() {
           <FileText className="h-4 w-4 mr-1" /> PDF
         </Button>
       </div>
-      <div className="rounded-xl border border-border">
+      <div className="rounded-md border border-border">
         <DataTable
           columns={columns}
           data={sales}

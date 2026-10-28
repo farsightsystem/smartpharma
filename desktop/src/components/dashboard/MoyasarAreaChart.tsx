@@ -47,7 +47,7 @@ function CustomTooltip({ active, payload, label, currency = "SAR" }: any) {
   if (active && payload && payload.length) {
     const fullTime = payload[0]?.payload?.fullTime || label;
     return (
-      <div className="bg-surface border border-border/80 rounded-xl shadow-xl p-3 min-w-[210px] text-xs select-none">
+      <div className="bg-surface border border-border/80 rounded-md shadow-xl p-3 min-w-[210px] text-xs select-none">
         <p className="font-semibold text-text-primary mb-2 border-b border-border/50 pb-1.5">{fullTime}</p>
         <div className="space-y-1.5">
           {payload.map((entry: any, index: number) => {

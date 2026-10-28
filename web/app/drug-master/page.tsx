@@ -258,7 +258,7 @@ export default function DrugMasterPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.98 }}
               className={cn(
-                "p-4 rounded-xl shadow-lg border flex items-center justify-between gap-3 text-sm z-50",
+                "p-4 rounded-md shadow-lg border flex items-center justify-between gap-3 text-sm z-50",
                 notification.type === "success" && "bg-success/10 border-success/30 text-success font-medium",
                 notification.type === "error" && "bg-danger/10 border-danger/30 text-danger font-medium",
                 notification.type === "info" && "bg-accent/10 border-accent/30 text-accent font-medium"
@@ -284,7 +284,7 @@ export default function DrugMasterPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-border">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+              <div className="h-9 w-9 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
                 <Pill className="h-5 w-5" />
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-text-primary">
@@ -332,7 +332,7 @@ export default function DrugMasterPage() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 rounded-xl bg-accent/10 border border-accent/25 flex items-center justify-between gap-3 text-xs text-text-primary shadow-xs"
+            className="p-4 rounded-md bg-accent/10 border border-accent/25 flex items-center justify-between gap-3 text-xs text-text-primary shadow-xs"
           >
             <div className="flex items-center gap-2.5">
               <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
@@ -351,73 +351,73 @@ export default function DrugMasterPage() {
 
         {/* Metric KPI Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-xs space-y-1">
-            <span className="text-[11px] font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-xs space-y-1">
+            <span className="text-xs font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
               Total Catalog
               <Pill className="h-3.5 w-3.5 text-accent" />
             </span>
             <div className="text-2xl font-bold text-text-primary">{stats.total.toLocaleString()}</div>
-            <p className="text-[10px] text-text-secondary">Registered SKU items</p>
+            <p className="text-xs text-text-secondary">Registered SKU items</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-xs space-y-1">
-            <span className="text-[11px] font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-xs space-y-1">
+            <span className="text-xs font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
               Rx Prescription
               <span className="h-2 w-2 rounded-full bg-indigo-500" />
             </span>
             <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
               {stats.rx.toLocaleString()}
             </div>
-            <p className="text-[10px] text-text-secondary">Requires doctor prescription</p>
+            <p className="text-xs text-text-secondary">Requires doctor prescription</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-xs space-y-1">
-            <span className="text-[11px] font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-xs space-y-1">
+            <span className="text-xs font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
               Controlled Meds
               <Lock className="h-3.5 w-3.5 text-amber-500" />
             </span>
             <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
               {stats.controlled.toLocaleString()}
             </div>
-            <p className="text-[10px] text-text-secondary">Narcotics / Controlled Schedule</p>
+            <p className="text-xs text-text-secondary">Narcotics / Controlled Schedule</p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border bg-surface shadow-xs space-y-1">
-            <span className="text-[11px] font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
+          <div className="p-4 rounded-md border border-border bg-surface shadow-xs space-y-1">
+            <span className="text-xs font-medium uppercase tracking-wider text-text-secondary flex items-center justify-between">
               Price Regulated
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
             </span>
             <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
               {stats.regulated.toLocaleString()}
             </div>
-            <p className="text-[10px] text-text-secondary">Official regulated price ceiling</p>
+            <p className="text-xs text-text-secondary">Official regulated price ceiling</p>
           </div>
 
           <button
             onClick={() => setActiveTab("incomplete")}
             className={cn(
-              "p-4 rounded-xl border text-left shadow-xs space-y-1 transition-all cursor-pointer group",
+              "p-4 rounded-md border text-left shadow-xs space-y-1 transition-all cursor-pointer group",
               activeTab === "incomplete"
                 ? "bg-amber-500/10 border-amber-500/40 text-amber-800 dark:text-amber-300"
                 : "bg-surface border-border hover:border-amber-400/50"
             )}
           >
-            <span className="text-[11px] font-medium uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center justify-between">
+            <span className="text-xs font-medium uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center justify-between">
               Data Quality
               <AlertTriangle className="h-3.5 w-3.5 text-amber-500 group-hover:scale-110 transition-transform" />
             </span>
             <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
               {stats.incomplete.toLocaleString()}
             </div>
-            <p className="text-[10px] text-text-secondary">Missing registration code or names</p>
+            <p className="text-xs text-text-secondary">Missing registration code or names</p>
           </button>
         </div>
 
         {/* Search, Filter Tabs & Tooling */}
-        <div className="p-4 rounded-2xl border border-border bg-surface shadow-xs space-y-3.5">
+        <div className="p-4 rounded-lg border border-border bg-surface shadow-xs space-y-3.5">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-surface-2 border border-border/80 w-fit">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md bg-surface-2 border border-border/80 w-fit">
               {[
                 { id: "all", label: "All Items" },
                 { id: "rx", label: "Rx Only" },
@@ -454,7 +454,7 @@ export default function DrugMasterPage() {
                     setSearchQuery(e.target.value);
                     setPage(1);
                   }}
-                  className="w-full h-9 pl-9 pr-8 rounded-xl border border-border bg-surface-2 text-xs text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                  className="w-full h-9 pl-9 pr-8 rounded-md border border-border bg-surface-2 text-xs text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
                 />
                 {searchQuery && (
                   <button
@@ -473,7 +473,7 @@ export default function DrugMasterPage() {
                   setSelectedDosageForm(e.target.value);
                   setPage(1);
                 }}
-                className="h-9 px-3 rounded-xl border border-border bg-surface-2 text-xs text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 cursor-pointer"
+                className="h-9 px-3 rounded-md border border-border bg-surface-2 text-xs text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 cursor-pointer"
               >
                 <option value="">All Dosage Forms</option>
                 {availableDosageForms.map((form) => (
@@ -490,7 +490,7 @@ export default function DrugMasterPage() {
                 }}
                 disabled={isLoading}
                 title="Refresh catalog"
-                className="h-9 w-9 flex items-center justify-center rounded-xl border border-border bg-surface-2 hover:bg-border text-text-secondary hover:text-text-primary transition-all cursor-pointer disabled:opacity-50"
+                className="h-9 w-9 flex items-center justify-center rounded-md border border-border bg-surface-2 hover:bg-border text-text-secondary hover:text-text-primary transition-all cursor-pointer disabled:opacity-50"
               >
                 <RefreshCw className={cn("h-3.5 w-3.5", isLoading && "animate-spin text-accent")} />
               </button>
@@ -499,7 +499,7 @@ export default function DrugMasterPage() {
         </div>
 
         {/* Data Table */}
-        <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-xs">
+        <div className="rounded-lg border border-border bg-surface overflow-hidden shadow-xs">
           {isLoading ? (
             <div className="py-20 flex flex-col items-center justify-center gap-3 text-text-secondary">
               <div className="h-7 w-7 rounded-full border-2 border-foreground/20 border-t-foreground animate-spin" />
@@ -511,14 +511,14 @@ export default function DrugMasterPage() {
               <div className="text-sm font-semibold text-text-primary">{errorMsg}</div>
               <button
                 onClick={() => fetchDrugs()}
-                className="px-4 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-medium cursor-pointer"
+                className="px-4 py-2 rounded-md bg-accent text-accent-foreground text-xs font-medium cursor-pointer"
               >
                 Retry
               </button>
             </div>
           ) : drugs.length === 0 ? (
             <div className="py-16 px-4 text-center space-y-3">
-              <div className="h-12 w-12 rounded-2xl bg-surface-2 flex items-center justify-center text-text-secondary mx-auto">
+              <div className="h-12 w-12 rounded-lg bg-surface-2 flex items-center justify-center text-text-secondary mx-auto">
                 <Pill className="h-6 w-6" />
               </div>
               <h3 className="text-sm font-bold text-text-primary">No drug records found</h3>
@@ -544,7 +544,7 @@ export default function DrugMasterPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="border-b border-border bg-surface-2/60 text-text-secondary text-[11px] font-medium uppercase tracking-wider select-none">
+                  <tr className="border-b border-border bg-surface-2/60 text-text-secondary text-xs font-medium uppercase tracking-wider select-none">
                     <th className="py-3 px-3.5 w-10 text-center">
                       <input
                         type="checkbox"
@@ -603,14 +603,14 @@ export default function DrugMasterPage() {
                             {drug.nameAr && (
                               <div
                                 dir="rtl"
-                                className="text-[11px] text-text-secondary font-medium tracking-normal text-right"
+                                className="text-xs text-text-secondary font-medium tracking-normal text-right"
                               >
                                 {drug.nameAr}
                               </div>
                             )}
 
                             {(drug.genericName || drug.strength) && (
-                              <div className="text-[10px] text-text-secondary/80 flex items-center gap-1">
+                              <div className="text-xs text-text-secondary/80 flex items-center gap-1">
                                 <span className="italic">{drug.genericName || "—"}</span>
                                 {drug.strength && (
                                   <span className="font-mono text-[9px] px-1 py-0.2 rounded bg-surface-2 border border-border">
@@ -624,14 +624,14 @@ export default function DrugMasterPage() {
 
                         {/* Dosage Form */}
                         <td className="py-3.5 px-3.5">
-                          <span className="px-2 py-0.5 rounded-md bg-surface-2 border border-border text-[11px] font-medium text-text-primary">
+                          <span className="px-2 py-0.5 rounded-md bg-surface-2 border border-border text-xs font-medium text-text-primary">
                             {drug.dosageForm || "TABLET"}
                           </span>
                         </td>
 
                         {/* Packaging Unit Conversion */}
                         <td className="py-3.5 px-3.5 text-text-secondary">
-                          <div className="flex items-center gap-1 font-mono text-[11px]">
+                          <div className="flex items-center gap-1 font-mono text-xs">
                             <span className="font-semibold text-text-primary">1 {drug.packageUnit || "BOX"}</span>
                             <span>=</span>
                             <span>{drug.unitsPerPack || 1} {drug.baseUnit || "UNIT"}</span>
@@ -641,7 +641,7 @@ export default function DrugMasterPage() {
                         {/* Regulatory Registration Code */}
                         <td className="py-3.5 px-3.5">
                           {drug.sfdaCode ? (
-                            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-2 border border-border text-[11px] font-mono text-text-primary group/code">
+                            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-2 border border-border text-xs font-mono text-text-primary group/code">
                               <span>{drug.sfdaCode}</span>
                               <button
                                 onClick={() => handleCopyCode(drug.sfdaCode!)}
@@ -656,7 +656,7 @@ export default function DrugMasterPage() {
                               </button>
                             </div>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
+                            <span className="inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 font-medium">
                               <AlertTriangle className="h-3 w-3" /> Missing
                             </span>
                           )}
@@ -666,23 +666,23 @@ export default function DrugMasterPage() {
                         <td className="py-3.5 px-3.5">
                           <div className="flex flex-wrap items-center gap-1">
                             {drug.isRx ? (
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                              <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                                 Rx
                               </span>
                             ) : (
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20">
+                              <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20">
                                 OTC
                               </span>
                             )}
 
                             {drug.isControlled && (
-                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
                                 <Lock className="h-2.5 w-2.5" /> Schedule
                               </span>
                             )}
 
                             {drug.isPriceRegulated && (
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                              <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                                 Price Regulated
                               </span>
                             )}
@@ -694,7 +694,7 @@ export default function DrugMasterPage() {
                           <div className="font-semibold text-text-primary text-xs">
                             {formatCurrency(Number(drug.publicPrice) || 0)}
                           </div>
-                          <span className="text-[10px] text-text-secondary">per {drug.packageUnit || "pack"}</span>
+                          <span className="text-xs text-text-secondary">per {drug.packageUnit || "pack"}</span>
                         </td>
 
                         {/* Actions */}
@@ -809,27 +809,27 @@ export default function DrugMasterPage() {
 
               <div className="p-6 flex-1 overflow-y-auto space-y-6 text-xs">
                 {/* Master Details Summary */}
-                <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-surface-2 border border-border">
+                <div className="grid grid-cols-2 gap-3 p-4 rounded-md bg-surface-2 border border-border">
                   <div>
-                    <span className="text-[10px] text-text-secondary uppercase">Generic Name</span>
+                    <span className="text-xs text-text-secondary uppercase">Generic Name</span>
                     <div className="font-semibold text-text-primary mt-0.5">
                       {detailProduct.genericName || "—"}
                     </div>
                   </div>
                   <div>
-                    <span className="text-[10px] text-text-secondary uppercase">Strength</span>
+                    <span className="text-xs text-text-secondary uppercase">Strength</span>
                     <div className="font-semibold text-text-primary mt-0.5">
                       {detailProduct.strength || "—"}
                     </div>
                   </div>
                   <div>
-                    <span className="text-[10px] text-text-secondary uppercase">Regulatory Code</span>
+                    <span className="text-xs text-text-secondary uppercase">Regulatory Code</span>
                     <div className="font-mono font-semibold text-text-primary mt-0.5">
                       {detailProduct.sfdaCode || "Not registered"}
                     </div>
                   </div>
                   <div>
-                    <span className="text-[10px] text-text-secondary uppercase">Pack Multi-Unit</span>
+                    <span className="text-xs text-text-secondary uppercase">Pack Multi-Unit</span>
                     <div className="font-mono font-semibold text-text-primary mt-0.5">
                       1 {detailProduct.packageUnit} = {detailProduct.unitsPerPack} {detailProduct.baseUnit}
                     </div>
@@ -843,7 +843,7 @@ export default function DrugMasterPage() {
                       <Clock className="h-4 w-4 text-accent" />
                       Active FEFO Batches
                     </h3>
-                    <span className="text-[11px] text-text-secondary">
+                    <span className="text-xs text-text-secondary">
                       {detailProduct.batches?.length || 0} lot(s) on record
                     </span>
                   </div>
@@ -853,9 +853,9 @@ export default function DrugMasterPage() {
                       Loading batch records...
                     </div>
                   ) : !detailProduct.batches || detailProduct.batches.length === 0 ? (
-                    <div className="p-6 rounded-xl border border-dashed border-border text-center text-text-secondary space-y-2">
+                    <div className="p-6 rounded-md border border-dashed border-border text-center text-text-secondary space-y-2">
                       <p className="text-xs">No active batches recorded in local inventory for this item.</p>
-                      <p className="text-[10px]">Batches are recorded automatically during GRN / Purchase Receiving.</p>
+                      <p className="text-xs">Batches are recorded automatically during GRN / Purchase Receiving.</p>
                     </div>
                   ) : (
                     <div className="space-y-2">
@@ -869,7 +869,7 @@ export default function DrugMasterPage() {
                         return (
                           <div
                             key={batch.id}
-                            className="p-3.5 rounded-xl border border-border bg-surface-2/60 flex items-center justify-between gap-3"
+                            className="p-3.5 rounded-md border border-border bg-surface-2/60 flex items-center justify-between gap-3"
                           >
                             <div className="space-y-1">
                               <div className="flex items-center gap-2">
@@ -878,7 +878,7 @@ export default function DrugMasterPage() {
                                 </span>
                                 <span
                                   className={cn(
-                                    "px-1.5 py-0.2 rounded text-[10px] font-bold uppercase",
+                                    "px-1.5 py-0.2 rounded text-xs font-bold uppercase",
                                     isExpired
                                       ? "bg-danger/10 text-danger"
                                       : isNearExpiry
@@ -889,7 +889,7 @@ export default function DrugMasterPage() {
                                   {isExpired ? "Expired" : isNearExpiry ? `${daysLeft}d left` : "Healthy"}
                                 </span>
                               </div>
-                              <div className="text-[11px] text-text-secondary flex items-center gap-1.5">
+                              <div className="text-xs text-text-secondary flex items-center gap-1.5">
                                 <Calendar className="h-3 w-3" />
                                 <span>Expires: {formatDate(batch.expiryDate)}</span>
                               </div>
@@ -898,11 +898,11 @@ export default function DrugMasterPage() {
                             <div className="text-right">
                               <div className="font-bold text-sm text-text-primary">
                                 {batch.quantityInBaseUnits}{" "}
-                                <span className="text-[10px] text-text-secondary font-normal uppercase">
+                                <span className="text-xs text-text-secondary font-normal uppercase">
                                   {detailProduct.baseUnit || "Units"}
                                 </span>
                               </div>
-                              <span className="text-[10px] text-text-secondary">
+                              <span className="text-xs text-text-secondary">
                                 ≈ {(batch.quantityInBaseUnits / (detailProduct.unitsPerPack || 1)).toFixed(1)}{" "}
                                 {detailProduct.packageUnit || "Boxes"}
                               </span>
@@ -922,7 +922,7 @@ export default function DrugMasterPage() {
                     setDetailProduct(null);
                     setEditProduct(toEdit);
                   }}
-                  className="px-4 py-2 rounded-xl bg-accent text-accent-foreground font-semibold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs hover:bg-accent-hover transition-all"
+                  className="px-4 py-2 rounded-md bg-accent text-accent-foreground font-semibold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs hover:bg-accent-hover transition-all"
                 >
                   <Edit3 className="h-3.5 w-3.5" /> Edit Master Record
                 </button>
@@ -1079,7 +1079,7 @@ function EditDrugModal({
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
-        className="relative w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl z-10 overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-2xl bg-surface border border-border rounded-lg shadow-2xl z-10 overflow-hidden flex flex-col max-h-[90vh]"
       >
         <div className="p-5 border-b border-border flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -1101,7 +1101,7 @@ function EditDrugModal({
 
         <form onSubmit={handleSave} className="p-6 overflow-y-auto space-y-5 text-xs flex-1">
           {error && (
-            <div className="p-3 rounded-xl bg-danger/10 border border-danger/30 text-danger text-xs flex items-center gap-2">
+            <div className="p-3 rounded-md bg-danger/10 border border-danger/30 text-danger text-xs flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -1110,7 +1110,7 @@ function EditDrugModal({
           {/* Bilingual Names */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+              <label className="block text-xs font-semibold text-text-secondary uppercase">
                 Trade Name (English) *
               </label>
               <input
@@ -1119,12 +1119,12 @@ function EditDrugModal({
                 value={nameEn}
                 onChange={(e) => setNameEn(e.target.value)}
                 placeholder="e.g. Panadol Extra 500mg"
-                className="w-full h-9 px-3 rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full h-9 px-3 rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+              <label className="block text-xs font-semibold text-text-secondary uppercase">
                 Trade Name (Arabic)
               </label>
               <input
@@ -1133,7 +1133,7 @@ function EditDrugModal({
                 value={nameAr}
                 onChange={(e) => setNameAr(e.target.value)}
                 placeholder="مثال: بنادول إكسترا ٥٠٠ مجم"
-                className="w-full h-9 px-3 rounded-xl border border-border bg-surface text-text-primary text-right focus:outline-none focus:ring-2 focus:ring-accent/30 font-medium"
+                className="w-full h-9 px-3 rounded-md border border-border bg-surface text-text-primary text-right focus:outline-none focus:ring-2 focus:ring-accent/30 font-medium"
               />
             </div>
           </div>
@@ -1141,7 +1141,7 @@ function EditDrugModal({
           {/* Generic, Strength & SFDA */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+              <label className="block text-xs font-semibold text-text-secondary uppercase">
                 Generic Ingredient
               </label>
               <input
@@ -1149,12 +1149,12 @@ function EditDrugModal({
                 value={genericName}
                 onChange={(e) => setGenericName(e.target.value)}
                 placeholder="e.g. Paracetamol + Caffeine"
-                className="w-full h-9 px-3 rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full h-9 px-3 rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+              <label className="block text-xs font-semibold text-text-secondary uppercase">
                 Strength / Concentration
               </label>
               <input
@@ -1162,12 +1162,12 @@ function EditDrugModal({
                 value={strength}
                 onChange={(e) => setStrength(e.target.value)}
                 placeholder="e.g. 500 mg / 65 mg"
-                className="w-full h-9 px-3 rounded-xl border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full h-9 px-3 rounded-md border border-border bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+              <label className="block text-xs font-semibold text-text-secondary uppercase">
                 Drug Registration / Regulatory Code
               </label>
               <input
@@ -1175,13 +1175,13 @@ function EditDrugModal({
                 value={sfdaCode}
                 onChange={(e) => setSfdaCode(e.target.value)}
                 placeholder="e.g. NDC 0045-0449-01 or REG-19-847"
-                className="w-full h-9 px-3 rounded-xl border border-border bg-surface font-mono text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full h-9 px-3 rounded-md border border-border bg-surface font-mono text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
               />
             </div>
           </div>
 
           {/* Dosage & Packaging Conversions */}
-          <div className="p-4 rounded-xl bg-surface-2 border border-border space-y-4">
+          <div className="p-4 rounded-md bg-surface-2 border border-border space-y-4">
             <h4 className="font-semibold text-text-primary text-xs flex items-center gap-1.5">
               <Layers className="h-3.5 w-3.5 text-accent" />
               Dosage Form & Multi-Unit Packaging
@@ -1189,7 +1189,7 @@ function EditDrugModal({
 
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
               <div className="space-y-1.5">
-                <label className="block text-[10px] font-medium text-text-secondary uppercase">
+                <label className="block text-xs font-medium text-text-secondary uppercase">
                   Dosage Form
                 </label>
                 <select
@@ -1206,7 +1206,7 @@ function EditDrugModal({
               </div>
 
               <div className="space-y-1.5">
-                <label className="block text-[10px] font-medium text-text-secondary uppercase">
+                <label className="block text-xs font-medium text-text-secondary uppercase">
                   Package Unit
                 </label>
                 <select
@@ -1223,7 +1223,7 @@ function EditDrugModal({
               </div>
 
               <div className="space-y-1.5">
-                <label className="block text-[10px] font-medium text-text-secondary uppercase">
+                <label className="block text-xs font-medium text-text-secondary uppercase">
                   Units Per Package
                 </label>
                 <input
@@ -1236,7 +1236,7 @@ function EditDrugModal({
               </div>
 
               <div className="space-y-1.5">
-                <label className="block text-[10px] font-medium text-text-secondary uppercase">
+                <label className="block text-xs font-medium text-text-secondary uppercase">
                   Base Unit
                 </label>
                 <select
@@ -1253,14 +1253,14 @@ function EditDrugModal({
               </div>
             </div>
 
-            <p className="text-[10px] text-text-secondary italic">
+            <p className="text-xs text-text-secondary italic">
               Conversion: 1 {packageUnit} contains {unitsPerPack} {baseUnit}(s). All inventory stock is stored internally in base units for fractional dispensing.
             </p>
           </div>
 
           {/* Regulatory Flags & Pricing */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
+            <label className="flex items-center gap-2.5 p-3 rounded-md border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={isRx}
@@ -1269,11 +1269,11 @@ function EditDrugModal({
               />
               <div>
                 <div className="font-semibold text-text-primary text-xs">Prescription Required (Rx)</div>
-                <div className="text-[10px] text-text-secondary">Requires registered doctor Rx</div>
+                <div className="text-xs text-text-secondary">Requires registered doctor Rx</div>
               </div>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
+            <label className="flex items-center gap-2.5 p-3 rounded-md border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={isControlled}
@@ -1282,11 +1282,11 @@ function EditDrugModal({
               />
               <div>
                 <div className="font-semibold text-text-primary text-xs">Controlled Substance</div>
-                <div className="text-[10px] text-text-secondary">Special MOH schedule tracking</div>
+                <div className="text-xs text-text-secondary">Special MOH schedule tracking</div>
               </div>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
+            <label className="flex items-center gap-2.5 p-3 rounded-md border border-border bg-surface hover:bg-surface-2 cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={isPriceRegulated}
@@ -1295,14 +1295,14 @@ function EditDrugModal({
               />
               <div>
                 <div className="font-semibold text-text-primary text-xs">Price Regulated</div>
-                <div className="text-[10px] text-text-secondary">Enforce official price ceiling</div>
+                <div className="text-xs text-text-secondary">Enforce official price ceiling</div>
               </div>
             </label>
           </div>
 
           {/* Public Regulated Price */}
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+            <label className="block text-xs font-semibold text-text-secondary uppercase">
               Official Regulated Price Ceiling
             </label>
             <div className="relative max-w-xs">
@@ -1315,10 +1315,10 @@ function EditDrugModal({
                 min="0"
                 value={publicPrice}
                 onChange={(e) => setPublicPrice(Number(e.target.value))}
-                className="w-full h-9 pl-12 pr-3 rounded-xl border border-border bg-surface font-mono text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full h-9 pl-12 pr-3 rounded-md border border-border bg-surface font-mono text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
               />
             </div>
-            <span className="text-[10px] text-text-secondary">
+            <span className="text-xs text-text-secondary">
               Maximum legal consumer price per {packageUnit} specified by health authority.
             </span>
           </div>
@@ -1327,14 +1327,14 @@ function EditDrugModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-border text-text-secondary hover:text-text-primary cursor-pointer text-xs font-medium"
+              className="px-4 py-2 rounded-md border border-border text-text-secondary hover:text-text-primary cursor-pointer text-xs font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-5 py-2 rounded-xl bg-accent text-accent-foreground font-semibold text-xs cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50 flex items-center gap-1.5"
+              className="px-5 py-2 rounded-md bg-accent text-accent-foreground font-semibold text-xs cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50 flex items-center gap-1.5"
             >
               {isSaving ? (
                 <>
@@ -1399,7 +1399,7 @@ function BulkEditModal({
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
-        className="relative w-full max-w-md bg-surface border border-border rounded-2xl shadow-2xl z-10 overflow-hidden flex flex-col"
+        className="relative w-full max-w-md bg-surface border border-border rounded-lg shadow-2xl z-10 overflow-hidden flex flex-col"
       >
         <div className="p-5 border-b border-border flex items-center justify-between">
           <div>
@@ -1418,7 +1418,7 @@ function BulkEditModal({
 
         <form onSubmit={handleSubmit} className="p-5 space-y-4 text-xs">
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+            <label className="block text-xs font-semibold text-text-secondary uppercase">
               Prescription Requirement (Rx)
             </label>
             <select
@@ -1433,7 +1433,7 @@ function BulkEditModal({
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+            <label className="block text-xs font-semibold text-text-secondary uppercase">
               Controlled Substance Status
             </label>
             <select
@@ -1448,7 +1448,7 @@ function BulkEditModal({
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+            <label className="block text-xs font-semibold text-text-secondary uppercase">
               Price Regulation (Official Ceiling)
             </label>
             <select
@@ -1463,7 +1463,7 @@ function BulkEditModal({
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-text-secondary uppercase">
+            <label className="block text-xs font-semibold text-text-secondary uppercase">
               Dosage Form
             </label>
             <select
@@ -1484,14 +1484,14 @@ function BulkEditModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-border text-text-secondary hover:text-text-primary cursor-pointer"
+              className="px-4 py-2 rounded-md border border-border text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 rounded-xl bg-accent text-accent-foreground font-semibold cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50"
+              className="px-5 py-2 rounded-md bg-accent text-accent-foreground font-semibold cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50"
             >
               {isSubmitting ? "Updating..." : `Apply to ${selectedCount} Items`}
             </button>
@@ -1580,7 +1580,7 @@ function BulkImportModal({
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
-        className="relative w-full max-w-xl bg-surface border border-border rounded-2xl shadow-2xl z-10 overflow-hidden flex flex-col max-h-[85vh]"
+        className="relative w-full max-w-xl bg-surface border border-border rounded-lg shadow-2xl z-10 overflow-hidden flex flex-col max-h-[85vh]"
       >
         <div className="p-5 border-b border-border flex items-center justify-between">
           <div>
@@ -1599,7 +1599,7 @@ function BulkImportModal({
 
         <div className="p-5 overflow-y-auto space-y-4 text-xs flex-1">
           {parseError && (
-            <div className="p-3 rounded-xl bg-danger/10 border border-danger/30 text-danger text-xs flex items-center gap-2">
+            <div className="p-3 rounded-md bg-danger/10 border border-danger/30 text-danger text-xs flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{parseError}</span>
             </div>
@@ -1610,7 +1610,7 @@ function BulkImportModal({
             <button
               type="button"
               onClick={() => setJsonText(sampleTemplate)}
-              className="text-[11px] text-accent hover:underline cursor-pointer flex items-center gap-1"
+              className="text-xs text-accent hover:underline cursor-pointer flex items-center gap-1"
             >
               <Copy className="h-3 w-3" /> Load Sample Schema
             </button>
@@ -1621,10 +1621,10 @@ function BulkImportModal({
             value={jsonText}
             onChange={(e) => setJsonText(e.target.value)}
             placeholder="Paste your JSON array here..."
-            className="w-full p-3 font-mono text-xs rounded-xl border border-border bg-surface-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
+            className="w-full p-3 font-mono text-xs rounded-md border border-border bg-surface-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent/30"
           />
 
-          <div className="p-3 rounded-xl bg-accent/5 border border-accent/15 text-[11px] text-text-secondary space-y-1">
+          <div className="p-3 rounded-md bg-accent/5 border border-accent/15 text-xs text-text-secondary space-y-1">
             <p className="font-semibold text-text-primary">Regulatory Catalog Note:</p>
             <p>
               Each row must include a valid <code className="font-mono text-accent">productId</code> matching an existing catalog item in your pharmacy. Unmatched IDs will be flagged in the report.
@@ -1635,14 +1635,14 @@ function BulkImportModal({
         <div className="p-4 border-t border-border flex items-center justify-end gap-2.5">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl border border-border text-text-secondary hover:text-text-primary cursor-pointer text-xs"
+            className="px-4 py-2 rounded-md border border-border text-text-secondary hover:text-text-primary cursor-pointer text-xs"
           >
             Cancel
           </button>
           <button
             onClick={handleImport}
             disabled={isSubmitting}
-            className="px-5 py-2 rounded-xl bg-accent text-accent-foreground font-semibold text-xs cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50 flex items-center gap-1.5"
+            className="px-5 py-2 rounded-md bg-accent text-accent-foreground font-semibold text-xs cursor-pointer shadow-xs hover:bg-accent-hover transition-all disabled:opacity-50 flex items-center gap-1.5"
           >
             {isSubmitting ? "Importing..." : "Execute Bulk Import"}
           </button>

@@ -162,7 +162,7 @@ export default function PrintBarcodeDialog({ open, onOpenChange, barcode: propBa
                   </SelectContent>
                 </Select>
                 {printers.length === 0 && (
-                  <p className="text-[10px] text-text-secondary">
+                  <p className="text-xs text-text-secondary">
                     No installed printers detected. Make sure the printer driver is installed.
                   </p>
                 )}

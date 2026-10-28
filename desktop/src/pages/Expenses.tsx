@@ -120,7 +120,7 @@ export default function Expenses() {
           <Button key={cat} variant={category === cat ? "default" : "outline"} size="sm" onClick={() => setCategory(cat)}>{cat}</Button>
         ))}
       </div>
-      <div className="rounded-xl border border-border">
+      <div className="rounded-md border border-border">
         <DataTable columns={columns} data={filtered} loading={isLoading} keyExtractor={(e: Expense) => e.id} />
       </div>
       <Dialog open={open} onOpenChange={(v) => { if (!v) { setEditingId(null); } setOpen(v); }}>

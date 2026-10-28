@@ -409,7 +409,7 @@ export default function Stock() {
                   <Receipt className="h-4 w-4 text-accent" />
                 </div>
                 <div className="text-2xl font-bold font-mono text-text-primary">{formatCurrency(totalInvoicedAmount)}</div>
-                <p className="text-[11px] text-text-secondary mt-1">{purchaseInvoices.length} invoices recorded</p>
+                <p className="text-xs text-text-secondary mt-1">{purchaseInvoices.length} invoices recorded</p>
               </CardContent>
             </Card>
 
@@ -422,7 +422,7 @@ export default function Stock() {
                 <div className={cn("text-2xl font-bold font-mono", totalOutstandingAP > 0 ? "text-amber-500" : "text-emerald-500")}>
                   {formatCurrency(totalOutstandingAP)}
                 </div>
-                <p className="text-[11px] text-text-secondary mt-1">{unpaidInvoicesCount} invoices pending payment</p>
+                <p className="text-xs text-text-secondary mt-1">{unpaidInvoicesCount} invoices pending payment</p>
               </CardContent>
             </Card>
 
@@ -433,7 +433,7 @@ export default function Stock() {
                   <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                 </div>
                 <div className="text-2xl font-bold font-mono text-emerald-500">{paidInvoicesCount}</div>
-                <p className="text-[11px] text-text-secondary mt-1">Fully paid to distributors</p>
+                <p className="text-xs text-text-secondary mt-1">Fully paid to distributors</p>
               </CardContent>
             </Card>
 
@@ -444,7 +444,7 @@ export default function Stock() {
                   <Layers className="h-4 w-4 text-accent" />
                 </div>
                 <div className="text-2xl font-bold font-mono text-text-primary">{distributors.length}</div>
-                <p className="text-[11px] text-text-secondary mt-1">Verified distributors</p>
+                <p className="text-xs text-text-secondary mt-1">Verified distributors</p>
               </CardContent>
             </Card>
           </div>
@@ -479,7 +479,7 @@ export default function Stock() {
           </div>
 
           {/* Invoices Data Table */}
-          <div className="rounded-xl border border-border overflow-hidden bg-surface-1">
+          <div className="rounded-md border border-border overflow-hidden bg-surface-1">
             <DataTable
               loading={invoicesLoading}
               data={filteredInvoices}
@@ -509,7 +509,7 @@ export default function Stock() {
                   cell: (inv) => (
                     <div>
                       <div className="font-medium text-text-primary">{inv.distributorName || "—"}</div>
-                      {inv.distributorPhone && <div className="text-[11px] font-mono text-text-secondary">{inv.distributorPhone}</div>}
+                      {inv.distributorPhone && <div className="text-xs font-mono text-text-secondary">{inv.distributorPhone}</div>}
                     </div>
                   ),
                 },
@@ -552,7 +552,7 @@ export default function Stock() {
                       VOID: "bg-slate-500/10 text-slate-400 border-slate-500/20",
                     }[inv.status] || "bg-surface-2 text-text-secondary";
                     return (
-                      <span className={cn("px-2 py-0.5 rounded text-[11px] font-semibold border", colors)}>
+                      <span className={cn("px-2 py-0.5 rounded text-xs font-semibold border", colors)}>
                         {inv.status}
                       </span>
                     );
@@ -602,7 +602,7 @@ export default function Stock() {
             </Button>
           </div>
 
-          <div className="rounded-xl border border-border overflow-hidden bg-surface-1">
+          <div className="rounded-md border border-border overflow-hidden bg-surface-1">
             <DataTable
               loading={stockLoading}
               data={stockEntries.filter((s: StockPurchase) =>
@@ -654,7 +654,7 @@ export default function Stock() {
 
           <div className="space-y-6 pt-2">
             {/* Invoice Header Section */}
-            <div className="p-4 rounded-xl bg-surface-2 border border-border grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="p-4 rounded-md bg-surface-2 border border-border grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               <div>
                 <Label className="text-xs">Distributor *</Label>
                 <SearchableSelect
@@ -711,7 +711,7 @@ export default function Stock() {
                 </Button>
               </div>
 
-              <div className="rounded-xl border border-border overflow-hidden">
+              <div className="rounded-md border border-border overflow-hidden">
                 <table className="w-full text-xs text-left">
                   <thead className="bg-surface-2 text-text-secondary border-b border-border font-medium">
                     <tr>
@@ -834,7 +834,7 @@ export default function Stock() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-surface-2 border border-border space-y-2 text-sm">
+              <div className="p-4 rounded-md bg-surface-2 border border-border space-y-2 text-sm">
                 <div className="flex justify-between text-text-secondary">
                   <span>Subtotal:</span>
                   <span className="font-mono font-medium">{formatCurrency(subtotal)}</span>
@@ -922,7 +922,7 @@ export default function Stock() {
 
           {viewInvoice && (
             <div className="space-y-4 pt-1">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-surface-2 rounded-xl text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-surface-2 rounded-md text-xs">
                 <div>
                   <span className="text-text-secondary">Distributor:</span>
                   <p className="font-semibold text-text-primary text-sm mt-0.5">{viewInvoice.distributorName}</p>
@@ -944,7 +944,7 @@ export default function Stock() {
               {/* Line items table */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-2">Line Items & Batches</h4>
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className="rounded-md border border-border overflow-hidden">
                   <table className="w-full text-xs text-left">
                     <thead className="bg-surface-2 text-text-secondary border-b border-border">
                       <tr>
@@ -973,7 +973,7 @@ export default function Stock() {
               </div>
 
               {/* Financial Breakdown */}
-              <div className="p-3 bg-surface-2 rounded-xl flex justify-between items-center text-xs">
+              <div className="p-3 bg-surface-2 rounded-md flex justify-between items-center text-xs">
                 <div>
                   <span className="text-text-secondary">Total Billed: </span>
                   <span className="font-mono font-bold text-text-primary">{formatCurrency(viewInvoice.totalAmount)}</span>
@@ -1000,11 +1000,11 @@ export default function Stock() {
                         <div>
                           <span className="font-medium text-text-primary">{p.paymentMethod}</span>
                           {p.referenceNumber && <span className="font-mono text-text-secondary ml-2">({p.referenceNumber})</span>}
-                          {p.notes && <span className="text-text-secondary text-[11px] block">{p.notes}</span>}
+                          {p.notes && <span className="text-text-secondary text-xs block">{p.notes}</span>}
                         </div>
                         <div className="text-right">
                           <span className="font-mono font-bold text-emerald-500">{formatCurrency(p.amount)}</span>
-                          <span className="font-mono text-[10px] text-text-secondary block">{formatDate(p.paidAt)}</span>
+                          <span className="font-mono text-xs text-text-secondary block">{formatDate(p.paidAt)}</span>
                         </div>
                       </div>
                     ))}
