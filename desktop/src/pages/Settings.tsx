@@ -25,15 +25,6 @@ import ConfirmDialog from "@/components/shared/ConfirmDialog";
 import { AI_PRESETS, normalizeProvider } from "@/lib/aiProviders";
 import type { BackupEntry, GDriveConfig } from "@/types/electron";
 
-async function verifyAdminPassword(password: string): Promise<boolean> {
-  try {
-    const res = await api.auth.verifyPassword(password);
-    return res.valid;
-  } catch {
-    return false;
-  }
-}
-
 const defaultGDriveConfig: GDriveConfig = {
   clientId: "",
   clientSecret: "",
@@ -47,16 +38,8 @@ export default function Settings() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { user, refreshUser } = useAuth();
-  const [locked, setLocked] = useState(true);
-  const [adminUser, setAdminUser] = useState("");
-  const [adminPass, setAdminPass] = useState("");
-  const [loginError, setLoginError] = useState("");
-  const [loggingIn, setLoggingIn] = useState(false);
   const [backupStatus, setBackupStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [gdriveForm, setGdriveForm] = useState<GDriveConfig>(defaultGDriveConfig);
-  const [passwordDialog, setPasswordDialog] = useState<{ open: boolean; action: "create" | "restore"; backupName?: string }>({ open: false, action: "create" });
-  const [adminPassword, setAdminPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [backupDirectory, setBackupDirectory] = useState("");
   const [recoveryDialog, setRecoveryDialog] = useState<{ open: boolean; phrase: string }>({ open: false, phrase: "" });
   const [deleteBackup, setDeleteBackup] = useState<string | null>(null);
@@ -200,23 +183,6 @@ export default function Settings() {
     }
   }
 
-  async function handlePasswordConfirmed() {
-    setPasswordError("");
-    const ok = await verifyAdminPassword(adminPassword);
-    if (!ok) {
-      setPasswordError("Incorrect admin password");
-      return;
-    }
-    const { action, backupName } = passwordDialog;
-    setPasswordDialog({ open: false, action: "create" });
-    setAdminPassword("");
-    if (action === "restore" && backupName) {
-      restoreMutation.mutate(backupName);
-    } else {
-      backupMutation.mutate();
-    }
-  }
-
   function handleConnect() {
     const cfg = { ...gdriveForm, connected: true };
     saveGdriveMutation.mutate(cfg);
@@ -230,48 +196,6 @@ export default function Settings() {
 
   function handleSaveGdrive() {
     saveGdriveMutation.mutate(gdriveForm);
-  }
-
-  async function handleAdminLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setLoginError("");
-    setLoggingIn(true);
-    try {
-      const res = await api.auth.login(adminUser, adminPass);
-      setLocked(false);
-    } catch {
-      setLoginError("Invalid admin credentials");
-    } finally {
-      setLoggingIn(false);
-    }
-  }
-
-  if (locked) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-full max-w-sm space-y-6">
-          <div className="text-center space-y-2">
-            <Lock className="h-10 w-10 mx-auto text-accent" />
-            <h1 className="text-xl font-semibold">Admin Access Required</h1>
-            <p className="text-sm text-text-secondary">Enter admin credentials to access settings</p>
-          </div>
-          <form onSubmit={handleAdminLogin} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="settings-admin-user">Username</Label>
-              <Input id="settings-admin-user" value={adminUser} onChange={(e) => setAdminUser(e.target.value)} autoFocus />
-            </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="settings-admin-pass">Password</Label>
-              <Input id="settings-admin-pass" type="password" value={adminPass} onChange={(e) => setAdminPass(e.target.value)} />
-            </div>
-            {loginError && <p className="text-sm text-danger">{loginError}</p>}
-            <Button type="submit" className="w-full" disabled={loggingIn || !adminUser || !adminPass}>
-              {loggingIn ? "Verifying..." : "Unlock Settings"}
-            </Button>
-          </form>
-        </div>
-      </div>
-    );
   }
 
   const totalBackupSize = backups.reduce((sum: number, b: BackupEntry) => sum + b.size, 0);
@@ -410,7 +334,7 @@ export default function Settings() {
                           ...prev,
                           countryCode: c.code,
                           countryName: c.name,
-                          currency: prev.currency || c.currency,
+                          currency: c.currency,
                           phone:
                             !prev.phone || prev.phone.startsWith("+")
                               ? c.dialCode + " "
@@ -559,13 +483,13 @@ export default function Settings() {
                   Create Backup
                 </CardTitle>
                 <CardDescription>
-                  Create a backup of the entire database. Files are saved to the backups directory. Admin password required.
+                  Create a backup of the entire database. Files are saved to the backups directory.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Button
-                    onClick={() => { setAdminPassword(""); setPasswordError(""); setPasswordDialog({ open: true, action: "create" }); }}
+                    onClick={() => backupMutation.mutate()}
                     disabled={backupMutation.isPending}
                     className="gap-2"
                   >
@@ -680,7 +604,7 @@ export default function Settings() {
                           </div>
                           <div className="flex items-center gap-1 shrink-0">
                             <button
-                              onClick={() => { setAdminPassword(""); setPasswordError(""); setPasswordDialog({ open: true, action: "restore", backupName: backup.name }); }}
+                              onClick={() => restoreMutation.mutate(backup.name)}
                               className="h-8 w-8 rounded-md flex items-center justify-center text-text-secondary hover:text-accent hover:bg-accent/5 transition-colors"
                               title="Restore from this backup"
                             >
@@ -847,39 +771,6 @@ export default function Settings() {
           </div>
         </TabsContent>
       </Tabs>
-
-      <Dialog open={passwordDialog.open} onOpenChange={(o) => { if (!o) { setPasswordDialog({ open: false, action: "create" }); setAdminPassword(""); setPasswordError(""); } }}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Lock className="h-4 w-4" />
-              Admin Password Required
-            </DialogTitle>
-            <DialogDescription>
-              {passwordDialog.action === "restore"
-                ? "Restoring will overwrite the current database. Enter your admin password to confirm."
-                : "Enter your admin password to create a database backup."}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3">
-            <div>
-              <Input
-                type="password"
-                value={adminPassword}
-                onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Enter password"
-                autoFocus
-                onKeyDown={(e) => { if (e.key === "Enter") handlePasswordConfirmed(); }}
-              />
-            </div>
-            {passwordError && <p className="text-sm text-danger">{passwordError}</p>}
-            <div className="flex gap-2 justify-end">
-              <Button variant="outline" onClick={() => { setPasswordDialog({ open: false, action: "create" }); setAdminPassword(""); setPasswordError(""); }}>Cancel</Button>
-              <Button onClick={handlePasswordConfirmed} disabled={!adminPassword}>Confirm</Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
 
       <Dialog open={recoveryDialog.open} onOpenChange={(o) => { if (!o) setRecoveryDialog({ open: false, phrase: "" }); }}>
         <DialogContent>

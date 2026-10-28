@@ -18,8 +18,7 @@ import {
 } from "lucide-react";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
-import CountrySelect from "@/components/shared/CountrySelect";
-import { type Country } from "@/lib/countries";
+
 
 // ─── Tiny primitives ───────────────────────────────────────────────────────────
 
@@ -574,22 +573,12 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [countryCode, setCountryCode] = useState("SA");
-  const [countryName, setCountryName] = useState("Saudi Arabia");
-  const [currency, setCurrency] = useState("SAR");
-  const [phone, setPhone] = useState("+966 ");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [showPw, setShowPw] = useState(false);
+  const [showConfirmPw, setShowConfirmPw] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  function handleCountrySelect(c: Country) {
-    setCountryCode(c.code);
-    setCountryName(c.name);
-    setCurrency(c.currency);
-    setPhone(c.dialCode + " ");
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -607,16 +596,11 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
       username: username.trim(),
       password,
       email: email.trim() || undefined,
-      phone: phone.trim() || undefined,
-      countryCode,
-      countryName,
-      currency,
     });
     if (err) {
       setError(err);
       setLoading(false);
     } else {
-      localStorage.setItem("smartpharma_currency", currency);
       onRegistered();
     }
   }
@@ -650,13 +634,6 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
           hint="Used for password recovery and 7-day email verification via Resend."
         />
 
-        {/* Country combobox */}
-        <CountrySelect
-          value={countryCode}
-          onChange={handleCountrySelect}
-          label="Country & Regional Currency"
-        />
-
         <Field
           id="reg-password"
           label="Password"
@@ -670,7 +647,19 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
             </button>
           }
         />
-        <Field id="reg-confirm" label="Confirm password" type="password" value={confirm} onChange={setConfirm} placeholder="Repeat your password" />
+        <Field
+          id="reg-confirm"
+          label="Confirm password"
+          type={showConfirmPw ? "text" : "password"}
+          value={confirm}
+          onChange={setConfirm}
+          placeholder="Repeat your password"
+          suffix={
+            <button type="button" onClick={() => setShowConfirmPw(!showConfirmPw)} className="text-text-secondary hover:text-text-primary transition-colors">
+              {showConfirmPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          }
+        />
 
         {error && (
           <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-danger bg-danger/5 border border-danger/15 rounded-lg px-3 py-2 text-center">

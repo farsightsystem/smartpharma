@@ -35,10 +35,23 @@ export class ApiError extends Error {
   }
 }
 
+function ensureScheme(url: string): string {
+  return /^https?:\/\//i.test(url) ? url : `http://${url}`;
+}
+
 function getApiUrl(): string {
   const cfg = window.appConfig?.serverUrl?.trim();
-  if (cfg) return cfg;
-  return process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3003";
+  if (cfg) return ensureScheme(cfg);
+  // `process` is a Node global and is NOT available in the browser (Vite/Next.js client).
+  // Read it defensively so we never throw "process is not defined", then fall back
+  // to a scheme-correct local URL.
+  let envUrl: string | undefined;
+  if (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_API_URL) {
+    envUrl = process.env.NEXT_PUBLIC_API_URL;
+  } else if (typeof import.meta !== "undefined" && import.meta.env) {
+    envUrl = (import.meta.env as unknown as Record<string, string | undefined>).NEXT_PUBLIC_API_URL;
+  }
+  return ensureScheme(envUrl?.trim() || "http://localhost:3003");
 }
 
 function getToken(): string | null {

@@ -202,7 +202,7 @@ function StepPharmacy({
             onChange({
               country: c.code,
               countryName: c.name,
-              currency: data.currency || c.currency,
+              currency: c.currency,
               phone: !data.phone || data.phone.startsWith("+") ? c.dialCode + " " : data.phone,
             })
           }

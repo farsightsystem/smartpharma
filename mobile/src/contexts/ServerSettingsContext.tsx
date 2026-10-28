@@ -14,7 +14,7 @@ interface ServerSettingsValue {
 const ServerSettingsContext = createContext<ServerSettingsValue | null>(null);
 
 const STORAGE_KEY = 'faraz_server_url';
-const DEFAULT_URL = 'http://localhost:3001';
+const DEFAULT_URL = 'http://localhost:3003';
 
 function resolveDefaultUrl(): string {
   if (Platform.OS === 'web') return DEFAULT_URL;

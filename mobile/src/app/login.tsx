@@ -30,6 +30,7 @@ export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -203,13 +204,23 @@ export default function LoginScreen() {
             {mode === 'register' ? (
               <View style={styles.field}>
                 <Text style={[styles.label, { color: theme.textSecondary }]}>Confirm Password</Text>
-                <Input
-                  value={confirmPassword}
-                  onChangeText={setConfirmPassword}
-                  placeholder="Repeat password"
-                  secureTextEntry={!showPassword}
-                  returnKeyType="next"
-                />
+                <View style={styles.passwordRow}>
+                  <Input
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    placeholder="Repeat password"
+                    secureTextEntry={!showConfirmPassword}
+                    returnKeyType="next"
+                    containerStyle={styles.passwordInput}
+                  />
+                  <Pressable onPress={() => setShowConfirmPassword((v) => !v)} style={styles.eyeBtn} hitSlop={8}>
+                    <Ionicons
+                      name={showConfirmPassword ? 'eye-off-outline' : 'eye-outline'}
+                      size={20}
+                      color={theme.textSecondary}
+                    />
+                  </Pressable>
+                </View>
               </View>
             ) : null}
 
