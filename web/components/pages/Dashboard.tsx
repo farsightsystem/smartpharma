@@ -16,6 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/lib/api";
 import { formatCurrency } from "@/lib/utils";
+import SetupChecklist from "@/components/shared/SetupChecklist";
 
 const sectionVariants: any = {
   hidden: { opacity: 0, y: 12 },
@@ -94,6 +95,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-10">
+      <SetupChecklist />
       {/* ======================================================== */}
       {/* MOYASAR HERO CARD: TODAY OVERVIEW + MULTI-LAYER CHART   */}
       {/* ======================================================== */}

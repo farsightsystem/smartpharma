@@ -53,6 +53,7 @@ export default function PosScreen() {
   const [lastSale, setLastSale] = useState<Sale | null>(null);
   const [lastChange, setLastChange] = useState(0);
   const [receiptOpen, setReceiptOpen] = useState(false);
+  const [scanPressed, setScanPressed] = useState(false);
 
   const numPaid = Number(amountPaid) || 0;
   const change = Math.max(0, numPaid - cart.total);
@@ -92,6 +93,17 @@ export default function PosScreen() {
     }, [loadBrowse])
   );
 
+  // Auto-fill cash amount = total when items are added (one-tap cash checkout)
+  useEffect(() => {
+    if (cart.items.length > 0 && !amountPaid) {
+      setAmountPaid(String(cart.total));
+    }
+    if (cart.items.length === 0) {
+      setAmountPaid('');
+      setCheckoutError('');
+    }
+  }, [cart.items.length, cart.total, amountPaid]);
+
   const displayProducts = debounced.trim() ? results : browse;
 
   function handleBarcodeOrAdd(product: Product) {
@@ -117,6 +129,20 @@ export default function PosScreen() {
       .then(setCustomers)
       .catch(() => setCustomers([]))
       .finally(() => setCustomerLoading(false));
+  }
+
+  async function handleScan(barcode: string) {
+    setScanPressed(false);
+    try {
+      const product = await api.products.getByBarcode(barcode);
+      if (product) {
+        handleBarcodeOrAdd(product);
+      } else {
+        setCheckoutError(`No product found for barcode: ${barcode}`);
+      }
+    } catch {
+      setCheckoutError('Failed to scan product. Try again.');
+    }
   }
 
   async function handleCheckout() {
@@ -154,6 +180,9 @@ export default function PosScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.background }]} edges={['top']}>
       <View style={styles.header}>
+        <Pressable onPress={() => setScanPressed(true)} style={styles.scanBtn}>
+          <Ionicons name="barcode-outline" size={20} color={theme.accent} />
+        </Pressable>
         <Text style={[styles.title, { color: theme.text, fontFamily: Fonts.sans }]}>Point of Sale</Text>
         <Pressable onPress={cart.clearCart} disabled={cart.items.length === 0} style={styles.newSaleBtn}>
           <Ionicons
@@ -242,12 +271,13 @@ export default function PosScreen() {
           ListFooterComponent={
             cart.items.length > 0 ? (
               <View style={styles.checkout}>
+                {/* Customer (optional, secondary) */}
                 <Pressable onPress={openCustomerModal} style={[styles.customerPicker, { borderColor: theme.border }]}>
-                  <Ionicons name="person-outline" size={18} color={theme.accent} />
-                  <Text style={[styles.customerText, { color: theme.text }]}>
-                    {cart.customerName || 'Select customer (optional)'}
+                  <Ionicons name="person-outline" size={16} color={theme.textSecondary} />
+                  <Text style={[styles.customerText, { color: theme.textSecondary }]}>
+                    {cart.customerName || 'Customer (optional)'}
                   </Text>
-                  <Ionicons name="chevron-forward" size={16} color={theme.mutedFg} />
+                  <Ionicons name="chevron-forward" size={14} color={theme.mutedFg} />
                 </Pressable>
 
                 <View style={styles.rowBetween}>
@@ -256,29 +286,7 @@ export default function PosScreen() {
                     {formatCurrency(cart.subtotal)}
                   </Text>
                 </View>
-                <View style={styles.discountRow}>
-                  <Pressable onPress={cart.toggleDiscountType} style={[styles.typeBtn, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-                    <Text style={[styles.typeBtnText, { color: theme.textSecondary }]}>
-                      {cart.discountType === 'pkr' ? 'PKR' : '%'}
-                    </Text>
-                  </Pressable>
-                  <TextInput
-                    value={cart.discountValue ? String(cart.discountValue) : ''}
-                    onChangeText={(t) => cart.setDiscountValue(Number(t) || 0)}
-                    placeholder="Discount"
-                    placeholderTextColor={theme.mutedFg}
-                    keyboardType="numeric"
-                    style={[styles.discountInput, { borderColor: theme.border, color: theme.text, fontFamily: Fonts.mono }]}
-                  />
-                </View>
-                {cart.discount > 0 && (
-                  <View style={styles.rowBetween}>
-                    <Text style={[styles.rowLabel, { color: theme.success }]}>Discount</Text>
-                    <Text style={[styles.rowValue, { color: theme.success, fontFamily: Fonts.mono }]}>
-                      -{formatCurrency(cart.discount)}
-                    </Text>
-                  </View>
-                )}
+
                 <View style={styles.totalRow}>
                   <Text style={[styles.totalLabel, { color: theme.text, fontFamily: Fonts.sans }]}>Total</Text>
                   <Text style={[styles.totalValue, { color: theme.text, fontFamily: Fonts.mono }]}>
@@ -286,10 +294,11 @@ export default function PosScreen() {
                   </Text>
                 </View>
 
+                {/* Auto-filled cash amount */}
                 <TextInput
                   value={amountPaid}
                   onChangeText={setAmountPaid}
-                  placeholder="Amount paid"
+                  placeholder="Cash received"
                   placeholderTextColor={theme.mutedFg}
                   keyboardType="numeric"
                   style={[styles.paidInput, { borderColor: theme.border, color: theme.text, fontFamily: Fonts.mono }]}
@@ -301,24 +310,8 @@ export default function PosScreen() {
                   </Text>
                 )}
 
-                {isPartial && (
-                  <Pressable style={styles.arrearsRow} onPress={() => cart.setAddToArrears(!cart.addToArrears)}>
-                    <View
-                      style={[
-                        styles.checkbox,
-                        { borderColor: cart.addToArrears ? theme.accent : theme.border },
-                        cart.addToArrears && { backgroundColor: theme.accent },
-                      ]}>
-                      {cart.addToArrears && <Ionicons name="checkmark" size={13} color={theme.accentFg} />}
-                    </View>
-                    <Text style={[styles.arrearsLabel, { color: theme.textSecondary }]}>
-                      Add remaining to arrears
-                    </Text>
-                  </Pressable>
-                )}
-
                 {isPartial && !cart.customerId && (
-                  <Text style={[styles.hint, { color: theme.danger }]}>Select a customer for partial payment</Text>
+                  <Text style={[styles.hint, { color: theme.danger }]}>Add a customer for partial payment</Text>
                 )}
 
                 {checkoutError ? (
@@ -328,11 +321,12 @@ export default function PosScreen() {
                 <Button
                   fullWidth
                   size="lg"
-                  disabled={!canPay}
+                  disabled={!canPay || processing}
                   loading={processing}
                   onPress={handleCheckout}
-                  variant={canPay ? 'primary' : 'secondary'}>
-                  {canPay ? `Pay ${formatCurrency(cart.total)}` : 'Enter payment to checkout'}
+                  variant={canPay ? 'primary' : 'secondary'}
+                >
+                  {canPay ? `Pay ${formatCurrency(cart.total)}` : 'Add items to checkout'}
                 </Button>
               </View>
             ) : null
@@ -425,7 +419,7 @@ export default function PosScreen() {
                     </View>
                     <View style={styles.customerInfo}>
                       <Text style={[styles.customerName, { color: theme.text }]}>{item.name}</Text>
-                      <Text style={[styles.customerPhone, { color: theme.textSecondary }]}>
+                      <Text style={{ fontSize: 12, color: theme.textSecondary }}>
                         {item.phone || 'No phone'}
                         {item.outstanding_arrear ? ` · Arrear: ${formatCurrency(item.outstanding_arrear)}` : ''}
                       </Text>
@@ -482,6 +476,13 @@ export default function PosScreen() {
           </View>
         </View>
       </Modal>
+
+      <ScanModal
+        visible={scanPressed}
+        onClose={() => setScanPressed(false)}
+        onScan={handleScan}
+        theme={theme}
+      />
     </SafeAreaView>
   );
 }
@@ -520,6 +521,9 @@ function SegBtn({
 }
 
 const styles = StyleSheet.create({
+  scanBtn: {
+    padding: 8,
+  },
   safe: {
     flex: 1,
   },
@@ -597,8 +601,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.two,
     borderWidth: 1,
-    borderRadius: 12,
-    padding: Spacing.three,
+    borderRadius: 10,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
   },
   customerText: {
     flex: 1,
@@ -803,7 +808,106 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
   },
-  customerPhone: {
-    fontSize: 12,
+  scanBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: Spacing.three,
+  },
+  scanSheet: {
+    width: '100%',
+    maxWidth: 340,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    backgroundColor: '#FFFFFF',
+    padding: Spacing.four,
+    gap: Spacing.three,
+  },
+  scanHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  scanTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    fontFamily: Fonts.sans,
+  },
+  scanHint: {
+    fontSize: 13,
+    color: '#64748B',
+    marginBottom: 8,
+  },
+  scanInput: {
+    height: 52,
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingHorizontal: Spacing.three,
+    fontSize: 18,
+    fontFamily: Fonts.mono,
+    textAlign: 'center',
+  },
+  scanActions: {
+    flexDirection: 'row',
+    gap: Spacing.three,
+    marginTop: 8,
   },
 });
+
+function ScanModal({
+  visible,
+  onClose,
+  onScan,
+  theme,
+}: {
+  visible: boolean;
+  onClose: () => void;
+  onScan: (code: string) => void;
+  theme: ReturnType<typeof useThemeColor>;
+}) {
+  const [code, setCode] = useState('');
+
+  return (
+    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+      <View style={styles.scanBackdrop}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.scanSheet, { backgroundColor: theme.surface }]}>
+          <View style={styles.scanHeader}>
+            <Text style={[styles.scanTitle, { color: theme.text, fontFamily: Fonts.sans }]}>Scan Barcode</Text>
+            <Pressable onPress={onClose}>
+              <Ionicons name="close" size={24} color={theme.textSecondary} />
+            </Pressable>
+          </View>
+          <Text style={[styles.scanHint, { color: theme.textSecondary }]}>Enter or scan the product barcode</Text>
+          <TextInput
+            value={code}
+            onChangeText={setCode}
+            placeholder="0123456789"
+            keyboardType="numeric"
+            autoFocus
+            style={[styles.scanInput, { borderColor: theme.border, color: theme.text }]}
+          />
+          <View style={styles.scanActions}>
+            <Button variant="outline" onPress={onClose}>
+              Cancel
+            </Button>
+            <Button
+              onPress={() => {
+                if (code.trim()) {
+                  onScan(code.trim());
+                  onClose();
+                }
+              }}
+              disabled={!code.trim()}
+            >
+              Scan
+            </Button>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+}

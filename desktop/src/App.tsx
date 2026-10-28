@@ -170,20 +170,8 @@ function AppShell() {
     return (
       <Login
         onRegistered={() => {
-          localStorage.setItem("pharma360_onboarding_pending", "true");
-          setShowOnboarding(true);
-        }}
-      />
-    );
-  }
-
-  if (showOnboarding && !isPlatform) {
-    return (
-      <Onboarding
-        onComplete={() => {
-          localStorage.removeItem("pharma360_onboarding_pending");
-          setShowOnboarding(false);
-          navigate("/pos");
+          localStorage.setItem("pharma360_setup_pending", "true");
+          navigate("/dashboard");
         }}
       />
     );

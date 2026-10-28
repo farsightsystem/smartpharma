@@ -567,7 +567,8 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
 
 function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegistered: () => void }) {
   const { register } = useAuth();
-  const [name, setName] = useState("");
+  const [pharmacyName, setPharmacyName] = useState("");
+  const [ownerName, setOwnerName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -580,19 +581,20 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    if (!name.trim() || !username.trim() || !password) return;
+    if (!pharmacyName.trim() || !ownerName.trim() || !username.trim() || !password) return;
     if (password.length < 8) { setError("Password must be at least 8 characters"); return; }
     if (password !== confirm) { setError("Passwords do not match"); return; }
 
     setLoading(true);
-    const tempPharmacyName = `${name.trim()} Pharmacy ${Date.now().toString().slice(-4)}`;
     const err = await register({
-      pharmacyName: tempPharmacyName,
+      pharmacyName: pharmacyName.trim(),
       branchName: "Main Branch",
-      name: name.trim(),
+      name: ownerName.trim(),
       username: username.trim(),
       password,
       email: email.trim() || undefined,
+      // Express onboarding: country/currency/phone auto-set (SA / SAR / +966)
+      // Admin can update these later from Settings > Pharmacy Profile
     });
     if (err) {
       setError(err);
@@ -610,25 +612,27 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
           <div className="h-6 w-6 rounded-md bg-foreground flex items-center justify-center">
             <span className="text-background text-[10px] font-bold">Rx</span>
           </div>
-          <span className="text-text-primary font-semibold text-sm">Pharma 360</span>
+          <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
-        <h1 className="text-2xl font-bold text-text-primary tracking-tight">Create your account</h1>
-        <p className="text-sm text-text-secondary mt-1">Start your 30-day trial with full ERP access</p>
+        <h1 className="text-2xl font-bold text-text-primary tracking-tight">Create your pharmacy</h1>
+        <p className="text-sm text-text-secondary mt-1">Start selling in 30 seconds. Finish setup later.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3.5">
-        <Field id="reg-name" label="Your Full Name" value={name} onChange={setName} placeholder="e.g. Dr. Ahmed Al-Rashid" autoFocus />
+        <Field id="reg-pharmacy" label="Pharmacy Name" value={pharmacyName} onChange={setPharmacyName} placeholder="e.g. Al Shifa Pharmacy" autoFocus />
+        <Field id="reg-owner" label="Owner Name" value={ownerName} onChange={setOwnerName} placeholder="e.g. Dr. Ahmed Al-Rashid" />
         <Field id="reg-username" label="Username" value={username} onChange={setUsername} placeholder="Unique username to sign in" />
         
         {/* Email field for Resend verification & 7-day grace period */}
         <Field
           id="reg-email"
-          label="Administrator Email"
+          label="Administrator Email (optional)"
           type="email"
           value={email}
           onChange={setEmail}
           placeholder="admin@pharmacy.com"
-          hint="Used for password recovery and 7-day email verification via Resend."
+          hint="Used for password recovery and email verification."
+          optional
         />
 
         <Field
@@ -664,7 +668,7 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
           </motion.p>
         )}
 
-        <SubmitButton loading={loading} label="Create Account & Continue" loadingLabel="Setting up..." />
+        <SubmitButton loading={loading} label="Create Pharmacy & Start Selling" loadingLabel="Setting up..." />
 
         <button
           type="button"
