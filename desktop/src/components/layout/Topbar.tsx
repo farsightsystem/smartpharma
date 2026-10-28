@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Server, Monitor, Sun, Moon, RefreshCw, Database, Wifi, Clock, ChevronDown } from "lucide-react";
+import { Server, Monitor, Sun, Moon, RefreshCw, Database, Wifi, Clock } from "lucide-react";
 import { useServerConnection } from "@/contexts/ServerConnectionContext";
 import { useAuth } from "@/contexts/AuthContext";
 import GlobalSearch from "@/components/shared/GlobalSearch";
+import BranchSwitcher from "@/components/layout/BranchSwitcher";
 
 const pageLabels: Record<string, { title: string; subtitle: string }> = {
   "/platform": { title: "Platform Admin", subtitle: "Registered pharmacies & subscriptions" },
@@ -100,12 +101,7 @@ export default function Topbar() {
 
           {!isPlatform && <GlobalSearch />}
 
-          {!isPlatform && (
-            <div className="flex items-center gap-1 text-xs text-text-secondary hover:text-primary transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-surface/50 border border-transparent hover:border-border/40">
-              <span className="truncate">{user?.branchName || "Main Branch"}</span>
-              <ChevronDown className="h-3 w-3 shrink-0 opacity-70" />
-            </div>
-          )}
+          {!isPlatform && <BranchSwitcher />}
         </div>
 
         <div className="flex items-center gap-3">

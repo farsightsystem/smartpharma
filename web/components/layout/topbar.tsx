@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Sun, Moon, Wifi, Clock, ChevronDown } from "lucide-react";
+import { Sun, Moon, Wifi, Clock } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import GlobalSearch from "@/components/shared/GlobalSearch";
+import BranchSwitcher from "@/components/shared/BranchSwitcher";
 
 const pageLabels: Record<string, { title: string; subtitle: string }> = {
   "/": { title: "Dashboard", subtitle: "Business overview & metrics" },
@@ -94,12 +95,7 @@ export default function Topbar() {
 
           {!isPlatform && <GlobalSearch />}
 
-          {!isPlatform && (
-            <div className="flex items-center gap-1 text-xs text-text-secondary hover:text-primary transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-surface/50 border border-transparent hover:border-border/40">
-              <span className="truncate">{user?.branchName || "Main Branch"}</span>
-              <ChevronDown className="h-3 w-3 shrink-0 opacity-70" />
-            </div>
-          )}
+          {!isPlatform && <BranchSwitcher />}
         </div>
 
         {/* Right Section: Time, Online Status, Theme Toggle */}
