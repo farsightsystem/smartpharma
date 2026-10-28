@@ -5,7 +5,7 @@ import {
   LayoutDashboard, ShoppingCart, FileText, Package, Boxes, Users, CreditCard,
   Factory, Building2, Tags, Undo2, Wallet, BarChart3, Receipt, Barcode, Settings,
   LogOut, PanelLeftClose, BrainCircuit, ListChecks, MessageSquare, ShieldCheck, Activity, ScanLine,
-  UserCog, KeyRound, Store, Globe, ChevronDown, MoreVertical
+  UserCog, KeyRound, Store, Globe, ChevronDown, MoreVertical, ChevronLeft, ChevronRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
@@ -21,21 +21,29 @@ interface NavItem {
   roles?: string[];
 }
 
-interface NavSection {
-  title: string;
+interface NavPartition {
+  key: string;
+  label: string;
+  icon: any;
   items: NavItem[];
+  direct?: boolean;
 }
 
-const tenantNavSections: NavSection[] = [
+const tenantNavPartitions: NavPartition[] = [
   {
-    title: "Home",
+    key: "home",
+    label: "Home",
+    icon: LayoutDashboard,
     items: [
       { href: "/dashboard", label: "Analytics & Overview", icon: LayoutDashboard },
       { href: "/reports", label: "Financial Reports", icon: BarChart3, badge: "Beta", badgeColor: "bg-purple-500/10 text-purple-600 border-purple-500/20" },
     ],
+    direct: true,
   },
   {
-    title: "Services",
+    key: "services",
+    label: "Services",
+    icon: ShoppingCart,
     items: [
       { href: "/pos", label: "Point of Sale", icon: ShoppingCart },
       { href: "/dispensing", label: "Dispensing & Rx", icon: FileText },
@@ -45,7 +53,19 @@ const tenantNavSections: NavSection[] = [
     ],
   },
   {
-    title: "Inventory",
+    key: "finance",
+    label: "Finance",
+    icon: CreditCard,
+    items: [
+      { href: "/arrears", label: "Customer Arrears", icon: CreditCard },
+      { href: "/expenses", label: "Expenses", icon: Wallet },
+      { href: "/billing", label: "Subscription & Billing", icon: CreditCard, roles: ["admin", "owner"] },
+    ],
+  },
+  {
+    key: "inventory",
+    label: "Inventory",
+    icon: Boxes,
     items: [
       { href: "/products", label: "Products Master", icon: Package },
       { href: "/stock", label: "Purchasing", icon: Boxes },
@@ -57,15 +77,9 @@ const tenantNavSections: NavSection[] = [
     ],
   },
   {
-    title: "Finance",
-    items: [
-      { href: "/arrears", label: "Customer Arrears", icon: CreditCard },
-      { href: "/expenses", label: "Expenses", icon: Wallet },
-      { href: "/billing", label: "Subscription & Billing", icon: CreditCard, roles: ["admin", "owner"] },
-    ],
-  },
-  {
-    title: "AI Copilot",
+    key: "ai",
+    label: "AI Copilot",
+    icon: BrainCircuit,
     items: [
       { href: "/ai", label: "AI Overview", icon: BrainCircuit },
       { href: "/ai/recommendations", label: "AI Recommendations", icon: ListChecks },
@@ -75,7 +89,9 @@ const tenantNavSections: NavSection[] = [
     ],
   },
   {
-    title: "Configuration",
+    key: "config",
+    label: "Configuration",
+    icon: Settings,
     items: [
       { href: "/users", label: "Team & Staff", icon: UserCog, roles: ["admin", "owner"] },
       { href: "/roles", label: "Roles & Permissions", icon: KeyRound, roles: ["admin", "owner"] },
@@ -86,9 +102,11 @@ const tenantNavSections: NavSection[] = [
   },
 ];
 
-const platformNavSections: NavSection[] = [
+const platformNavPartitions: NavPartition[] = [
   {
-    title: "Platform",
+    key: "platform",
+    label: "Platform",
+    icon: Globe,
     items: [
       { href: "/platform", label: "Registered Pharmacies", icon: Globe },
       { href: "/platform", label: "Subscriptions", icon: CreditCard },
@@ -96,37 +114,49 @@ const platformNavSections: NavSection[] = [
   },
 ];
 
+function filterItems(items: NavItem[], user: { role?: string; jobRole?: string } | null): NavItem[] {
+  const currentRole = (user?.role || "admin").toLowerCase();
+  const currentJob = (user?.jobRole || "").toLowerCase();
+  return items.filter((item) => {
+    if (!item.roles) return true;
+    if (currentRole === "admin" || currentRole === "owner") return true;
+    if (item.roles.includes(currentRole)) return true;
+    if (currentJob && item.roles.includes(currentJob)) return true;
+    return false;
+  });
+}
+
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, user } = useAuth();
-  const pathname = location.pathname;
   const [collapsed, setCollapsed] = useState(false);
   const [posWindowCount, setPosWindowCount] = useState(0);
   const [pendingApprovals, setPendingApprovals] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [drillDown, setDrillDown] = useState<NavPartition | null>(null);
 
   const isPlatform = user?.role === "platform";
+  const pathname = location.pathname;
 
-  // Filter sections by role
-  const sections = useMemo(() => {
-    if (isPlatform) return platformNavSections;
-    const currentRole = (user?.role || "admin").toLowerCase();
-    const currentJob = (user?.jobRole || "").toLowerCase();
-
-    return tenantNavSections
-      .map((section) => ({
-        ...section,
-        items: section.items.filter((item) => {
-          if (!item.roles) return true;
-          if (currentRole === "admin" || currentRole === "owner") return true;
-          if (item.roles.includes(currentRole)) return true;
-          if (currentJob && item.roles.includes(currentJob)) return true;
-          return false;
-        }),
-      }))
-      .filter((section) => section.items.length > 0);
+  const partitions = useMemo(() => {
+    if (isPlatform) return platformNavPartitions;
+    return tenantNavPartitions.map((p) => ({
+      ...p,
+      items: filterItems(p.items, user),
+    })).filter((p) => p.items.length > 0);
   }, [isPlatform, user?.role, user?.jobRole]);
+
+  const activePartition = useMemo(() => {
+    if (drillDown) return drillDown;
+    return partitions.find((p) =>
+      p.items.some((item) =>
+        pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"))
+      )
+    ) ?? null;
+  }, [drillDown, partitions, pathname]);
+
+  const isHomeView = !drillDown;
 
   const fetchWindowCount = useCallback(async () => {
     try {
@@ -155,24 +185,36 @@ export default function Sidebar() {
     return () => clearInterval(interval);
   }, [fetchPendingApprovals, isPlatform]);
 
+  const handlePartitionClick = (partition: NavPartition) => {
+    if (partition.direct) {
+      navigate(partition.items[0].href);
+    }
+    setDrillDown(partition);
+  };
+
+  const handleItemClick = (href: string) => {
+    navigate(href);
+  };
+
+  const handleBackToHome = () => {
+    setDrillDown(null);
+  };
+
   return (
     <aside
       className={cn(
         "h-full bg-surface flex flex-col shrink-0 transition-all duration-300 ease-out relative select-none border-r border-border/80 z-20",
-        collapsed ? "w-[68px]" : "w-[245px]"
+        collapsed ? "w-[68px]" : "w-[260px]"
       )}
     >
-      {/* ======================================================== */}
-      {/* MOYASAR BRAND HEADER & ACCOUNT SWITCHER                  */}
-      {/* ======================================================== */}
       <div
+        onClick={handleBackToHome}
         className={cn(
-          "flex items-center h-16 relative border-b border-border/60 transition-all",
+          "flex items-center h-16 relative border-b border-border/60 transition-all cursor-pointer hover:bg-surface-2/40",
           collapsed ? "justify-center px-2" : "px-4 justify-between"
         )}
       >
         <div className="flex items-center gap-3 min-w-0">
-          {/* Minimalist Geometric Infinity / Cross Brand Logo */}
           <div className="flex items-center justify-center rounded-xl h-9 w-9 bg-primary/10 text-primary border border-primary/20 shrink-0 font-bold shadow-2xs">
             <svg
               className="h-5 w-5 text-primary"
@@ -192,14 +234,24 @@ export default function Sidebar() {
               <motion.div
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
+                exit={{ opacity: 0, width: "0" }}
                 className="min-w-0 overflow-hidden text-left"
               >
                 <p className="text-sm font-bold text-text-primary truncate tracking-tight leading-tight">
                   {isPlatform ? "Platform Console" : "SmartPharma"}
                 </p>
+                {isHomeView && (
+                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                    Home • {partitions.length} sections
+                  </p>
+                )}
+                {!isHomeView && activePartition && (
+                  <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
+                    {activePartition.label}
+                  </p>
+                )}
                 <div
-                  onClick={() => navigate("/branches")}
+                  onClick={(e) => { e.stopPropagation(); navigate("/branches"); }}
                   className="flex items-center gap-1 text-[11px] text-text-secondary hover:text-primary transition-colors cursor-pointer mt-0.5"
                 >
                   <span className="truncate">{user?.branchName || "Main Branch"}</span>
@@ -210,8 +262,14 @@ export default function Sidebar() {
           </AnimatePresence>
         </div>
 
-        {/* Moyasar Shortcut Pill: ctrl k */}
-        {!collapsed && (
+        {!collapsed && !isHomeView && (
+          <ChevronLeft
+            className="h-4 w-4 text-text-secondary hover:text-primary transition-colors cursor-pointer"
+            onClick={(e) => { e.stopPropagation(); handleBackToHome(); }}
+          />
+        )}
+
+        {!collapsed && isHomeView && (
           <div className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-text-secondary bg-surface-2 rounded-md border border-border">
             <span>ctrl</span>
             <span>k</span>
@@ -219,13 +277,10 @@ export default function Sidebar() {
         )}
       </div>
 
-      {/* ======================================================== */}
-      {/* CATEGORIZED NAVIGATION SECTIONS                          */}
-      {/* ======================================================== */}
-      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-4 scrollbar-thin" data-sidebar>
-        {sections.map((section) => (
-          <div key={section.title} className="space-y-0.5">
-            {/* Section Category Title */}
+      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin" data-sidebar>
+
+        {isHomeView ? (
+          <>
             <AnimatePresence>
               {!collapsed && (
                 <motion.p
@@ -234,20 +289,74 @@ export default function Sidebar() {
                   exit={{ opacity: 0 }}
                   className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary/60 select-none"
                 >
-                  {section.title}
+                  Pharmacy
                 </motion.p>
               )}
             </AnimatePresence>
 
-            {/* Section Items */}
-            {section.items.map((item) => {
+            {partitions.map((partition) => {
+              const isActive = activePartition?.key === partition.key;
+              const Icon = partition.icon;
+              return (
+                <button
+                  key={partition.key}
+                  onClick={() => handlePartitionClick(partition)}
+                  className={cn(
+                    "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
+                    collapsed ? "justify-center h-9" : "gap-3 px-3 h-10",
+                    isActive
+                      ? "bg-primary/10 text-primary border border-primary/20 font-semibold"
+                      : "text-text-secondary hover:text-text-primary hover:bg-surface-2/60"
+                  )}
+                  title={collapsed ? partition.label : undefined}
+                >
+                  <Icon
+                    className={cn(
+                      "shrink-0 h-4 w-4",
+                      isActive ? "text-primary" : "text-text-secondary group-hover:text-text-primary"
+                    )}
+                  />
+                  <AnimatePresence>
+                    {!collapsed && (
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="text-sm font-medium truncate flex-1 text-left"
+                      >
+                        {partition.label}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                  {partition.direct ? (
+                    <ChevronRight className="h-3 w-3 shrink-0 text-text-secondary/40 group-hover:text-text-primary" />
+                  ) : (
+                    <ChevronDown className={cn("h-3 w-3 shrink-0 transition-transform duration-200", isActive && "rotate-180")} />
+                  )}
+                </button>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <div className="flex items-center gap-2 px-2 mb-3">
+              <ChevronLeft
+                className="h-4 w-4 text-text-secondary hover:text-primary transition-colors cursor-pointer mr-1"
+                onClick={handleBackToHome}
+              />
+              <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
+                {activePartition?.label}
+              </span>
+            </div>
+
+            {activePartition?.items.map((item) => {
               const isActive =
                 pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"));
               const Icon = item.icon;
               return (
                 <button
                   key={item.href}
-                  onClick={() => navigate(item.href)}
+                  onClick={() => handleItemClick(item.href)}
                   className={cn(
                     "group relative flex items-center w-full rounded-xl transition-all duration-150 cursor-pointer",
                     collapsed ? "justify-center h-9" : "gap-3 px-3 h-9",
@@ -262,8 +371,7 @@ export default function Sidebar() {
                   )}
                   <Icon
                     className={cn(
-                      "shrink-0",
-                      collapsed ? "h-4 w-4" : "h-4 w-4",
+                      "shrink-0 h-4 w-4",
                       isActive ? "text-primary" : "text-text-secondary group-hover:text-text-primary"
                     )}
                   />
@@ -280,7 +388,6 @@ export default function Sidebar() {
                     )}
                   </AnimatePresence>
 
-                  {/* Badges (e.g. Beta pill or pending approval count) */}
                   {!collapsed && item.badge && (
                     <span
                       className={cn(
@@ -305,13 +412,10 @@ export default function Sidebar() {
                 </button>
               );
             })}
-          </div>
-        ))}
+          </>
+        )}
       </nav>
 
-      {/* ======================================================== */}
-      {/* MOYASAR USER PROFILE FOOTER                              */}
-      {/* ======================================================== */}
       <div className="border-t border-border/70 p-3 relative bg-surface-2/30">
         <div
           onClick={() => setMenuOpen(!menuOpen)}
@@ -321,7 +425,6 @@ export default function Sidebar() {
           )}
         >
           <div className="flex items-center gap-2.5 min-w-0">
-            {/* Avatar or 3-dots icon */}
             <div className="h-8 w-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 text-primary font-bold text-xs">
               {user?.username ? user.username.slice(0, 2).toUpperCase() : "SP"}
             </div>
@@ -331,7 +434,7 @@ export default function Sidebar() {
                 <motion.div
                   initial={{ opacity: 0, width: 0 }}
                   animate={{ opacity: 1, width: "auto" }}
-                  exit={{ opacity: 0, width: 0 }}
+                  exit={{ opacity: 0, width: "0" }}
                   className="min-w-0 overflow-hidden text-left"
                 >
                   <p className="text-xs font-semibold text-text-primary truncate leading-tight">
@@ -350,7 +453,6 @@ export default function Sidebar() {
           )}
         </div>
 
-        {/* Quick User Menu Dropdown */}
         {menuOpen && !collapsed && (
           <div className="absolute bottom-16 left-3 right-3 bg-surface border border-border rounded-xl shadow-lg p-1.5 space-y-1 z-50 text-xs">
             <button
@@ -385,7 +487,6 @@ export default function Sidebar() {
         )}
       </div>
 
-      {/* Collapse/Expand Toggle Button */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         className={cn(
