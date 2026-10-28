@@ -52,7 +52,7 @@ const swaggerUiOptions = {
     docExpansion: "none",
     filter: true,
   },
-  customSiteTitle: "SmartPharma ERP API - Swagger UI",
+  customSiteTitle: "Pharma 360 ERP API - Swagger UI",
 };
 
 app.get("/api/docs.json", (_req, res) => {

@@ -54,7 +54,7 @@ export function generateReceiptHTML(sale: any, paperSize: string = "thermal"): {
 <body>
   <div class="header">
     <div>
-      <h1 class="title">SMARTPHARMA</h1>
+      <h1 class="title">PHARMA360</h1>
       <div class="meta">Advanced Pharmacy Healthcare ERP<br>VAT ID: 300000000000003</div>
     </div>
     <div style="text-align: right;">
@@ -103,7 +103,7 @@ export function generateReceiptHTML(sale: any, paperSize: string = "thermal"): {
   </div>
 
   <div class="footer">
-    Thank you for choosing SmartPharma. For medical advice, please consult your registered pharmacist.
+    Thank you for choosing Pharma 360. For medical advice, please consult your registered pharmacist.
   </div>
 </body>
 </html>`;
@@ -147,7 +147,7 @@ export function generateReceiptHTML(sale: any, paperSize: string = "thermal"): {
 </head>
 <body>
   <div class="center">
-    <div class="h1">SmartPharma</div>
+    <div class="h1">Pharma 360</div>
     <div class="sub">Advanced Community Pharmacy</div>
     <div class="sub">VAT No: 300000000000003</div>
   </div>
@@ -200,7 +200,7 @@ export function generateReceiptHTML(sale: any, paperSize: string = "thermal"): {
   <div class="footer">
     <div>*** THANK YOU FOR YOUR VISIT ***</div>
     <div>Prescriptions and returns valid within 3 days with original receipt.</div>
-    <div style="margin-top: 4px; font-size: 8.5px;">Powered by SmartPharma ERP</div>
+    <div style="margin-top: 4px; font-size: 8.5px;">Powered by Pharma 360 ERP</div>
   </div>
 </body>
 </html>`;
@@ -247,7 +247,7 @@ export function generateReturnReceiptHTML(returnData: any, sale: any, paperSize:
 </head>
 <body>
   <div class="center">
-    <h2>SMARTPHARMA</h2>
+    <h2>PHARMA360</h2>
     <div class="badge">** RETURN & REFUND VOUCHER **</div>
     <div style="font-size: 10px; margin-top: 4px;">Date: ${dateStr} ${timeStr}</div>
     <div style="font-size: 10px;">Original Sale: #${sale?.id ? String(sale.id).slice(0, 10) : "N/A"}</div>
@@ -285,7 +285,7 @@ export function generateReturnReceiptHTML(returnData: any, sale: any, paperSize:
   <div class="divider"></div>
   <div class="center" style="font-size: 10px; color: #666;">
     Return accepted & inventory updated.<br>
-    Powered by SmartPharma ERP
+    Powered by Pharma 360 ERP
   </div>
 </body>
 </html>`;
@@ -343,7 +343,7 @@ export function generateXReportHTML(report: any): { success: boolean; html: stri
 </head>
 <body>
   <div class="center">
-    <div class="title">SMARTPHARMA</div>
+    <div class="title">PHARMA360</div>
     <div class="subtitle">REGISTER X-REPORT (MID-SHIFT)</div>
     <div style="font-size: 9px; margin-top: 2px;">*** NON-CLOSING READING ***</div>
   </div>
@@ -386,7 +386,7 @@ export function generateXReportHTML(report: any): { success: boolean; html: stri
   <div class="divider"></div>
   <div class="center" style="font-size: 9px; margin-top: 8px;">
     Mid-shift live audit reading.<br>
-    SmartPharma Healthcare ERP
+    Pharma 360 Healthcare ERP
   </div>
 </body>
 </html>`;
@@ -451,7 +451,7 @@ export function generateZReportHTML(report: any): { success: boolean; html: stri
 </head>
 <body>
   <div class="center">
-    <div class="title">SMARTPHARMA</div>
+    <div class="title">PHARMA360</div>
     <div class="subtitle">REGISTER Z-REPORT (SHIFT CLOSE)</div>
     <div style="font-size: 9px; margin-top: 2px;">*** FINAL OFFICIAL RECONCILIATION ***</div>
   </div>
@@ -509,7 +509,7 @@ export function generateZReportHTML(report: any): { success: boolean; html: stri
   </div>
   <div class="center" style="font-size: 9px; color: #555;">
     Official Z-Report archived in ledger.<br>
-    SmartPharma Healthcare ERP
+    Pharma 360 Healthcare ERP
   </div>
 </body>
 </html>`;

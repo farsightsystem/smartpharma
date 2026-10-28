@@ -124,7 +124,7 @@ function BrandPanel() {
           <div className="h-7 w-7 rounded-lg bg-background/10 flex items-center justify-center">
             <span className="text-background text-xs font-bold">Rx</span>
           </div>
-          <span className="text-background font-semibold text-sm tracking-tight">SmartPharma</span>
+          <span className="text-background font-semibold text-sm tracking-tight">Pharma 360</span>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ function BrandPanel() {
       </div>
 
       <div className="relative z-10">
-        <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} SmartPharma</p>
+        <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} Pharma 360</p>
       </div>
     </div>
   );
@@ -296,7 +296,7 @@ function LoginView({ onSwitch }: { onSwitch: () => void }) {
           <div className="h-6 w-6 rounded-md bg-foreground flex items-center justify-center">
             <span className="text-background text-[10px] font-bold">Rx</span>
           </div>
-          <span className="text-text-primary font-semibold text-sm">SmartPharma</span>
+          <span className="text-text-primary font-semibold text-sm">Pharma 360</span>
         </div>
         <AnimatePresence mode="wait">
           {!recovery ? (
@@ -610,7 +610,7 @@ function RegisterView({ onSwitch, onRegistered }: { onSwitch: () => void; onRegi
           <div className="h-6 w-6 rounded-md bg-foreground flex items-center justify-center">
             <span className="text-background text-[10px] font-bold">Rx</span>
           </div>
-          <span className="text-text-primary font-semibold text-sm">SmartPharma</span>
+          <span className="text-text-primary font-semibold text-sm">Pharma 360</span>
         </div>
         <h1 className="text-2xl font-bold text-text-primary tracking-tight">Create your account</h1>
         <p className="text-sm text-text-secondary mt-1">Start your 30-day trial with full ERP access</p>

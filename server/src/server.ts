@@ -25,7 +25,7 @@ async function main() {
     initializeSocket(httpServer);
 
     httpServer.listen(config.port, "0.0.0.0", () => {
-      logger.info(`SmartPharma API server running on port ${config.port}`);
+      logger.info(`Pharma 360 API server running on port ${config.port}`);
     });
   } catch (err) {
     logger.error("Failed to start server:", err);

@@ -33,7 +33,7 @@ export function PortalNav() {
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-base tracking-tight text-text-primary">SmartPharma</span>
+                <span className="font-bold text-base tracking-tight text-text-primary">Pharma 360</span>
                 <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
                   <ShieldCheck className="h-2.5 w-2.5" /> Regulatory Compliance
                 </span>

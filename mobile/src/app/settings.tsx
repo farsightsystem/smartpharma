@@ -116,7 +116,7 @@ export default function SettingsScreen() {
             ]}>
             <Ionicons name="alert-circle-outline" size={16} color={theme.danger} />
             <Text style={[styles.blockedText, { color: theme.danger }]}>
-              Your subscription has expired. Contact the SmartPharma admin to renew it.
+              Your subscription has expired. Contact the Pharma 360 admin to renew it.
             </Text>
           </View>
         ) : null}
@@ -130,7 +130,7 @@ export default function SettingsScreen() {
           icon="server-outline"
           iconColor={theme.accent}
           title="Server URL"
-          subtitle="Where the SmartPharma server runs"
+          subtitle="Where the Pharma 360 server runs"
           last
         />
         <Input

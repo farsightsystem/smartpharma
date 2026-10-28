@@ -175,7 +175,7 @@ export function initWebPolyfill() {
         ],
         getConfig: async () => {
           try {
-            const raw = localStorage.getItem("smartpharma_printer_cfg");
+            const raw = localStorage.getItem("pharma360_printer_cfg");
             return raw ? JSON.parse(raw) : { paperSize: "thermal", copies: 1 };
           } catch {
             return { paperSize: "thermal", copies: 1 };
@@ -183,7 +183,7 @@ export function initWebPolyfill() {
         },
         saveConfig: async (cfg: PrinterConfig) => {
           try {
-            localStorage.setItem("smartpharma_printer_cfg", JSON.stringify(cfg));
+            localStorage.setItem("pharma360_printer_cfg", JSON.stringify(cfg));
             return { success: true };
           } catch {
             return { success: false };

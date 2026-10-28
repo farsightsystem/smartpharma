@@ -83,7 +83,7 @@ export default function Settings() {
     mutationFn: (data: typeof pharmacyForm) => api.pharmacy.update(data),
     onSuccess: async () => {
       toast.success("Pharmacy settings saved successfully");
-      localStorage.setItem("smartpharma_currency", pharmacyForm.currency);
+      localStorage.setItem("pharma360_currency", pharmacyForm.currency);
       queryClient.invalidateQueries({ queryKey: ["pharmacy", "profile"] });
       await refreshUser();
     },

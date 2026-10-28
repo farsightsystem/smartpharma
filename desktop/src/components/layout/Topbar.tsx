@@ -93,7 +93,7 @@ export default function Topbar() {
             transition={{ duration: 0.15 }}
             className="flex items-center gap-2 text-xs"
           >
-            <span className="font-medium text-text-secondary/70">SmartPharma</span>
+            <span className="font-medium text-text-secondary/70">Pharma 360</span>
             <span className="text-text-secondary/40 font-mono">/</span>
             <span className="font-semibold text-text-primary">{page.title}</span>
           </motion.div>

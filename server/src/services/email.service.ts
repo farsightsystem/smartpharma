@@ -57,7 +57,7 @@ export const emailService = {
    * Sends a 6-digit verification code email with 7-day grace period reminder.
    */
   async sendVerificationCodeEmail(to: string, otp: string, pharmacyName: string) {
-    const subject = `Your SmartPharma verification code: ${otp}`;
+    const subject = `Your Pharma 360 verification code: ${otp}`;
     const html = `
       <!DOCTYPE html>
       <html>
@@ -80,7 +80,7 @@ export const emailService = {
       <body>
         <div class="container">
           <div class="header">
-            <span class="badge">SmartPharma ERP</span>
+            <span class="badge">Pharma 360 ERP</span>
             <h1>Verify your pharmacy email</h1>
           </div>
           <div class="content">
@@ -88,7 +88,7 @@ export const emailService = {
               Hello <strong>${pharmacyName || "Valued Partner"}</strong>,
             </p>
             <p style="font-size: 14px; line-height: 1.6; color: #475569;">
-              Thank you for registering with SmartPharma. Please use the 6-digit verification code below to verify your email address:
+              Thank you for registering with Pharma 360. Please use the 6-digit verification code below to verify your email address:
             </p>
 
             <div class="otp-card">
@@ -105,13 +105,13 @@ export const emailService = {
             </p>
           </div>
           <div class="footer">
-            © ${new Date().getFullYear()} SmartPharma Cloud ERP. All rights reserved.
+            © ${new Date().getFullYear()} Pharma 360 Cloud ERP. All rights reserved.
           </div>
         </div>
       </body>
       </html>
     `;
-    const text = `Your SmartPharma verification code is: ${otp}. Valid for 15 minutes. You have a 7-day grace period to verify your account.`;
+    const text = `Your Pharma 360 verification code is: ${otp}. Valid for 15 minutes. You have a 7-day grace period to verify your account.`;
 
     return this.sendEmail({ to, subject, html, text });
   },
@@ -120,7 +120,7 @@ export const emailService = {
    * Sends a 6-digit OTP code for pharmacy owner password reset.
    */
   async sendPasswordResetOtpEmail(to: string, otp: string, pharmacyName: string) {
-    const subject = `Reset your SmartPharma password: ${otp}`;
+    const subject = `Reset your Pharma 360 password: ${otp}`;
     const html = `
       <!DOCTYPE html>
       <html>
@@ -151,7 +151,7 @@ export const emailService = {
               Hello <strong>${pharmacyName || "Pharmacy Administrator"}</strong>,
             </p>
             <p style="font-size: 14px; line-height: 1.6; color: #475569;">
-              We received a request to reset the administrator password for your SmartPharma account. Use the one-time code below to proceed:
+              We received a request to reset the administrator password for your Pharma 360 account. Use the one-time code below to proceed:
             </p>
 
             <div class="otp-card">
@@ -164,13 +164,13 @@ export const emailService = {
             </div>
           </div>
           <div class="footer">
-            © ${new Date().getFullYear()} SmartPharma Cloud ERP. All rights reserved.
+            © ${new Date().getFullYear()} Pharma 360 Cloud ERP. All rights reserved.
           </div>
         </div>
       </body>
       </html>
     `;
-    const text = `Your SmartPharma password reset code is: ${otp}. Valid for 15 minutes.`;
+    const text = `Your Pharma 360 password reset code is: ${otp}. Valid for 15 minutes.`;
 
     return this.sendEmail({ to, subject, html, text });
   },

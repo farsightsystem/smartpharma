@@ -38,7 +38,7 @@ export function renderBarcode(svg: SVGElement, value: string, options: RenderBar
 
 export function getTenantCurrency(): string {
   if (typeof window !== "undefined") {
-    const saved = localStorage.getItem("smartpharma_currency")?.trim();
+    const saved = localStorage.getItem("pharma360_currency")?.trim();
     if (saved) return saved;
   }
   return "USD";

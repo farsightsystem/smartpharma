@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SmartPharma — Modern Pharmacy Healthcare ERP",
+  title: "Pharma 360 — Modern Pharmacy Healthcare ERP",
   description: "Advanced Pharmacy Management & Point of Sale System for Saudi Arabia, UAE, and beyond.",
 };
 

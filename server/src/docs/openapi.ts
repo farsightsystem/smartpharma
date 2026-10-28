@@ -1,14 +1,14 @@
 /**
- * SmartPharma ERP & Clinical Pharmacy API - OpenAPI 3.0 Specification
+ * Pharma 360 ERP & Clinical Pharmacy API - OpenAPI 3.0 Specification
  */
 
 export const openapiSpecification: Record<string, any> = {
   openapi: "3.0.3",
   info: {
-    title: "SmartPharma ERP & Clinical Pharmacy API",
+    title: "Pharma 360 ERP & Clinical Pharmacy API",
     version: "1.0.0",
     description: `
-**SmartPharma** is a high-reliability, multi-tenant pharmacy ERP and clinical dispensing system.
+**Pharma 360** is a high-reliability, multi-tenant pharmacy ERP and clinical dispensing system.
 
 ### Key Capabilities:
 - **Clinical Dispensing**: Prescription validation, generic substitution recommendation, and strict controlled-substance register with dual-pharmacist witness logging.
@@ -20,8 +20,8 @@ export const openapiSpecification: Record<string, any> = {
 - **AI Forecasting**: Automated reorder recommendations, expiry risk projection, and slow-moving stock identification.
     `,
     contact: {
-      name: "SmartPharma Engineering",
-      url: "https://smartpharma.app",
+      name: "Pharma 360 Engineering",
+      url: "https://pharma360.app",
     },
   },
   servers: [
@@ -71,7 +71,7 @@ export const openapiSpecification: Record<string, any> = {
         type: "object",
         properties: {
           id: { type: "string", example: "usr_101" },
-          email: { type: "string", example: "pharmacist@smartpharma.app" },
+          email: { type: "string", example: "pharmacist@pharma360.app" },
           name: { type: "string", example: "Dr. Faraz Ahmed" },
           role: { type: "string", example: "PHARMACIST" },
           pharmacyId: { type: "string", example: "ph_default" },
@@ -83,7 +83,7 @@ export const openapiSpecification: Record<string, any> = {
         type: "object",
         properties: {
           id: { type: "string", example: "ph_default" },
-          name: { type: "string", example: "SmartPharma Central Pharmacy" },
+          name: { type: "string", example: "Pharma 360 Central Pharmacy" },
           countryCode: { type: "string", example: "SA" },
           currency: { type: "string", example: "SAR" },
           timezone: { type: "string", example: "Asia/Riyadh" },

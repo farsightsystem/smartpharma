@@ -660,7 +660,7 @@ export default function PosShiftManager({ activeShift, isLoading }: PosShiftMana
               <DialogTitle>Close Register & Reconcile (Z-Report)</DialogTitle>
             </div>
             <DialogDescription>
-              Count physical cash in the drawer. SmartPharma reconciles totals and produces an immutable Z-Report.
+              Count physical cash in the drawer. Pharma 360 reconciles totals and produces an immutable Z-Report.
             </DialogDescription>
           </DialogHeader>
 

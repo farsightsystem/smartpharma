@@ -67,13 +67,13 @@ export default function Topbar() {
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("smartpharma_theme", next ? "dark" : "light");
+      localStorage.setItem("pharma360_theme", next ? "dark" : "light");
     } catch {}
   }
 
   // Get matching page metadata or fallback
   const baseKey = Object.keys(pageLabels).find(key => key !== "/" && pathname.startsWith(key)) || (pathname === "/" ? "/" : "");
-  const page = pageLabels[baseKey] || { title: "SmartPharma ERP", subtitle: "Healthcare management platform" };
+  const page = pageLabels[baseKey] || { title: "Pharma 360 ERP", subtitle: "Healthcare management platform" };
 
   return (
     <header className="h-14 border-b border-border bg-surface/70 backdrop-blur-lg sticky top-0 z-20 flex-shrink-0">
@@ -87,7 +87,7 @@ export default function Topbar() {
             transition={{ duration: 0.15 }}
             className="flex items-center gap-2 text-xs"
           >
-            <span className="font-medium text-text-secondary/70">SmartPharma</span>
+            <span className="font-medium text-text-secondary/70">Pharma 360</span>
             <span className="text-text-secondary/40 font-mono">/</span>
             <span className="font-semibold text-text-primary">{page.title}</span>
           </motion.div>

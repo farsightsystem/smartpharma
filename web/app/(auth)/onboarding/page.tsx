@@ -9,7 +9,7 @@ export default function OnboardingPage() {
   return (
     <Onboarding
       onComplete={() => {
-        localStorage.removeItem("smartpharma_onboarding_pending");
+        localStorage.removeItem("pharma360_onboarding_pending");
         router.push("/");
       }}
     />

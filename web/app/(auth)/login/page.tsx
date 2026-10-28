@@ -9,7 +9,7 @@ export default function LoginPage() {
   return (
     <Login
       onRegistered={() => {
-        localStorage.setItem("smartpharma_onboarding_pending", "true");
+        localStorage.setItem("pharma360_onboarding_pending", "true");
         router.push("/onboarding");
       }}
     />

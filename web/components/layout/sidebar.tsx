@@ -245,7 +245,7 @@ export default function Sidebar() {
                 className="min-w-0 overflow-hidden text-left"
               >
                 <p className="text-sm font-bold text-text-primary truncate tracking-tight leading-tight">
-                  {isPlatform ? "Platform Console" : "SmartPharma"}
+                  {isPlatform ? "Platform Console" : "Pharma 360"}
                 </p>
                 {isHomeView && (
                   <p className="text-[10px] text-text-secondary/70 truncate mt-0.5">
@@ -457,7 +457,7 @@ export default function Sidebar() {
                     {user?.username || "Admin"}
                   </p>
                   <p className="text-[10px] text-text-secondary truncate mt-0.5">
-                    {isPlatform ? "Platform Admin" : "SmartPharma Central"}
+                    {isPlatform ? "Platform Admin" : "Pharma 360 Central"}
                   </p>
                 </motion.div>
               )}

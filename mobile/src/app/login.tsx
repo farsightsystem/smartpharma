@@ -291,7 +291,7 @@ export default function LoginScreen() {
             <View style={styles.modalHeader}>
               <Text style={[styles.modalTitle, { color: theme.text }]}>Server URL</Text>
               <Text style={[styles.modalSub, { color: theme.textSecondary }]}>
-                Address of the SmartPharma server. Make sure your phone and server are on the same network.
+                Address of the Pharma 360 server. Make sure your phone and server are on the same network.
               </Text>
             </View>
             <Input

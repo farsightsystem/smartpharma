@@ -500,7 +500,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
         licenceNumber: data.licenceNumber.trim() || undefined,
       });
 
-      localStorage.setItem("smartpharma_currency", data.currency);
+      localStorage.setItem("pharma360_currency", data.currency);
       await refreshUser();
       setStep(2);
 
@@ -526,7 +526,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
               <div className="h-7 w-7 rounded-lg bg-foreground flex items-center justify-center">
                 <span className="text-background text-xs font-bold">Rx</span>
               </div>
-              <span className="text-text-primary font-semibold text-sm tracking-tight">SmartPharma</span>
+              <span className="text-text-primary font-semibold text-sm tracking-tight">Pharma 360</span>
             </div>
             <StepBar current={step} />
           </div>
@@ -608,7 +608,7 @@ export default function Onboarding({ onComplete }: { onComplete?: () => void }) 
         </div>
 
         <div className="relative z-10">
-          <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} SmartPharma</p>
+          <p className="text-background/30 text-[11px]">© {new Date().getFullYear()} Pharma 360</p>
         </div>
       </div>
     </div>

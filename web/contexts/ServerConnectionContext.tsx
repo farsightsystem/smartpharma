@@ -21,7 +21,7 @@ const ServerConnectionContext = createContext<ServerConnectionContextType | null
 
 function getApiUrl(): string {
   if (typeof window !== "undefined") {
-    const override = localStorage.getItem("smartpharma_api_url")?.trim();
+    const override = localStorage.getItem("pharma360_api_url")?.trim();
     if (override) return override;
   }
   return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3003";

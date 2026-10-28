@@ -28,7 +28,7 @@ export default function PharmacySetupModal() {
 
     const p = user.pharmacyProfile;
     const isUnconfigured = !p?.countryCode || !p?.currency || !p?.city;
-    const sessionDismissed = sessionStorage.getItem("smartpharma_setup_prompt_dismissed");
+    const sessionDismissed = sessionStorage.getItem("pharma360_setup_prompt_dismissed");
 
     if (isUnconfigured && !sessionDismissed) {
       if (p?.countryCode) {
@@ -68,7 +68,7 @@ export default function PharmacySetupModal() {
         phone: phone.trim(),
         address: address.trim(),
       });
-      localStorage.setItem("smartpharma_currency", currency);
+      localStorage.setItem("pharma360_currency", currency);
       toast.success("Pharmacy details updated successfully!");
       await refreshUser();
       setOpen(false);
@@ -81,7 +81,7 @@ export default function PharmacySetupModal() {
   }
 
   function handleDismiss() {
-    sessionStorage.setItem("smartpharma_setup_prompt_dismissed", "true");
+    sessionStorage.setItem("pharma360_setup_prompt_dismissed", "true");
     setOpen(false);
   }
 

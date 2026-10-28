@@ -103,7 +103,7 @@ export default function EmailVerificationModal({
           </div>
           <DialogTitle className="text-lg font-bold">Verify Pharmacy Email</DialogTitle>
           <DialogDescription className="text-xs text-text-secondary">
-            SmartPharma delivers critical compliance updates, daily Z-reports, and password recovery via{" "}
+            Pharma 360 delivers critical compliance updates, daily Z-reports, and password recovery via{" "}
             <span className="font-semibold text-text-primary">resend.com</span>.
           </DialogDescription>
         </DialogHeader>

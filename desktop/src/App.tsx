@@ -64,7 +64,7 @@ function AppShell() {
   const { isAuthenticated, logout, subscriptionBlocked, user } = useAuth();
   const [ready, setReady] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(() => {
-    return localStorage.getItem("smartpharma_onboarding_pending") === "true";
+    return localStorage.getItem("pharma360_onboarding_pending") === "true";
   });
   const location = useLocation();
   const navigate = useNavigate();
@@ -170,7 +170,7 @@ function AppShell() {
     return (
       <Login
         onRegistered={() => {
-          localStorage.setItem("smartpharma_onboarding_pending", "true");
+          localStorage.setItem("pharma360_onboarding_pending", "true");
           setShowOnboarding(true);
         }}
       />
@@ -181,7 +181,7 @@ function AppShell() {
     return (
       <Onboarding
         onComplete={() => {
-          localStorage.removeItem("smartpharma_onboarding_pending");
+          localStorage.removeItem("pharma360_onboarding_pending");
           setShowOnboarding(false);
           navigate("/pos");
         }}
@@ -235,7 +235,7 @@ function AppShell() {
                 <AnimatedPage>
                   <Onboarding
                     onComplete={() => {
-                      localStorage.removeItem("smartpharma_onboarding_pending");
+                      localStorage.removeItem("pharma360_onboarding_pending");
                       setShowOnboarding(false);
                       navigate("/pos");
                     }}

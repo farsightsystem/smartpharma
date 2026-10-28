@@ -43,7 +43,7 @@ export default function Billing() {
       }
     } catch (e) {
       if (e instanceof ApiError && e.status === 402) {
-        setError("Your subscription is inactive. Renew your plan to continue using SmartPharma.");
+        setError("Your subscription is inactive. Renew your plan to continue using Pharma 360.");
       } else {
         setError(e instanceof Error ? e.message : "Could not load billing info");
       }
@@ -173,7 +173,7 @@ export default function Billing() {
 
           <div className="mt-6 pt-4 border-t border-border">
             <p className="text-xs text-text-secondary leading-relaxed">
-              Billing is managed by the SmartPharma platform administrator. For renewals, plan changes or
+              Billing is managed by the Pharma 360 platform administrator. For renewals, plan changes or
               questions, please contact the administrator of your pharmacy account{" "}
               {user?.pharmacyName ? `(${user.pharmacyName})` : ""}.
             </p>
